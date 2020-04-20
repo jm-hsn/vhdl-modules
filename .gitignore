@@ -6,4 +6,5 @@
 /workspace/
 /workspace.bak/
 .Xil/
+.Xiltemp/
 /run-*
