@@ -1,10 +1,1 @@
-/*.jou
-/*.log
-/*.png
-/*.str
-/sources/*.tcl.raw
-/workspace/
-/workspace.bak/
-.Xil/
-.Xiltemp/
-/run-*
+vivado_project/*
