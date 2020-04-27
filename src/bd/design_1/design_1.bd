@@ -1,0 +1,713 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x77B6D9CBCF9EBCA3",
+      "device": "xc7a100tcsg324-1",
+      "name": "design_1",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2018.3",
+      "validated": "true"
+    },
+    "design_tree": {
+      "fifo_output": "",
+      "fifo_input": "",
+      "xlconstant_0": "",
+      "c_counter_binary_0": "",
+      "c_counter_binary_1": "",
+      "xlconcat_4": "",
+      "segment_0": "",
+      "negate_0": "",
+      "xlconcat_5": "",
+      "xlconstant_1": "",
+      "xlslice_0": "",
+      "packaging_1": "",
+      "ethernet_transceiver2_0": ""
+    },
+    "ports": {
+      "reset_rtl_0": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW"
+          }
+        }
+      },
+      "clk_100MHz": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "reset_rtl_0",
+            "value_src": "default"
+          },
+          "CLK_DOMAIN": {
+            "value": "design_1_clk_100MHz",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      },
+      "sw_0": {
+        "direction": "I",
+        "left": "4",
+        "right": "0"
+      },
+      "led_0": {
+        "direction": "O",
+        "left": "15",
+        "right": "0",
+        "parameters": {
+          "PortWidth": {
+            "value": "16",
+            "value_src": "ip_prop"
+          }
+        }
+      },
+      "led17_r_0": {
+        "direction": "O"
+      },
+      "led17_g_0": {
+        "direction": "O"
+      },
+      "led17_b_0": {
+        "direction": "O"
+      },
+      "led16_r_0": {
+        "direction": "O"
+      },
+      "led16_g_0": {
+        "direction": "O"
+      },
+      "led16_b_0": {
+        "direction": "O"
+      },
+      "eth_refclk_0": {
+        "direction": "O"
+      },
+      "eth_mdio_0": {
+        "direction": "IO"
+      },
+      "eth_mdc_0": {
+        "direction": "O"
+      },
+      "eth_rxerr_0": {
+        "direction": "IO"
+      },
+      "eth_txen_0": {
+        "direction": "IO"
+      },
+      "eth_crsdv_0": {
+        "direction": "IO"
+      },
+      "eth_rstn_0": {
+        "type": "rst",
+        "direction": "IO",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default"
+          }
+        }
+      },
+      "eth_rxd_0": {
+        "direction": "IO",
+        "left": "1",
+        "right": "0"
+      },
+      "eth_txd_0": {
+        "direction": "IO",
+        "left": "1",
+        "right": "0"
+      },
+      "anodes_0": {
+        "direction": "O",
+        "left": "0",
+        "right": "7"
+      },
+      "cathodes_0": {
+        "direction": "O",
+        "left": "0",
+        "right": "7"
+      }
+    },
+    "components": {
+      "fifo_output": {
+        "vlnv": "xilinx.com:ip:fifo_generator:13.2",
+        "xci_name": "design_1_fifo_generator_0_0",
+        "parameters": {
+          "Almost_Empty_Flag": {
+            "value": "false"
+          },
+          "Almost_Full_Flag": {
+            "value": "false"
+          },
+          "FIFO_Implementation_rach": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "FIFO_Implementation_wach": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "FIFO_Implementation_wrch": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "Fifo_Implementation": {
+            "value": "Independent_Clocks_Distributed_RAM"
+          },
+          "Full_Flags_Reset_Value": {
+            "value": "1"
+          },
+          "INTERFACE_TYPE": {
+            "value": "Native"
+          },
+          "Input_Data_Width": {
+            "value": "32"
+          },
+          "Input_Depth": {
+            "value": "512"
+          },
+          "Overflow_Flag": {
+            "value": "true"
+          },
+          "Performance_Options": {
+            "value": "Standard_FIFO"
+          },
+          "Programmable_Empty_Type": {
+            "value": "No_Programmable_Empty_Threshold"
+          },
+          "Programmable_Full_Type": {
+            "value": "No_Programmable_Full_Threshold"
+          },
+          "Read_Data_Count": {
+            "value": "true"
+          },
+          "Read_Data_Count_Width": {
+            "value": "9"
+          },
+          "Reset_Pin": {
+            "value": "true"
+          },
+          "Underflow_Flag": {
+            "value": "false"
+          },
+          "Use_Dout_Reset": {
+            "value": "true"
+          },
+          "Valid_Flag": {
+            "value": "false"
+          },
+          "Write_Data_Count": {
+            "value": "false"
+          }
+        }
+      },
+      "fifo_input": {
+        "vlnv": "xilinx.com:ip:fifo_generator:13.2",
+        "xci_name": "design_1_fifo_generator_0_1",
+        "parameters": {
+          "Almost_Empty_Flag": {
+            "value": "false"
+          },
+          "Data_Count": {
+            "value": "false"
+          },
+          "FIFO_Implementation_rach": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "FIFO_Implementation_wach": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "FIFO_Implementation_wrch": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "Fifo_Implementation": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "INTERFACE_TYPE": {
+            "value": "Native"
+          },
+          "Input_Data_Width": {
+            "value": "32"
+          },
+          "Input_Depth": {
+            "value": "64"
+          },
+          "Overflow_Flag": {
+            "value": "true"
+          },
+          "Performance_Options": {
+            "value": "Standard_FIFO"
+          },
+          "Programmable_Empty_Type": {
+            "value": "No_Programmable_Empty_Threshold"
+          },
+          "Programmable_Full_Type": {
+            "value": "No_Programmable_Full_Threshold"
+          },
+          "Reset_Pin": {
+            "value": "true"
+          },
+          "Reset_Type": {
+            "value": "Synchronous_Reset"
+          },
+          "Underflow_Flag": {
+            "value": "false"
+          },
+          "Use_Dout_Reset": {
+            "value": "true"
+          },
+          "Valid_Flag": {
+            "value": "false"
+          }
+        }
+      },
+      "xlconstant_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "design_1_xlconstant_0_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "c_counter_binary_0": {
+        "vlnv": "xilinx.com:ip:c_counter_binary:12.0",
+        "xci_name": "design_1_c_counter_binary_0_0",
+        "parameters": {
+          "CE": {
+            "value": "true"
+          },
+          "Fb_Latency_Configuration": {
+            "value": "Automatic"
+          },
+          "Final_Count_Value": {
+            "value": "270F"
+          },
+          "Latency_Configuration": {
+            "value": "Automatic"
+          },
+          "Restrict_Count": {
+            "value": "true"
+          },
+          "SCLR": {
+            "value": "true"
+          }
+        }
+      },
+      "c_counter_binary_1": {
+        "vlnv": "xilinx.com:ip:c_counter_binary:12.0",
+        "xci_name": "design_1_c_counter_binary_0_1",
+        "parameters": {
+          "CE": {
+            "value": "true"
+          },
+          "Fb_Latency_Configuration": {
+            "value": "Automatic"
+          },
+          "Final_Count_Value": {
+            "value": "270F"
+          },
+          "Latency_Configuration": {
+            "value": "Automatic"
+          },
+          "Restrict_Count": {
+            "value": "true"
+          },
+          "SCLR": {
+            "value": "true"
+          }
+        }
+      },
+      "xlconcat_4": {
+        "vlnv": "xilinx.com:ip:xlconcat:2.1",
+        "xci_name": "design_1_xlconcat_3_0",
+        "parameters": {
+          "IN0_WIDTH": {
+            "value": "4"
+          },
+          "IN1_WIDTH": {
+            "value": "4"
+          },
+          "IN2_WIDTH": {
+            "value": "8"
+          },
+          "IN3_WIDTH": {
+            "value": "2"
+          },
+          "IN4_WIDTH": {
+            "value": "5"
+          },
+          "NUM_PORTS": {
+            "value": "3"
+          }
+        }
+      },
+      "segment_0": {
+        "vlnv": "xilinx.com:user:segment:1.0",
+        "xci_name": "design_1_segment_0_0"
+      },
+      "negate_0": {
+        "vlnv": "xilinx.com:ip:c_addsub:12.0",
+        "xci_name": "design_1_c_addsub_0_0",
+        "parameters": {
+          "A_Type": {
+            "value": "Unsigned"
+          },
+          "A_Width": {
+            "value": "1"
+          },
+          "Add_Mode": {
+            "value": "Add"
+          },
+          "B_Constant": {
+            "value": "true"
+          },
+          "B_Type": {
+            "value": "Unsigned"
+          },
+          "B_Value": {
+            "value": "1"
+          },
+          "B_Width": {
+            "value": "1"
+          },
+          "CE": {
+            "value": "false"
+          },
+          "Latency": {
+            "value": "1"
+          },
+          "Latency_Configuration": {
+            "value": "Automatic"
+          },
+          "Out_Width": {
+            "value": "1"
+          }
+        }
+      },
+      "xlconcat_5": {
+        "vlnv": "xilinx.com:ip:xlconcat:2.1",
+        "xci_name": "design_1_xlconcat_4_0",
+        "parameters": {
+          "IN0_WIDTH": {
+            "value": "9"
+          },
+          "IN1_WIDTH": {
+            "value": "7"
+          },
+          "IN2_WIDTH": {
+            "value": "8"
+          },
+          "IN3_WIDTH": {
+            "value": "2"
+          },
+          "IN4_WIDTH": {
+            "value": "5"
+          },
+          "NUM_PORTS": {
+            "value": "2"
+          }
+        }
+      },
+      "xlconstant_1": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "design_1_xlconstant_0_1",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "7"
+          }
+        }
+      },
+      "xlslice_0": {
+        "vlnv": "xilinx.com:ip:xlslice:1.0",
+        "xci_name": "design_1_xlslice_0_0",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "7"
+          },
+          "DIN_TO": {
+            "value": "0"
+          },
+          "DIN_WIDTH": {
+            "value": "16"
+          },
+          "DOUT_WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "packaging_1": {
+        "vlnv": "user.org:user:packaging:3.0",
+        "xci_name": "design_1_packaging_1_0"
+      },
+      "ethernet_transceiver2_0": {
+        "vlnv": "xilinx.com:user:ethernet_transceiver2:1.0",
+        "xci_name": "design_1_ethernet_transceiver2_0_0"
+      }
+    },
+    "interface_nets": {
+      "ethernet_transceiver2_0_fifo_write": {
+        "interface_ports": [
+          "ethernet_transceiver2_0/fifo_write",
+          "fifo_input/FIFO_WRITE"
+        ]
+      },
+      "packaging_1_fifo_read": {
+        "interface_ports": [
+          "packaging_1/fifo_read",
+          "fifo_input/FIFO_READ"
+        ]
+      },
+      "packaging_1_fifo_write": {
+        "interface_ports": [
+          "packaging_1/fifo_write",
+          "fifo_output/FIFO_WRITE"
+        ]
+      },
+      "ethernet_transceiver2_0_fifo_read": {
+        "interface_ports": [
+          "fifo_output/FIFO_READ",
+          "ethernet_transceiver2_0/fifo_read"
+        ]
+      }
+    },
+    "nets": {
+      "clk_wiz_clk_out1": {
+        "ports": [
+          "clk_100MHz",
+          "fifo_input/clk",
+          "c_counter_binary_0/CLK",
+          "c_counter_binary_1/CLK",
+          "segment_0/clk",
+          "negate_0/CLK",
+          "fifo_output/wr_clk",
+          "packaging_1/clk",
+          "ethernet_transceiver2_0/clk100mhz"
+        ]
+      },
+      "rst_clk_wiz_100M_peripheral_aresetn": {
+        "ports": [
+          "reset_rtl_0",
+          "negate_0/A",
+          "packaging_1/rst",
+          "ethernet_transceiver2_0/btn_reset"
+        ]
+      },
+      "segment_0_anodes": {
+        "ports": [
+          "segment_0/anodes",
+          "anodes_0"
+        ]
+      },
+      "segment_0_cathodes": {
+        "ports": [
+          "segment_0/cathodes",
+          "cathodes_0"
+        ]
+      },
+      "xlconstant_0_dout": {
+        "ports": [
+          "xlconstant_0/dout",
+          "ethernet_transceiver2_0/udp_packet_checksum"
+        ]
+      },
+      "Net": {
+        "ports": [
+          "eth_rxd_0",
+          "ethernet_transceiver2_0/eth_rxd"
+        ]
+      },
+      "Net1": {
+        "ports": [
+          "eth_txd_0",
+          "ethernet_transceiver2_0/eth_txd"
+        ]
+      },
+      "Net2": {
+        "ports": [
+          "eth_crsdv_0",
+          "ethernet_transceiver2_0/eth_crsdv"
+        ]
+      },
+      "Net3": {
+        "ports": [
+          "eth_txen_0",
+          "ethernet_transceiver2_0/eth_txen"
+        ]
+      },
+      "Net4": {
+        "ports": [
+          "eth_rxerr_0",
+          "ethernet_transceiver2_0/eth_rxerr"
+        ]
+      },
+      "ethernet_transceiver2_0_eth_mdc": {
+        "ports": [
+          "ethernet_transceiver2_0/eth_mdc",
+          "eth_mdc_0"
+        ]
+      },
+      "Net5": {
+        "ports": [
+          "eth_mdio_0",
+          "ethernet_transceiver2_0/eth_mdio"
+        ]
+      },
+      "ethernet_transceiver2_0_eth_refclk": {
+        "ports": [
+          "ethernet_transceiver2_0/eth_refclk",
+          "eth_refclk_0",
+          "fifo_output/rd_clk"
+        ]
+      },
+      "Net6": {
+        "ports": [
+          "eth_rstn_0",
+          "ethernet_transceiver2_0/eth_rstn"
+        ]
+      },
+      "ethernet_transceiver2_0_led16_b": {
+        "ports": [
+          "ethernet_transceiver2_0/led16_b",
+          "led16_b_0"
+        ]
+      },
+      "ethernet_transceiver2_0_led16_g": {
+        "ports": [
+          "ethernet_transceiver2_0/led16_g",
+          "led16_g_0"
+        ]
+      },
+      "ethernet_transceiver2_0_led16_r": {
+        "ports": [
+          "ethernet_transceiver2_0/led16_r",
+          "led16_r_0"
+        ]
+      },
+      "ethernet_transceiver2_0_led17_b": {
+        "ports": [
+          "ethernet_transceiver2_0/led17_b",
+          "led17_b_0"
+        ]
+      },
+      "ethernet_transceiver2_0_led17_g": {
+        "ports": [
+          "ethernet_transceiver2_0/led17_g",
+          "led17_g_0"
+        ]
+      },
+      "ethernet_transceiver2_0_led17_r": {
+        "ports": [
+          "ethernet_transceiver2_0/led17_r",
+          "led17_r_0"
+        ]
+      },
+      "c_counter_binary_1_Q": {
+        "ports": [
+          "c_counter_binary_1/Q",
+          "segment_0/num1"
+        ]
+      },
+      "xlconcat_4_dout": {
+        "ports": [
+          "xlconcat_4/dout",
+          "led_0"
+        ]
+      },
+      "c_counter_binary_0_Q": {
+        "ports": [
+          "c_counter_binary_0/Q",
+          "segment_0/num2"
+        ]
+      },
+      "xlslice_1_Dout": {
+        "ports": [
+          "negate_0/S",
+          "c_counter_binary_0/SCLR",
+          "c_counter_binary_1/SCLR",
+          "fifo_input/srst",
+          "fifo_output/rst"
+        ]
+      },
+      "fifo_output_overflow": {
+        "ports": [
+          "fifo_output/overflow",
+          "c_counter_binary_0/CE"
+        ]
+      },
+      "fifo_input_overflow": {
+        "ports": [
+          "fifo_input/overflow",
+          "c_counter_binary_1/CE"
+        ]
+      },
+      "fifo_output_rd_data_count": {
+        "ports": [
+          "fifo_output/rd_data_count",
+          "xlconcat_5/In0"
+        ]
+      },
+      "xlconcat_5_dout": {
+        "ports": [
+          "xlconcat_5/dout",
+          "xlslice_0/Din",
+          "ethernet_transceiver2_0/fifo_read_length"
+        ]
+      },
+      "xlconstant_1_dout": {
+        "ports": [
+          "xlconstant_1/dout",
+          "xlconcat_5/In1"
+        ]
+      },
+      "xlslice_0_Dout": {
+        "ports": [
+          "xlslice_0/Dout",
+          "xlconcat_4/In2"
+        ]
+      },
+      "sw_0_1": {
+        "ports": [
+          "sw_0",
+          "ethernet_transceiver2_0/ip"
+        ]
+      },
+      "packaging_1_errorCode": {
+        "ports": [
+          "packaging_1/errorCode",
+          "xlconcat_4/In0"
+        ]
+      },
+      "packaging_1_stateOut": {
+        "ports": [
+          "packaging_1/stateOut",
+          "xlconcat_4/In1"
+        ]
+      }
+    }
+  }
+}
