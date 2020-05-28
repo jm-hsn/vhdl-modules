@@ -2,7 +2,7 @@
 
 VHDL implementation of job parser and hardware accelerator modules
 
-## barbedo/vivado-git
+## [barbedo/vivado-git](https://github.com/barbedo/vivado-git)
 
 Trying to make Vivado more git-friendly.
 

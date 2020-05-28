@@ -124,15 +124,171 @@ update_ip_catalog -rebuild
 
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
+set files [list \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Block_proc.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_Border_proc.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_Border_proc_borderbuf.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_HConvH_proc6.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_VConvH_proc.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_VConvH_proc_linebuf_0.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/globals.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/checksum.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/conv2d.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/conv2d_5x5_224p.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/dummyModule.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/fifo_w32_d2_A.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/fifo_w32_d3_A.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/filter11x11_strm.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/filter11x11_strm_ent.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/kernel_5x5.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/multiplex.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/ram.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/shiftIn.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Block_proc_U0.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Loop_Border_proc_U0.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Loop_VConvH_proc_U0.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/packaging.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/relu.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/shiftOut.vhd"] \
+]
+add_files -norecurse -fileset $obj $files
+
 # Set 'sources_1' fileset file properties for remote files
-# None
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Block_proc.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_Border_proc.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_Border_proc_borderbuf.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_HConvH_proc6.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_VConvH_proc.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_VConvH_proc_linebuf_0.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/globals.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/checksum.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/conv2d.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/conv2d_5x5_224p.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/dummyModule.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/fifo_w32_d2_A.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/fifo_w32_d3_A.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/filter11x11_strm.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/filter11x11_strm_ent.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/kernel_5x5.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/multiplex.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/ram.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/shiftIn.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Block_proc_U0.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Loop_Border_proc_U0.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Loop_VConvH_proc_U0.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/packaging.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/relu.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/shiftOut.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
 
 # Set 'sources_1' fileset file properties for local files
 # None
 
 # Set 'sources_1' fileset properties
 set obj [get_filesets sources_1]
-set_property -name "top" -value "design_1_wrapper" -objects $obj
+set_property -name "top" -value "packaging" -objects $obj
+set_property -name "top_arch" -value "Behavioral" -objects $obj
+set_property -name "top_file" -value "$proj_dir/vhdl-modules.srcs/sources_1/imports/src/packaging.vhd" -objects $obj
+set_property -name "top_lib" -value "xil_defaultlib" -objects $obj
 
 # Create 'constrs_1' fileset (if not found)
 if {[string equal [get_filesets -quiet constrs_1] ""]} {
@@ -163,11 +319,17 @@ if {[string equal [get_filesets -quiet sim_1] ""]} {
 set obj [get_filesets sim_1]
 set files [list \
  [file normalize "${origin_dir}/src/testbench/packaging_tb.vhd"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/tb.vhd"] \
 ]
 add_files -norecurse -fileset $obj $files
 
 # Set 'sim_1' fileset file properties for remote files
 set file "$origin_dir/src/testbench/packaging_tb.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/tb.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
@@ -191,10 +353,84 @@ set obj [get_filesets utils_1]
 
 
 # Adding sources referenced in BDs, if not already added
+if { [get_files Block_proc.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Block_proc.vhd
+}
+if { [get_files Loop_Border_proc.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_Border_proc.vhd
+}
+if { [get_files Loop_Border_proc_borderbuf.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_Border_proc_borderbuf.vhd
+}
+if { [get_files Loop_HConvH_proc6.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_HConvH_proc6.vhd
+}
+if { [get_files Loop_VConvH_proc.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_VConvH_proc.vhd
+}
+if { [get_files Loop_VConvH_proc_linebuf_0.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_VConvH_proc_linebuf_0.vhd
+}
+if { [get_files globals.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/globals.vhd
+}
+if { [get_files checksum.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/checksum.vhd
+}
+if { [get_files conv2d.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/conv2d.vhd
+}
+if { [get_files conv2d_5x5_224p.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/conv2d_5x5_224p.vhd
+}
+if { [get_files dummyModule.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/dummyModule.vhd
+}
+if { [get_files fifo_w32_d2_A.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/fifo_w32_d2_A.vhd
+}
+if { [get_files fifo_w32_d3_A.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/fifo_w32_d3_A.vhd
+}
+if { [get_files filter11x11_strm.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/filter11x11_strm.vhd
+}
+if { [get_files filter11x11_strm_ent.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/filter11x11_strm_ent.vhd
+}
+if { [get_files kernel_5x5.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/kernel_5x5.vhd
+}
+if { [get_files multiplex.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/multiplex.vhd
+}
+if { [get_files ram.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/ram.vhd
+}
+if { [get_files shiftIn.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/shiftIn.vhd
+}
+if { [get_files start_for_Block_proc_U0.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Block_proc_U0.vhd
+}
+if { [get_files start_for_Loop_Border_proc_U0.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Loop_Border_proc_U0.vhd
+}
+if { [get_files start_for_Loop_VConvH_proc_U0.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Loop_VConvH_proc_U0.vhd
+}
+if { [get_files packaging.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/packaging.vhd
+}
 
 
 # Proc to create BD design_1
 proc cr_bd_design_1 { parentCell } {
+# The design that will be created by this Tcl proc contains the following 
+# module references:
+# packaging
+
+
 
   # CHANGE DESIGN NAME HERE
   set design_name design_1
@@ -214,7 +450,6 @@ proc cr_bd_design_1 { parentCell } {
   xilinx.com:user:ethernet_transceiver2:1.0\
   xilinx.com:ip:fifo_generator:13.2\
   xilinx.com:ip:c_addsub:12.0\
-  user.org:user:packaging:3.0\
   xilinx.com:user:segment:1.0\
   xilinx.com:ip:xlconcat:2.1\
   xilinx.com:ip:xlconstant:1.1\
@@ -237,6 +472,31 @@ proc cr_bd_design_1 { parentCell } {
    }
 
   }
+
+  ##################################################################
+  # CHECK Modules
+  ##################################################################
+  set bCheckModules 1
+  if { $bCheckModules == 1 } {
+     set list_check_mods "\ 
+  packaging\
+  "
+
+   set list_mods_missing ""
+   common::send_msg_id "BD_TCL-006" "INFO" "Checking if the following modules exist in the project's sources: $list_check_mods ."
+
+   foreach mod_vlnv $list_check_mods {
+      if { [can_resolve_reference $mod_vlnv] == 0 } {
+         lappend list_mods_missing $mod_vlnv
+      }
+   }
+
+   if { $list_mods_missing ne "" } {
+      catch {common::send_msg_id "BD_TCL-115" "ERROR" "The following module(s) are not found in the project: $list_mods_missing" }
+      common::send_msg_id "BD_TCL-008" "INFO" "Please add source files for the missing module(s) above."
+      set bCheckIPsPassed 0
+   }
+}
 
   if { $bCheckIPsPassed != 1 } {
     common::send_msg_id "BD_TCL-1003" "WARNING" "Will not continue with creation of design due to the error(s) above."
@@ -435,9 +695,17 @@ proc cr_bd_design_1 { parentCell } {
    CONFIG.Out_Width {1} \
  ] $negate_0
 
-  # Create instance: packaging_1, and set properties
-  set packaging_1 [ create_bd_cell -type ip -vlnv user.org:user:packaging:3.0 packaging_1 ]
-
+  # Create instance: packaging_0, and set properties
+  set block_name packaging
+  set block_cell_name packaging_0
+  if { [catch {set packaging_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $packaging_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: segment_0, and set properties
   set segment_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:segment:1.0 segment_0 ]
 
@@ -489,8 +757,6 @@ proc cr_bd_design_1 { parentCell } {
   # Create interface connections
   connect_bd_intf_net -intf_net ethernet_transceiver2_0_fifo_read [get_bd_intf_pins ethernet_transceiver2_0/fifo_read] [get_bd_intf_pins fifo_output/FIFO_READ]
   connect_bd_intf_net -intf_net ethernet_transceiver2_0_fifo_write [get_bd_intf_pins ethernet_transceiver2_0/fifo_write] [get_bd_intf_pins fifo_input/FIFO_WRITE]
-  connect_bd_intf_net -intf_net packaging_1_fifo_read [get_bd_intf_pins fifo_input/FIFO_READ] [get_bd_intf_pins packaging_1/fifo_read]
-  connect_bd_intf_net -intf_net packaging_1_fifo_write [get_bd_intf_pins fifo_output/FIFO_WRITE] [get_bd_intf_pins packaging_1/fifo_write]
 
   # Create port connections
   connect_bd_net -net Net [get_bd_ports eth_rxd_0] [get_bd_pins ethernet_transceiver2_0/eth_rxd]
@@ -502,7 +768,7 @@ proc cr_bd_design_1 { parentCell } {
   connect_bd_net -net Net6 [get_bd_ports eth_rstn_0] [get_bd_pins ethernet_transceiver2_0/eth_rstn]
   connect_bd_net -net c_counter_binary_0_Q [get_bd_pins c_counter_binary_0/Q] [get_bd_pins segment_0/num2]
   connect_bd_net -net c_counter_binary_1_Q [get_bd_pins c_counter_binary_1/Q] [get_bd_pins segment_0/num1]
-  connect_bd_net -net clk_wiz_clk_out1 [get_bd_ports clk_100MHz] [get_bd_pins c_counter_binary_0/CLK] [get_bd_pins c_counter_binary_1/CLK] [get_bd_pins ethernet_transceiver2_0/clk100mhz] [get_bd_pins fifo_input/clk] [get_bd_pins fifo_output/wr_clk] [get_bd_pins negate_0/CLK] [get_bd_pins packaging_1/clk] [get_bd_pins segment_0/clk]
+  connect_bd_net -net clk_wiz_clk_out1 [get_bd_ports clk_100MHz] [get_bd_pins c_counter_binary_0/CLK] [get_bd_pins c_counter_binary_1/CLK] [get_bd_pins ethernet_transceiver2_0/clk100mhz] [get_bd_pins fifo_input/clk] [get_bd_pins fifo_output/wr_clk] [get_bd_pins negate_0/CLK] [get_bd_pins packaging_0/clk] [get_bd_pins segment_0/clk]
   connect_bd_net -net ethernet_transceiver2_0_eth_mdc [get_bd_ports eth_mdc_0] [get_bd_pins ethernet_transceiver2_0/eth_mdc]
   connect_bd_net -net ethernet_transceiver2_0_eth_refclk [get_bd_ports eth_refclk_0] [get_bd_pins ethernet_transceiver2_0/eth_refclk] [get_bd_pins fifo_output/rd_clk]
   connect_bd_net -net ethernet_transceiver2_0_led16_b [get_bd_ports led16_b_0] [get_bd_pins ethernet_transceiver2_0/led16_b]
@@ -511,12 +777,18 @@ proc cr_bd_design_1 { parentCell } {
   connect_bd_net -net ethernet_transceiver2_0_led17_b [get_bd_ports led17_b_0] [get_bd_pins ethernet_transceiver2_0/led17_b]
   connect_bd_net -net ethernet_transceiver2_0_led17_g [get_bd_ports led17_g_0] [get_bd_pins ethernet_transceiver2_0/led17_g]
   connect_bd_net -net ethernet_transceiver2_0_led17_r [get_bd_ports led17_r_0] [get_bd_pins ethernet_transceiver2_0/led17_r]
+  connect_bd_net -net fifo_input_dout [get_bd_pins fifo_input/dout] [get_bd_pins packaging_0/inputStream]
+  connect_bd_net -net fifo_input_empty [get_bd_pins fifo_input/empty] [get_bd_pins packaging_0/inputEmpty]
   connect_bd_net -net fifo_input_overflow [get_bd_pins c_counter_binary_1/CE] [get_bd_pins fifo_input/overflow]
+  connect_bd_net -net fifo_output_full [get_bd_pins fifo_output/full] [get_bd_pins packaging_0/outputFull]
   connect_bd_net -net fifo_output_overflow [get_bd_pins c_counter_binary_0/CE] [get_bd_pins fifo_output/overflow]
   connect_bd_net -net fifo_output_rd_data_count [get_bd_pins fifo_output/rd_data_count] [get_bd_pins xlconcat_5/In0]
-  connect_bd_net -net packaging_1_errorCode [get_bd_pins packaging_1/errorCode] [get_bd_pins xlconcat_4/In0]
-  connect_bd_net -net packaging_1_stateOut [get_bd_pins packaging_1/stateOut] [get_bd_pins xlconcat_4/In1]
-  connect_bd_net -net rst_clk_wiz_100M_peripheral_aresetn [get_bd_ports reset_rtl_0] [get_bd_pins ethernet_transceiver2_0/btn_reset] [get_bd_pins negate_0/A] [get_bd_pins packaging_1/rst]
+  connect_bd_net -net packaging_0_errorCode [get_bd_pins packaging_0/errorCode] [get_bd_pins xlconcat_4/In0]
+  connect_bd_net -net packaging_0_inpRdEn [get_bd_pins fifo_input/rd_en] [get_bd_pins packaging_0/inpRdEn]
+  connect_bd_net -net packaging_0_outData [get_bd_pins fifo_output/din] [get_bd_pins packaging_0/outData]
+  connect_bd_net -net packaging_0_outWrEn [get_bd_pins fifo_output/wr_en] [get_bd_pins packaging_0/outWrEn]
+  connect_bd_net -net packaging_0_stateOut [get_bd_pins packaging_0/stateOut] [get_bd_pins xlconcat_4/In1]
+  connect_bd_net -net rst_clk_wiz_100M_peripheral_aresetn [get_bd_ports reset_rtl_0] [get_bd_pins ethernet_transceiver2_0/btn_reset] [get_bd_pins negate_0/A] [get_bd_pins packaging_0/rst]
   connect_bd_net -net segment_0_anodes [get_bd_ports anodes_0] [get_bd_pins segment_0/anodes]
   connect_bd_net -net segment_0_cathodes [get_bd_ports cathodes_0] [get_bd_pins segment_0/cathodes]
   connect_bd_net -net sw_0_1 [get_bd_ports sw_0] [get_bd_pins ethernet_transceiver2_0/ip]
@@ -532,21 +804,21 @@ proc cr_bd_design_1 { parentCell } {
   # Perform GUI Layout
   regenerate_bd_layout -layout_string {
    "ExpandedHierarchyInLayout":"",
-   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 non-TLS
+   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
 preplace port led17_r_0 -pg 1 -y 710 -defaultsOSRD
 preplace port eth_txen_0 -pg 1 -y 90 -defaultsOSRD
-preplace port eth_rxerr_0 -pg 1 -y 120 -defaultsOSRD
 preplace port led17_g_0 -pg 1 -y 680 -defaultsOSRD
+preplace port eth_rxerr_0 -pg 1 -y 120 -defaultsOSRD
 preplace port led16_r_0 -pg 1 -y 620 -defaultsOSRD
 preplace port led17_b_0 -pg 1 -y 650 -defaultsOSRD
 preplace port clk_100MHz -pg 1 -y 260 -defaultsOSRD
 preplace port eth_rstn_0 -pg 1 -y 240 -defaultsOSRD
-preplace port eth_mdc_0 -pg 1 -y 180 -defaultsOSRD
 preplace port led16_b_0 -pg 1 -y 560 -defaultsOSRD
+preplace port eth_mdc_0 -pg 1 -y 180 -defaultsOSRD
 preplace port led16_g_0 -pg 1 -y 590 -defaultsOSRD
-preplace port eth_mdio_0 -pg 1 -y 210 -defaultsOSRD
 preplace port eth_refclk_0 -pg 1 -y 530 -defaultsOSRD
+preplace port eth_mdio_0 -pg 1 -y 210 -defaultsOSRD
 preplace port reset_rtl_0 -pg 1 -y 720 -defaultsOSRD
 preplace port eth_crsdv_0 -pg 1 -y 60 -defaultsOSRD
 preplace portBus anodes_0 -pg 1 -y 330 -defaultsOSRD
@@ -555,65 +827,70 @@ preplace portBus eth_txd_0 -pg 1 -y 30 -defaultsOSRD
 preplace portBus led_0 -pg 1 -y 820 -defaultsOSRD
 preplace portBus sw_0 -pg 1 -y 380 -defaultsOSRD
 preplace portBus eth_rxd_0 -pg 1 -y 0 -defaultsOSRD
-preplace inst fifo_input -pg 1 -lvl 4 -y 190 -defaultsOSRD
+preplace inst fifo_input -pg 1 -lvl 4 -y 220 -defaultsOSRD
 preplace inst xlslice_0 -pg 1 -lvl 5 -y 880 -defaultsOSRD
+preplace inst packaging_0 -pg 1 -lvl 3 -y 620 -defaultsOSRD
 preplace inst xlconstant_0 -pg 1 -lvl 2 -y 320 -defaultsOSRD
-preplace inst packaging_1 -pg 1 -lvl 3 -y 670 -defaultsOSRD
 preplace inst xlconstant_1 -pg 1 -lvl 1 -y 660 -defaultsOSRD
-preplace inst fifo_output -pg 1 -lvl 4 -y 480 -defaultsOSRD
-preplace inst ethernet_transceiver2_0 -pg 1 -lvl 3 -y 320 -defaultsOSRD
+preplace inst fifo_output -pg 1 -lvl 4 -y 570 -defaultsOSRD
+preplace inst ethernet_transceiver2_0 -pg 1 -lvl 3 -y 280 -defaultsOSRD
 preplace inst c_counter_binary_0 -pg 1 -lvl 5 -y 470 -defaultsOSRD
 preplace inst c_counter_binary_1 -pg 1 -lvl 5 -y 330 -defaultsOSRD
-preplace inst negate_0 -pg 1 -lvl 3 -y 810 -defaultsOSRD
-preplace inst segment_0 -pg 1 -lvl 6 -y 350 -defaultsOSRD
 preplace inst xlconcat_4 -pg 1 -lvl 6 -y 820 -defaultsOSRD
+preplace inst segment_0 -pg 1 -lvl 6 -y 350 -defaultsOSRD
+preplace inst negate_0 -pg 1 -lvl 3 -y 790 -defaultsOSRD
 preplace inst xlconcat_5 -pg 1 -lvl 2 -y 650 -defaultsOSRD
-preplace netloc ethernet_transceiver2_0_fifo_read 1 3 1 900
+preplace netloc ethernet_transceiver2_0_fifo_read 1 3 1 1000
+preplace netloc packaging_0_errorCode 1 3 3 950J 800 NJ 800 N
 preplace netloc xlconstant_1_dout 1 1 1 NJ
-preplace netloc ethernet_transceiver2_0_led16_b 1 3 4 NJ 350 1440J 230 NJ 230 1940J
-preplace netloc Net4 1 3 4 860J 70 1440J 120 NJ 120 NJ
-preplace netloc xlslice_1_Dout 1 3 2 940 380 1450
-preplace netloc Net5 1 3 4 880J 100 NJ 100 NJ 100 1960J
-preplace netloc packaging_1_errorCode 1 3 3 820 800 NJ 800 NJ
+preplace netloc ethernet_transceiver2_0_led16_b 1 3 4 980J 20 NJ 20 NJ 20 2220J
+preplace netloc Net4 1 3 4 1060J 340 1560J 120 NJ 120 NJ
+preplace netloc xlslice_1_Dout 1 3 2 1070 400 1640
+preplace netloc Net5 1 3 4 1050J 350 1580J 210 NJ 210 NJ
+preplace netloc packaging_0_outData 1 3 1 980
 preplace netloc c_counter_binary_1_Q 1 5 1 N
-preplace netloc Net6 1 3 4 NJ 330 1360J 220 NJ 220 1970J
-preplace netloc packaging_1_fifo_write 1 3 1 960
-preplace netloc ethernet_transceiver2_0_led16_r 1 3 4 870J 310 1400J 240 NJ 240 1910J
-preplace netloc sw_0_1 1 0 3 NJ 380 NJ 380 410J
-preplace netloc xlconcat_5_dout 1 2 3 400 570 830J 790 1410J
-preplace netloc ethernet_transceiver2_0_eth_refclk 1 3 4 840 580 NJ 580 1660J 530 NJ
-preplace netloc ethernet_transceiver2_0_led16_g 1 3 4 890J 320 1420J 250 NJ 250 1900J
-preplace netloc ethernet_transceiver2_0_fifo_write 1 3 1 890
-preplace netloc c_counter_binary_0_Q 1 5 1 1650
-preplace netloc ethernet_transceiver2_0_led17_b 1 3 4 930J 360 1390J 180 NJ 180 1950J
-preplace netloc xlconstant_0_dout 1 2 1 NJ
-preplace netloc segment_0_anodes 1 6 1 1970J
-preplace netloc packaging_1_fifo_read 1 3 1 910
-preplace netloc fifo_output_overflow 1 4 1 N
-preplace netloc ethernet_transceiver2_0_eth_mdc 1 3 4 840J 60 NJ 60 NJ 60 1970J
+preplace netloc Net6 1 3 4 1040J 360 1600J 240 NJ 240 NJ
+preplace netloc fifo_input_dout 1 2 2 530 30 950J
+preplace netloc ethernet_transceiver2_0_led16_r 1 3 4 1020J 370 1630J 250 NJ 250 2160J
+preplace netloc xlconcat_5_dout 1 2 3 510 880 NJ 880 NJ
+preplace netloc sw_0_1 1 0 3 -70J 250 NJ 250 490J
+preplace netloc ethernet_transceiver2_0_eth_refclk 1 3 4 990 700 NJ 700 1890J 530 NJ
+preplace netloc ethernet_transceiver2_0_led16_g 1 3 4 1010J 40 NJ 40 NJ 40 2210J
+preplace netloc ethernet_transceiver2_0_fifo_write 1 3 1 1060
+preplace netloc packaging_0_inpRdEn 1 3 1 950
+preplace netloc xlconstant_0_dout 1 2 1 480J
+preplace netloc segment_0_anodes 1 6 1 2200J
+preplace netloc ethernet_transceiver2_0_led17_b 1 3 4 960J 380 1590J 220 NJ 220 2170J
+preplace netloc c_counter_binary_0_Q 1 5 1 1880
 preplace netloc segment_0_cathodes 1 6 1 NJ
-preplace netloc fifo_output_rd_data_count 1 1 4 180 580 NJ 580 810J 590 1400
-preplace netloc ethernet_transceiver2_0_led17_r 1 3 4 950J 370 1430J 210 NJ 210 1920J
-preplace netloc Net1 1 3 4 820J 30 NJ 30 NJ 30 NJ
-preplace netloc Net 1 3 4 810J 0 NJ 0 NJ 0 NJ
-preplace netloc fifo_input_overflow 1 4 1 1370
+preplace netloc fifo_output_overflow 1 4 1 1650
+preplace netloc ethernet_transceiver2_0_eth_mdc 1 3 4 1050J 100 NJ 100 NJ 100 2190J
+preplace netloc packaging_0_stateOut 1 3 3 930J 820 NJ 820 N
+preplace netloc fifo_input_empty 1 2 2 520 10 1070J
+preplace netloc fifo_output_rd_data_count 1 1 4 190 720 NJ 720 NJ 720 1610
+preplace netloc fifo_output_full 1 2 2 530 860 1080
+preplace netloc packaging_0_outWrEn 1 3 1 930
+preplace netloc ethernet_transceiver2_0_led17_r 1 3 4 1030J 50 NJ 50 NJ 50 2180J
+preplace netloc Net1 1 3 4 960J 30 NJ 30 NJ 30 NJ
+preplace netloc Net 1 3 4 970J 60 NJ 60 NJ 60 2190J
 preplace netloc xlconcat_4_dout 1 6 1 NJ
-preplace netloc Net2 1 3 4 830J 50 NJ 50 NJ 50 1980J
-preplace netloc packaging_1_stateOut 1 3 3 810 820 NJ 820 NJ
-preplace netloc xlslice_0_Dout 1 5 1 1650J
-preplace netloc ethernet_transceiver2_0_led17_g 1 3 4 920J 340 1380J 190 NJ 190 1930J
-preplace netloc Net3 1 3 4 870J 90 NJ 90 NJ 90 NJ
-preplace netloc rst_clk_wiz_100M_peripheral_aresetn 1 0 3 NJ 720 NJ 720 420
-preplace netloc clk_wiz_clk_out1 1 0 6 NJ 260 NJ 260 390 70 850 80 1410 200 1660
-levelinfo -pg 1 0 100 290 630 1170 1550 1780 2000 -top -20 -bot 940
+preplace netloc fifo_input_overflow 1 4 1 1570
+preplace netloc Net2 1 3 4 990J 70 NJ 70 NJ 70 2200J
+preplace netloc xlslice_0_Dout 1 5 1 1880J
+preplace netloc rst_clk_wiz_100M_peripheral_aresetn 1 0 3 NJ 720 180J 730 500
+preplace netloc ethernet_transceiver2_0_led17_g 1 3 4 NJ 390 1620J 230 NJ 230 2150J
+preplace netloc clk_wiz_clk_out1 1 0 6 NJ 260 NJ 260 470 20 940 80 1610 200 1890
+preplace netloc Net3 1 3 4 1020J 90 NJ 90 NJ 90 NJ
+levelinfo -pg 1 -90 100 360 730 1360 1770 2020 2240 -top -100 -bot 1140
 "
 }
 
   # Restore current instance
   current_bd_instance $oldCurInst
 
-  validate_bd_design
   save_bd_design
+common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
+
   close_bd_design $design_name 
 }
 # End of cr_bd_design_1()
@@ -624,139 +901,6 @@ set_property SYNTH_CHECKPOINT_MODE "Hierarchical" [get_files design_1.bd ]
 
 # Create wrapper file for design_1.bd
 make_wrapper -files [get_files design_1.bd] -import -top
-
-
-
-# Proc to create BD dut_packaging
-proc cr_bd_dut_packaging { parentCell } {
-
-  # CHANGE DESIGN NAME HERE
-  set design_name dut_packaging
-
-  common::send_msg_id "BD_TCL-003" "INFO" "Currently there is no design <$design_name> in project, so creating one..."
-
-  create_bd_design $design_name
-
-  set bCheckIPsPassed 1
-  ##################################################################
-  # CHECK IPs
-  ##################################################################
-  set bCheckIPs 1
-  if { $bCheckIPs == 1 } {
-     set list_check_ips "\ 
-  user.org:user:packaging:3.0\
-  "
-
-   set list_ips_missing ""
-   common::send_msg_id "BD_TCL-006" "INFO" "Checking if the following IPs exist in the project's IP catalog: $list_check_ips ."
-
-   foreach ip_vlnv $list_check_ips {
-      set ip_obj [get_ipdefs -all $ip_vlnv]
-      if { $ip_obj eq "" } {
-         lappend list_ips_missing $ip_vlnv
-      }
-   }
-
-   if { $list_ips_missing ne "" } {
-      catch {common::send_msg_id "BD_TCL-115" "ERROR" "The following IPs are not found in the IP Catalog:\n  $list_ips_missing\n\nResolution: Please add the repository containing the IP(s) to the project." }
-      set bCheckIPsPassed 0
-   }
-
-  }
-
-  if { $bCheckIPsPassed != 1 } {
-    common::send_msg_id "BD_TCL-1003" "WARNING" "Will not continue with creation of design due to the error(s) above."
-    return 3
-  }
-
-  variable script_folder
-
-  if { $parentCell eq "" } {
-     set parentCell [get_bd_cells /]
-  }
-
-  # Get object for parentCell
-  set parentObj [get_bd_cells $parentCell]
-  if { $parentObj == "" } {
-     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
-     return
-  }
-
-  # Make sure parentObj is hier blk
-  set parentType [get_property TYPE $parentObj]
-  if { $parentType ne "hier" } {
-     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
-     return
-  }
-
-  # Save current instance; Restore later
-  set oldCurInst [current_bd_instance .]
-
-  # Set parent object as current
-  current_bd_instance $parentObj
-
-
-  # Create interface ports
-  set fifo_read_0 [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:fifo_read_rtl:1.0 fifo_read_0 ]
-  set fifo_write_0 [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:fifo_write_rtl:1.0 fifo_write_0 ]
-
-  # Create ports
-  set clk_0 [ create_bd_port -dir I -type clk clk_0 ]
-  set errorCode_0 [ create_bd_port -dir O -from 3 -to 0 errorCode_0 ]
-  set rst_0 [ create_bd_port -dir I -type rst rst_0 ]
-  set stateOut_0 [ create_bd_port -dir O -from 3 -to 0 stateOut_0 ]
-
-  # Create instance: packaging_0, and set properties
-  set packaging_0 [ create_bd_cell -type ip -vlnv user.org:user:packaging:3.0 packaging_0 ]
-
-  # Create interface connections
-  connect_bd_intf_net -intf_net packaging_0_fifo_read [get_bd_intf_ports fifo_read_0] [get_bd_intf_pins packaging_0/fifo_read]
-  connect_bd_intf_net -intf_net packaging_0_fifo_write [get_bd_intf_ports fifo_write_0] [get_bd_intf_pins packaging_0/fifo_write]
-
-  # Create port connections
-  connect_bd_net -net clk_0_1 [get_bd_ports clk_0] [get_bd_pins packaging_0/clk]
-  connect_bd_net -net packaging_0_errorCode [get_bd_ports errorCode_0] [get_bd_pins packaging_0/errorCode]
-  connect_bd_net -net packaging_0_stateOut [get_bd_ports stateOut_0] [get_bd_pins packaging_0/stateOut]
-  connect_bd_net -net rst_0_1 [get_bd_ports rst_0] [get_bd_pins packaging_0/rst]
-
-  # Create address segments
-
-  # Perform GUI Layout
-  regenerate_bd_layout -layout_string {
-   "ExpandedHierarchyInLayout":"",
-   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 non-TLS
-#  -string -flagsOSRD
-preplace port rst_0 -pg 1 -y -280 -defaultsOSRD
-preplace port fifo_read_0 -pg 1 -y -320 -defaultsOSRD
-preplace port clk_0 -pg 1 -y -310 -defaultsOSRD
-preplace port fifo_write_0 -pg 1 -y -290 -defaultsOSRD
-preplace portBus stateOut_0 -pg 1 -y -230 -defaultsOSRD
-preplace portBus errorCode_0 -pg 1 -y -260 -defaultsOSRD
-preplace inst packaging_0 -pg 1 -lvl 1 -y -290 -defaultsOSRD
-preplace netloc packaging_0_errorCode 1 1 1 210J
-preplace netloc packaging_0_fifo_write 1 1 1 210J
-preplace netloc clk_0_1 1 0 1 0J
-preplace netloc rst_0_1 1 0 1 NJ
-preplace netloc packaging_0_fifo_read 1 1 1 NJ
-preplace netloc packaging_0_stateOut 1 1 1 200J
-levelinfo -pg 1 -20 100 230 -top -380 -bot 180
-"
-}
-
-  # Restore current instance
-  current_bd_instance $oldCurInst
-
-  validate_bd_design
-  save_bd_design
-  close_bd_design $design_name 
-}
-# End of cr_bd_dut_packaging()
-cr_bd_dut_packaging ""
-set_property REGISTERED_WITH_MANAGER "1" [get_files dut_packaging.bd ] 
-
-
-# Create wrapper file for dut_packaging.bd
-make_wrapper -files [get_files dut_packaging.bd] -import -top
 
 # Create 'synth_1' run (if not found)
 if {[string equal [get_runs -quiet synth_1] ""]} {
