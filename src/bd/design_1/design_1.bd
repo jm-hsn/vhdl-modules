@@ -20,8 +20,8 @@
       "xlconcat_5": "",
       "xlconstant_1": "",
       "xlslice_0": "",
-      "packaging_1": "",
-      "ethernet_transceiver2_0": ""
+      "ethernet_transceiver2_0": "",
+      "packaging_0": ""
     },
     "ports": {
       "reset_rtl_0": {
@@ -460,38 +460,93 @@
           }
         }
       },
-      "packaging_1": {
-        "vlnv": "user.org:user:packaging:3.0",
-        "xci_name": "design_1_packaging_1_0"
-      },
       "ethernet_transceiver2_0": {
         "vlnv": "xilinx.com:user:ethernet_transceiver2:1.0",
         "xci_name": "design_1_ethernet_transceiver2_0_0"
+      },
+      "packaging_0": {
+        "vlnv": "xilinx.com:module_ref:packaging:1.0",
+        "xci_name": "design_1_packaging_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "packaging",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_clk_100MHz",
+                "value_src": "default_prop"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "user_prop"
+              }
+            }
+          },
+          "inputStream": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "inpRdEn": {
+            "direction": "O"
+          },
+          "inputEmpty": {
+            "direction": "I"
+          },
+          "outData": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "outWrEn": {
+            "direction": "O"
+          },
+          "outputFull": {
+            "direction": "I"
+          },
+          "errorCode": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "stateOut": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          }
+        }
       }
     },
     "interface_nets": {
-      "ethernet_transceiver2_0_fifo_write": {
-        "interface_ports": [
-          "ethernet_transceiver2_0/fifo_write",
-          "fifo_input/FIFO_WRITE"
-        ]
-      },
-      "packaging_1_fifo_read": {
-        "interface_ports": [
-          "packaging_1/fifo_read",
-          "fifo_input/FIFO_READ"
-        ]
-      },
-      "packaging_1_fifo_write": {
-        "interface_ports": [
-          "packaging_1/fifo_write",
-          "fifo_output/FIFO_WRITE"
-        ]
-      },
       "ethernet_transceiver2_0_fifo_read": {
         "interface_ports": [
           "fifo_output/FIFO_READ",
           "ethernet_transceiver2_0/fifo_read"
+        ]
+      },
+      "ethernet_transceiver2_0_fifo_write": {
+        "interface_ports": [
+          "ethernet_transceiver2_0/fifo_write",
+          "fifo_input/FIFO_WRITE"
         ]
       }
     },
@@ -505,16 +560,16 @@
           "segment_0/clk",
           "negate_0/CLK",
           "fifo_output/wr_clk",
-          "packaging_1/clk",
-          "ethernet_transceiver2_0/clk100mhz"
+          "ethernet_transceiver2_0/clk100mhz",
+          "packaging_0/clk"
         ]
       },
       "rst_clk_wiz_100M_peripheral_aresetn": {
         "ports": [
           "reset_rtl_0",
           "negate_0/A",
-          "packaging_1/rst",
-          "ethernet_transceiver2_0/btn_reset"
+          "ethernet_transceiver2_0/btn_reset",
+          "packaging_0/rst"
         ]
       },
       "segment_0_anodes": {
@@ -696,15 +751,51 @@
           "ethernet_transceiver2_0/ip"
         ]
       },
-      "packaging_1_errorCode": {
+      "packaging_0_inpRdEn": {
         "ports": [
-          "packaging_1/errorCode",
+          "packaging_0/inpRdEn",
+          "fifo_input/rd_en"
+        ]
+      },
+      "fifo_input_dout": {
+        "ports": [
+          "fifo_input/dout",
+          "packaging_0/inputStream"
+        ]
+      },
+      "fifo_input_empty": {
+        "ports": [
+          "fifo_input/empty",
+          "packaging_0/inputEmpty"
+        ]
+      },
+      "fifo_output_full": {
+        "ports": [
+          "fifo_output/full",
+          "packaging_0/outputFull"
+        ]
+      },
+      "packaging_0_outData": {
+        "ports": [
+          "packaging_0/outData",
+          "fifo_output/din"
+        ]
+      },
+      "packaging_0_outWrEn": {
+        "ports": [
+          "packaging_0/outWrEn",
+          "fifo_output/wr_en"
+        ]
+      },
+      "packaging_0_errorCode": {
+        "ports": [
+          "packaging_0/errorCode",
           "xlconcat_4/In0"
         ]
       },
-      "packaging_1_stateOut": {
+      "packaging_0_stateOut": {
         "ports": [
-          "packaging_1/stateOut",
+          "packaging_0/stateOut",
           "xlconcat_4/In1"
         ]
       }

@@ -17,14 +17,14 @@ def showHex(txt, i):
 
 
 def main():
-  with open("workspace/complete-bd/complete-bd.sim/sim_1/behav/xsim/input.txt", "r") as inFile:
+  with open("vivado_project/vhdl-modules.sim/sim_1/behav/xsim/input.txt", "r") as inFile:
     print("Input:")
     i = 0
     for line in inFile:
       showHex(line, i)
       i += 1
 
-  with open("workspace/complete-bd/complete-bd.sim/sim_1/behav/xsim/output.txt", "r") as outFile:
+  with open("vivado_project/vhdl-modules.sim/sim_1/behav/xsim/output.txt", "r") as outFile:
     print("Output:")
     i = 0
     for line in outFile:

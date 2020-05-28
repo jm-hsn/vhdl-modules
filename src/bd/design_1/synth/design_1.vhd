@@ -1,8 +1,8 @@
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
---Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
---Date        : Mon Apr 27 15:06:31 2020
---Host        : DESKTOP-L9P0FU6 running 64-bit major release  (build 9200)
+--Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+--Date        : Thu May 28 17:43:19 2020
+--Host        : DESKTOP-L9P0FU6 running 64-bit Ubuntu 18.04.4 LTS
 --Command     : generate_target design_1.bd
 --Design      : design_1
 --Purpose     : IP block netlist
@@ -36,7 +36,7 @@ entity design_1 is
     sw_0 : in STD_LOGIC_VECTOR ( 4 downto 0 )
   );
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of design_1 : entity is "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=13,numReposBlks=13,numNonXlnxBlks=1,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_board_cnt=3,da_clkrst_cnt=3,synth_mode=OOC_per_IP}";
+  attribute CORE_GENERATION_INFO of design_1 : entity is "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=13,numReposBlks=13,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_board_cnt=3,da_clkrst_cnt=3,synth_mode=OOC_per_IP}";
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of design_1 : entity is "design_1.hwdef";
 end design_1;
@@ -133,20 +133,6 @@ architecture STRUCTURE of design_1 is
     Dout : out STD_LOGIC_VECTOR ( 7 downto 0 )
   );
   end component design_1_xlslice_0_0;
-  component design_1_packaging_1_0 is
-  port (
-    clk : in STD_LOGIC;
-    rst : in STD_LOGIC;
-    inputStream : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    inpRdEn : out STD_LOGIC;
-    inputEmpty : in STD_LOGIC;
-    outData : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    outWrEn : out STD_LOGIC;
-    outputFull : in STD_LOGIC;
-    errorCode : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    stateOut : out STD_LOGIC_VECTOR ( 3 downto 0 )
-  );
-  end component design_1_packaging_1_0;
   component design_1_ethernet_transceiver2_0_0 is
   port (
     clk100mhz : in STD_LOGIC;
@@ -180,6 +166,20 @@ architecture STRUCTURE of design_1 is
     ip : in STD_LOGIC_VECTOR ( 4 downto 0 )
   );
   end component design_1_ethernet_transceiver2_0_0;
+  component design_1_packaging_0_0 is
+  port (
+    clk : in STD_LOGIC;
+    rst : in STD_LOGIC;
+    inputStream : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    inpRdEn : out STD_LOGIC;
+    inputEmpty : in STD_LOGIC;
+    outData : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    outWrEn : out STD_LOGIC;
+    outputFull : in STD_LOGIC;
+    errorCode : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    stateOut : out STD_LOGIC_VECTOR ( 3 downto 0 )
+  );
+  end component design_1_packaging_0_0;
   signal Net : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal Net1 : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal Net2 : STD_LOGIC;
@@ -204,17 +204,17 @@ architecture STRUCTURE of design_1 is
   signal ethernet_transceiver2_0_led17_b : STD_LOGIC;
   signal ethernet_transceiver2_0_led17_g : STD_LOGIC;
   signal ethernet_transceiver2_0_led17_r : STD_LOGIC;
+  signal fifo_input_dout : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal fifo_input_empty : STD_LOGIC;
   signal fifo_input_overflow : STD_LOGIC;
+  signal fifo_output_full : STD_LOGIC;
   signal fifo_output_overflow : STD_LOGIC;
   signal fifo_output_rd_data_count : STD_LOGIC_VECTOR ( 8 downto 0 );
-  signal packaging_1_errorCode : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal packaging_1_fifo_read_EMPTY : STD_LOGIC;
-  signal packaging_1_fifo_read_RD_DATA : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal packaging_1_fifo_read_RD_EN : STD_LOGIC;
-  signal packaging_1_fifo_write_FULL : STD_LOGIC;
-  signal packaging_1_fifo_write_WR_DATA : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal packaging_1_fifo_write_WR_EN : STD_LOGIC;
-  signal packaging_1_stateOut : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal packaging_0_errorCode : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal packaging_0_inpRdEn : STD_LOGIC;
+  signal packaging_0_outData : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal packaging_0_outWrEn : STD_LOGIC;
+  signal packaging_0_stateOut : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal rst_clk_wiz_100M_peripheral_aresetn : STD_LOGIC;
   signal segment_0_anodes : STD_LOGIC_VECTOR ( 0 to 7 );
   signal segment_0_cathodes : STD_LOGIC_VECTOR ( 0 to 7 );
@@ -301,27 +301,27 @@ fifo_input: component design_1_fifo_generator_0_1
      port map (
       clk => clk_wiz_clk_out1,
       din(31 downto 0) => ethernet_transceiver2_0_fifo_write_WR_DATA(31 downto 0),
-      dout(31 downto 0) => packaging_1_fifo_read_RD_DATA(31 downto 0),
-      empty => packaging_1_fifo_read_EMPTY,
+      dout(31 downto 0) => fifo_input_dout(31 downto 0),
+      empty => fifo_input_empty,
       full => ethernet_transceiver2_0_fifo_write_FULL,
       overflow => fifo_input_overflow,
-      rd_en => packaging_1_fifo_read_RD_EN,
+      rd_en => packaging_0_inpRdEn,
       srst => xlslice_1_Dout(0),
       wr_en => ethernet_transceiver2_0_fifo_write_WR_EN
     );
 fifo_output: component design_1_fifo_generator_0_0
      port map (
-      din(31 downto 0) => packaging_1_fifo_write_WR_DATA(31 downto 0),
+      din(31 downto 0) => packaging_0_outData(31 downto 0),
       dout(31 downto 0) => ethernet_transceiver2_0_fifo_read_RD_DATA(31 downto 0),
       empty => ethernet_transceiver2_0_fifo_read_EMPTY,
-      full => packaging_1_fifo_write_FULL,
+      full => fifo_output_full,
       overflow => fifo_output_overflow,
       rd_clk => ethernet_transceiver2_0_eth_refclk,
       rd_data_count(8 downto 0) => fifo_output_rd_data_count(8 downto 0),
       rd_en => ethernet_transceiver2_0_fifo_read_RD_EN,
       rst => xlslice_1_Dout(0),
       wr_clk => clk_wiz_clk_out1,
-      wr_en => packaging_1_fifo_write_WR_EN
+      wr_en => packaging_0_outWrEn
     );
 negate_0: component design_1_c_addsub_0_0
      port map (
@@ -329,18 +329,18 @@ negate_0: component design_1_c_addsub_0_0
       CLK => clk_wiz_clk_out1,
       S(0) => xlslice_1_Dout(0)
     );
-packaging_1: component design_1_packaging_1_0
+packaging_0: component design_1_packaging_0_0
      port map (
       clk => clk_wiz_clk_out1,
-      errorCode(3 downto 0) => packaging_1_errorCode(3 downto 0),
-      inpRdEn => packaging_1_fifo_read_RD_EN,
-      inputEmpty => packaging_1_fifo_read_EMPTY,
-      inputStream(31 downto 0) => packaging_1_fifo_read_RD_DATA(31 downto 0),
-      outData(31 downto 0) => packaging_1_fifo_write_WR_DATA(31 downto 0),
-      outWrEn => packaging_1_fifo_write_WR_EN,
-      outputFull => packaging_1_fifo_write_FULL,
+      errorCode(3 downto 0) => packaging_0_errorCode(3 downto 0),
+      inpRdEn => packaging_0_inpRdEn,
+      inputEmpty => fifo_input_empty,
+      inputStream(31 downto 0) => fifo_input_dout(31 downto 0),
+      outData(31 downto 0) => packaging_0_outData(31 downto 0),
+      outWrEn => packaging_0_outWrEn,
+      outputFull => fifo_output_full,
       rst => rst_clk_wiz_100M_peripheral_aresetn,
-      stateOut(3 downto 0) => packaging_1_stateOut(3 downto 0)
+      stateOut(3 downto 0) => packaging_0_stateOut(3 downto 0)
     );
 segment_0: component design_1_segment_0_0
      port map (
@@ -352,8 +352,8 @@ segment_0: component design_1_segment_0_0
     );
 xlconcat_4: component design_1_xlconcat_3_0
      port map (
-      In0(3 downto 0) => packaging_1_errorCode(3 downto 0),
-      In1(3 downto 0) => packaging_1_stateOut(3 downto 0),
+      In0(3 downto 0) => packaging_0_errorCode(3 downto 0),
+      In1(3 downto 0) => packaging_0_stateOut(3 downto 0),
       In2(7 downto 0) => xlslice_0_Dout(7 downto 0),
       dout(15 downto 0) => xlconcat_4_dout(15 downto 0)
     );
