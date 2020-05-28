@@ -5,7 +5,8 @@
       "device": "xc7a100tcsg324-1",
       "name": "design_1",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2018.3"
+      "tool_version": "2018.3",
+      "validated": "true"
     },
     "design_tree": {
       "fifo_output": "",
@@ -27,6 +28,10 @@
         "type": "rst",
         "direction": "I",
         "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
           "POLARITY": {
             "value": "ACTIVE_LOW"
           }
@@ -36,8 +41,24 @@
         "type": "clk",
         "direction": "I",
         "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "reset_rtl_0",
+            "value_src": "default"
+          },
+          "CLK_DOMAIN": {
+            "value": "design_1_clk_100MHz",
+            "value_src": "default"
+          },
           "FREQ_HZ": {
             "value": "100000000"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
           }
         }
       },
@@ -49,7 +70,13 @@
       "led_0": {
         "direction": "O",
         "left": "15",
-        "right": "0"
+        "right": "0",
+        "parameters": {
+          "PortWidth": {
+            "value": "16",
+            "value_src": "ip_prop"
+          }
+        }
       },
       "led17_r_0": {
         "direction": "O"
@@ -89,7 +116,17 @@
       },
       "eth_rstn_0": {
         "type": "rst",
-        "direction": "IO"
+        "direction": "IO",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default"
+          }
+        }
       },
       "eth_rxd_0": {
         "direction": "IO",
@@ -438,11 +475,31 @@
         "ports": {
           "clk": {
             "type": "clk",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_clk_100MHz",
+                "value_src": "default_prop"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              }
+            }
           },
           "rst": {
             "type": "rst",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "user_prop"
+              }
+            }
           },
           "inputStream": {
             "direction": "I",
