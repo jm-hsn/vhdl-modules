@@ -104,6 +104,7 @@ set_property -name "webtalk.questa_export_sim" -value "1" -objects $obj
 set_property -name "webtalk.riviera_export_sim" -value "1" -objects $obj
 set_property -name "webtalk.vcs_export_sim" -value "1" -objects $obj
 set_property -name "webtalk.xsim_export_sim" -value "1" -objects $obj
+set_property -name "webtalk.xsim_launch_sim" -value "3" -objects $obj
 set_property -name "xpm_libraries" -value "XPM_CDC XPM_MEMORY" -objects $obj
 
 # Create 'sources_1' fileset (if not found)
@@ -127,14 +128,162 @@ puts "*** FINISHED RECONSTRUCTING BLOCK DESIGNS"
 
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
+# Import local files from the original project
+set files [list \
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/Block_proc.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/Loop_Border_proc.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/Loop_Border_proc_borderbuf.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/Loop_HConvH_proc6.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/Loop_VConvH_proc.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/Loop_VConvH_proc_linebuf_0.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/globals.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/checksum.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/conv2d.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/conv2d_5x5_224p.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/dummyModule.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/fifo_w32_d2_A.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/fifo_w32_d3_A.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/filter11x11_strm.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/filter11x11_strm_ent.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/kernel_5x5.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/multiplex.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/ram.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/shiftIn.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/start_for_Block_proc_U0.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/start_for_Loop_Border_proc_U0.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/start_for_Loop_VConvH_proc_U0.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/packaging.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/shiftOut.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/neuron.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/mac.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/parallelize.vhd"]\
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/relu.vhd"]\
+]
+# set imported_files [import_files -fileset sources_1 $files]
+
 # Set 'sources_1' fileset file properties for remote files
 # None
 
 # Set 'sources_1' fileset file properties for local files
-# None
+set file "src/Block_proc.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/Loop_Border_proc.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/Loop_Border_proc_borderbuf.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/Loop_HConvH_proc6.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/Loop_VConvH_proc.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/Loop_VConvH_proc_linebuf_0.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/globals.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/checksum.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/conv2d.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/conv2d_5x5_224p.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/dummyModule.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/fifo_w32_d2_A.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/fifo_w32_d3_A.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/filter11x11_strm.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/filter11x11_strm_ent.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/kernel_5x5.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/multiplex.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/ram.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/shiftIn.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/start_for_Block_proc_U0.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/start_for_Loop_Border_proc_U0.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/start_for_Loop_VConvH_proc_U0.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/packaging.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/shiftOut.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/neuron.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/mac.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/parallelize.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "src/relu.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
 
 # Set 'sources_1' fileset properties
 set obj [get_filesets sources_1]
+set_property -name "top" -value "packaging" -objects $obj
+set_property -name "top_arch" -value "Behavioral" -objects $obj
+set_property -name "top_file" -value "sources/complete-bd/complete-bd.srcs/sources_1/imports/src/packaging.vhd" -objects $obj
+set_property -name "top_lib" -value "xil_defaultlib" -objects $obj
 
 # Create 'constrs_1' fileset (if not found)
 if {[string equal [get_filesets -quiet constrs_1] ""]} {
@@ -144,12 +293,7 @@ if {[string equal [get_filesets -quiet constrs_1] ""]} {
 # Set 'constrs_1' fileset object
 set obj [get_filesets constrs_1]
 
-# Add/Import constrs file and set constrs file properties
-# set file "[file normalize ${origin_dir}/workspace/complete-bd/complete-bd.srcs/constrs_1/imports/new/nexys_4_ddr.xdc]"
-# set file_imported [import_files -fileset constrs_1 [list $file]]
-# set file "new/nexys_4_ddr.xdc"
-# set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
-# set_property -name "file_type" -value "XDC" -objects $file_obj
+# Empty (no sources present)
 
 # Set 'constrs_1' fileset properties
 set obj [get_filesets constrs_1]
@@ -162,10 +306,26 @@ if {[string equal [get_filesets -quiet sim_1] ""]} {
 
 # Set 'sim_1' fileset object
 set obj [get_filesets sim_1]
-# Empty (no sources present)
+# Import local files from the original project
+set files [list \
+ [file normalize "${origin_dir}/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/tb.vhd"]\
+]
+# set imported_files [import_files -fileset sim_1 $files]
+
+# Set 'sim_1' fileset file properties for remote files
+# None
+
+# Set 'sim_1' fileset file properties for local files
+set file "src/tb.vhd"
+set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
 
 # Set 'sim_1' fileset properties
 set obj [get_filesets sim_1]
+set_property -name "top" -value "tb_module" -objects $obj
+set_property -name "top_auto_set" -value "0" -objects $obj
+set_property -name "top_lib" -value "xil_defaultlib" -objects $obj
 
 # Set 'utils_1' fileset object
 set obj [get_filesets utils_1]
@@ -176,10 +336,84 @@ set obj [get_filesets utils_1]
 
 
 # Adding sources referenced in BDs, if not already added
+if { [get_files Block_proc.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/Block_proc.vhd
+}
+if { [get_files Loop_Border_proc.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/Loop_Border_proc.vhd
+}
+if { [get_files Loop_Border_proc_borderbuf.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/Loop_Border_proc_borderbuf.vhd
+}
+if { [get_files Loop_HConvH_proc6.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/Loop_HConvH_proc6.vhd
+}
+if { [get_files Loop_VConvH_proc.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/Loop_VConvH_proc.vhd
+}
+if { [get_files Loop_VConvH_proc_linebuf_0.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/Loop_VConvH_proc_linebuf_0.vhd
+}
+if { [get_files globals.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/globals.vhd
+}
+if { [get_files checksum.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/checksum.vhd
+}
+if { [get_files conv2d.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/conv2d.vhd
+}
+if { [get_files conv2d_5x5_224p.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/conv2d_5x5_224p.vhd
+}
+if { [get_files dummyModule.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/dummyModule.vhd
+}
+if { [get_files fifo_w32_d2_A.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/fifo_w32_d2_A.vhd
+}
+if { [get_files fifo_w32_d3_A.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/fifo_w32_d3_A.vhd
+}
+if { [get_files filter11x11_strm.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/filter11x11_strm.vhd
+}
+if { [get_files filter11x11_strm_ent.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/filter11x11_strm_ent.vhd
+}
+if { [get_files kernel_5x5.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/kernel_5x5.vhd
+}
+if { [get_files multiplex.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/multiplex.vhd
+}
+if { [get_files ram.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/ram.vhd
+}
+if { [get_files shiftIn.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/shiftIn.vhd
+}
+if { [get_files start_for_Block_proc_U0.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/start_for_Block_proc_U0.vhd
+}
+if { [get_files start_for_Loop_Border_proc_U0.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/start_for_Loop_Border_proc_U0.vhd
+}
+if { [get_files start_for_Loop_VConvH_proc_U0.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/start_for_Loop_VConvH_proc_U0.vhd
+}
+if { [get_files packaging.vhd] == "" } {
+  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/workspace/complete-bd/complete-bd.srcs/sources_1/imports/src/packaging.vhd
+}
 
 
 # Proc to create BD design_1
 proc cr_bd_design_1 { parentCell } {
+# The design that will be created by this Tcl proc contains the following 
+# module references:
+# packaging
+
+
 
   # CHANGE DESIGN NAME HERE
   set design_name design_1
@@ -199,7 +433,6 @@ proc cr_bd_design_1 { parentCell } {
   xilinx.com:user:ethernet_transceiver2:1.0\
   xilinx.com:ip:fifo_generator:13.2\
   xilinx.com:ip:c_addsub:12.0\
-  user.org:user:packaging:3.0\
   xilinx.com:user:segment:1.0\
   xilinx.com:ip:xlconcat:2.1\
   xilinx.com:ip:xlconstant:1.1\
@@ -222,6 +455,31 @@ proc cr_bd_design_1 { parentCell } {
    }
 
   }
+
+  ##################################################################
+  # CHECK Modules
+  ##################################################################
+  set bCheckModules 1
+  if { $bCheckModules == 1 } {
+     set list_check_mods "\ 
+  packaging\
+  "
+
+   set list_mods_missing ""
+   common::send_msg_id "BD_TCL-006" "INFO" "Checking if the following modules exist in the project's sources: $list_check_mods ."
+
+   foreach mod_vlnv $list_check_mods {
+      if { [can_resolve_reference $mod_vlnv] == 0 } {
+         lappend list_mods_missing $mod_vlnv
+      }
+   }
+
+   if { $list_mods_missing ne "" } {
+      catch {common::send_msg_id "BD_TCL-115" "ERROR" "The following module(s) are not found in the project: $list_mods_missing" }
+      common::send_msg_id "BD_TCL-008" "INFO" "Please add source files for the missing module(s) above."
+      set bCheckIPsPassed 0
+   }
+}
 
   if { $bCheckIPsPassed != 1 } {
     common::send_msg_id "BD_TCL-1003" "WARNING" "Will not continue with creation of design due to the error(s) above."
@@ -420,9 +678,17 @@ proc cr_bd_design_1 { parentCell } {
    CONFIG.Out_Width {1} \
  ] $negate_0
 
-  # Create instance: packaging_1, and set properties
-  set packaging_1 [ create_bd_cell -type ip -vlnv user.org:user:packaging:3.0 packaging_1 ]
-
+  # Create instance: packaging_0, and set properties
+  set block_name packaging
+  set block_cell_name packaging_0
+  if { [catch {set packaging_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $packaging_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: segment_0, and set properties
   set segment_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:segment:1.0 segment_0 ]
 
@@ -474,8 +740,6 @@ proc cr_bd_design_1 { parentCell } {
   # Create interface connections
   connect_bd_intf_net -intf_net ethernet_transceiver2_0_fifo_read [get_bd_intf_pins ethernet_transceiver2_0/fifo_read] [get_bd_intf_pins fifo_output/FIFO_READ]
   connect_bd_intf_net -intf_net ethernet_transceiver2_0_fifo_write [get_bd_intf_pins ethernet_transceiver2_0/fifo_write] [get_bd_intf_pins fifo_input/FIFO_WRITE]
-  connect_bd_intf_net -intf_net packaging_1_fifo_read [get_bd_intf_pins fifo_input/FIFO_READ] [get_bd_intf_pins packaging_1/fifo_read]
-  connect_bd_intf_net -intf_net packaging_1_fifo_write [get_bd_intf_pins fifo_output/FIFO_WRITE] [get_bd_intf_pins packaging_1/fifo_write]
 
   # Create port connections
   connect_bd_net -net Net [get_bd_ports eth_rxd_0] [get_bd_pins ethernet_transceiver2_0/eth_rxd]
@@ -487,7 +751,7 @@ proc cr_bd_design_1 { parentCell } {
   connect_bd_net -net Net6 [get_bd_ports eth_rstn_0] [get_bd_pins ethernet_transceiver2_0/eth_rstn]
   connect_bd_net -net c_counter_binary_0_Q [get_bd_pins c_counter_binary_0/Q] [get_bd_pins segment_0/num2]
   connect_bd_net -net c_counter_binary_1_Q [get_bd_pins c_counter_binary_1/Q] [get_bd_pins segment_0/num1]
-  connect_bd_net -net clk_wiz_clk_out1 [get_bd_ports clk_100MHz] [get_bd_pins c_counter_binary_0/CLK] [get_bd_pins c_counter_binary_1/CLK] [get_bd_pins ethernet_transceiver2_0/clk100mhz] [get_bd_pins fifo_input/clk] [get_bd_pins fifo_output/wr_clk] [get_bd_pins negate_0/CLK] [get_bd_pins packaging_1/clk] [get_bd_pins segment_0/clk]
+  connect_bd_net -net clk_wiz_clk_out1 [get_bd_ports clk_100MHz] [get_bd_pins c_counter_binary_0/CLK] [get_bd_pins c_counter_binary_1/CLK] [get_bd_pins ethernet_transceiver2_0/clk100mhz] [get_bd_pins fifo_input/clk] [get_bd_pins fifo_output/wr_clk] [get_bd_pins negate_0/CLK] [get_bd_pins packaging_0/clk] [get_bd_pins segment_0/clk]
   connect_bd_net -net ethernet_transceiver2_0_eth_mdc [get_bd_ports eth_mdc_0] [get_bd_pins ethernet_transceiver2_0/eth_mdc]
   connect_bd_net -net ethernet_transceiver2_0_eth_refclk [get_bd_ports eth_refclk_0] [get_bd_pins ethernet_transceiver2_0/eth_refclk] [get_bd_pins fifo_output/rd_clk]
   connect_bd_net -net ethernet_transceiver2_0_led16_b [get_bd_ports led16_b_0] [get_bd_pins ethernet_transceiver2_0/led16_b]
@@ -496,12 +760,18 @@ proc cr_bd_design_1 { parentCell } {
   connect_bd_net -net ethernet_transceiver2_0_led17_b [get_bd_ports led17_b_0] [get_bd_pins ethernet_transceiver2_0/led17_b]
   connect_bd_net -net ethernet_transceiver2_0_led17_g [get_bd_ports led17_g_0] [get_bd_pins ethernet_transceiver2_0/led17_g]
   connect_bd_net -net ethernet_transceiver2_0_led17_r [get_bd_ports led17_r_0] [get_bd_pins ethernet_transceiver2_0/led17_r]
+  connect_bd_net -net fifo_input_dout [get_bd_pins fifo_input/dout] [get_bd_pins packaging_0/inputStream]
+  connect_bd_net -net fifo_input_empty [get_bd_pins fifo_input/empty] [get_bd_pins packaging_0/inputEmpty]
   connect_bd_net -net fifo_input_overflow [get_bd_pins c_counter_binary_1/CE] [get_bd_pins fifo_input/overflow]
+  connect_bd_net -net fifo_output_full [get_bd_pins fifo_output/full] [get_bd_pins packaging_0/outputFull]
   connect_bd_net -net fifo_output_overflow [get_bd_pins c_counter_binary_0/CE] [get_bd_pins fifo_output/overflow]
   connect_bd_net -net fifo_output_rd_data_count [get_bd_pins fifo_output/rd_data_count] [get_bd_pins xlconcat_5/In0]
-  connect_bd_net -net packaging_1_errorCode [get_bd_pins packaging_1/errorCode] [get_bd_pins xlconcat_4/In0]
-  connect_bd_net -net packaging_1_stateOut [get_bd_pins packaging_1/stateOut] [get_bd_pins xlconcat_4/In1]
-  connect_bd_net -net rst_clk_wiz_100M_peripheral_aresetn [get_bd_ports reset_rtl_0] [get_bd_pins ethernet_transceiver2_0/btn_reset] [get_bd_pins negate_0/A] [get_bd_pins packaging_1/rst]
+  connect_bd_net -net packaging_0_errorCode [get_bd_pins packaging_0/errorCode] [get_bd_pins xlconcat_4/In0]
+  connect_bd_net -net packaging_0_inpRdEn [get_bd_pins fifo_input/rd_en] [get_bd_pins packaging_0/inpRdEn]
+  connect_bd_net -net packaging_0_outData [get_bd_pins fifo_output/din] [get_bd_pins packaging_0/outData]
+  connect_bd_net -net packaging_0_outWrEn [get_bd_pins fifo_output/wr_en] [get_bd_pins packaging_0/outWrEn]
+  connect_bd_net -net packaging_0_stateOut [get_bd_pins packaging_0/stateOut] [get_bd_pins xlconcat_4/In1]
+  connect_bd_net -net rst_clk_wiz_100M_peripheral_aresetn [get_bd_ports reset_rtl_0] [get_bd_pins ethernet_transceiver2_0/btn_reset] [get_bd_pins negate_0/A] [get_bd_pins packaging_0/rst]
   connect_bd_net -net segment_0_anodes [get_bd_ports anodes_0] [get_bd_pins segment_0/anodes]
   connect_bd_net -net segment_0_cathodes [get_bd_ports cathodes_0] [get_bd_pins segment_0/cathodes]
   connect_bd_net -net sw_0_1 [get_bd_ports sw_0] [get_bd_pins ethernet_transceiver2_0/ip]

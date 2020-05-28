@@ -8,3 +8,4 @@
 .Xil/
 .Xiltemp/
 /run-*
+*.code-workspace
