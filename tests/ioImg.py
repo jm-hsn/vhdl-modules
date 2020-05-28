@@ -2,6 +2,7 @@ import re
 import time
 import cv2
 import numpy as np
+import struct
 
 def showHex(txt, i):
   time, unit, val = txt.strip().split(" ")
@@ -35,12 +36,12 @@ def setPixel(img, txt, i, input):
     time /= 1000.0
 
   if re.match(r'[01]{32}', val, re.M):
-    num = int(val, 2)
-    if num > 0x7FFFFFFF:
-      num = num - 0xFFFFFFFF - 1
+    num = struct.unpack('!f',struct.pack('!i', int(val, 2)))[0]
 
     if not input:
       num = num/25
+    if num > 255:
+      num = 255
     x = i % sizeWithBorder
     y = int(i / sizeWithBorder) % sizeWithBorder
     img[y][x] = num

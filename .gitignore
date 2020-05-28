@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 /*.jou
 /*.log
-/*.png
 /*.str
 /sources/*.tcl.raw
 /workspace/
@@ -10,6 +8,4 @@
 .Xiltemp/
 /run-*
 *.code-workspace
-=======
-vivado_project/*
->>>>>>> 5ada47eb2a548e620d206727892f48c7f5f21e5a
+/vivado_project/

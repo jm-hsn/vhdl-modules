@@ -3,6 +3,11 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 use work.myPackage.ALL;
+use work.float32.float_t;
+use work.float32.conv_float;
+use work.float32.conv_std_logic_vector;
+use work.float32."*";
+use work.float32."+";
 
 entity kernel_NxN is
     Generic(
@@ -19,13 +24,15 @@ architecture Behavioral of kernel_NxN is
 
 begin
     calc : process(kernelValues, inputValues)
-        variable sum : integer := 0;
+        variable sum : float_t;
+        variable product : float_t;
     begin
-        sum := 0;
+        sum := conv_float(std_logic_vector(to_unsigned(0, 32)));
         for i in integer range 0 to N*N-1 loop
-            sum := sum + to_integer(signed(kernelValues(i)(17 downto 0))) * to_integer(signed(inputValues(i)(24 downto 0)));
+            product := conv_float(kernelValues(i)) * conv_float(inputValues(i));
+            sum := sum + product;
         end loop;
-        outputValue <= std_logic_vector(to_signed(sum, outputValue'length));
+        outputValue <= conv_std_logic_vector(sum);
     end process;
 
 end Behavioral;

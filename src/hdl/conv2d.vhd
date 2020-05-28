@@ -87,7 +87,7 @@ begin
         sync_reset  => working,
         dataIn      => srcData,
         dataOut     => inputBuffer,
-        dataIndex    => dataIndex
+        dataIndex    => open
     );
     
     setKernel : process(rst_n, clk) begin
@@ -126,6 +126,21 @@ begin
             srcReady <= '0';
         else
             srcReady <= working and dstReady and not dstStalled_s and start;
+        end if;
+    end process;
+    
+    dataIndexCounter : process(clk, rst_n)
+    begin
+        if(rst_n = '0') then
+            dataIndex <= 0;
+        elsif(rising_edge(clk)) then
+            if(start = '0') then
+                dataIndex <= 0;
+            elsif(srcValid = '1') then
+                dataIndex <= dataIndex + 1;
+            else
+                dataIndex <= dataIndex;
+            end if;
         end if;
     end process;
     

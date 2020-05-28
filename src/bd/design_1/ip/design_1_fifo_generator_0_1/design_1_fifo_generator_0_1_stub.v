@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Wed Apr 15 19:34:33 2020
-// Host        : DESKTOP-L9P0FU6 running 64-bit major release  (build 9200)
+// Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+// Date        : Thu May 28 20:46:33 2020
+// Host        : DESKTOP-L9P0FU6 running 64-bit Ubuntu 18.04.4 LTS
 // Command     : write_verilog -force -mode synth_stub
-//               C:/Users/johan/mlfpga/fifo/fifo.srcs/sources_1/bd/design_1/ip/design_1_fifo_generator_0_1/design_1_fifo_generator_0_1_stub.v
+//               /home/windows/repos/vhdl-modules/src/bd/design_1/ip/design_1_fifo_generator_0_1/design_1_fifo_generator_0_1_stub.v
 // Design      : design_1_fifo_generator_0_1
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tcsg324-1

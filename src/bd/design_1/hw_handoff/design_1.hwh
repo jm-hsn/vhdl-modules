@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Nov  6 14:52:12 2019" VIVADOVERSION="2018.3">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu May 28 22:37:59 2020" VIVADOVERSION="2018.3">
 
   <SYSTEMINFO ARCH="artix7" DEVICE="7a100t" NAME="design_1" PACKAGE="csg324" SPEEDGRADE="-1"/>
 
@@ -8,7 +8,7 @@
       <CONNECTIONS>
         <CONNECTION INSTANCE="negate_0" PORT="A"/>
         <CONNECTION INSTANCE="ethernet_transceiver2_0" PORT="btn_reset"/>
-        <CONNECTION INSTANCE="packaging_1" PORT="rst"/>
+        <CONNECTION INSTANCE="packaging_0" PORT="rst"/>
       </CONNECTIONS>
     </PORT>
     <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk_100MHz" SIGIS="clk" SIGNAME="External_Ports_clk_100MHz">
@@ -20,7 +20,7 @@
         <CONNECTION INSTANCE="negate_0" PORT="CLK"/>
         <CONNECTION INSTANCE="fifo_output" PORT="wr_clk"/>
         <CONNECTION INSTANCE="ethernet_transceiver2_0" PORT="clk100mhz"/>
-        <CONNECTION INSTANCE="packaging_1" PORT="clk"/>
+        <CONNECTION INSTANCE="packaging_0" PORT="clk"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" LEFT="4" NAME="sw_0" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_sw_0">
@@ -275,7 +275,7 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="43" FULLNAME="/ethernet_transceiver2_0" HWVERSION="1.0" INSTANCE="ethernet_transceiver2_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="ethernet_transceiver2" VLNV="xilinx.com:user:ethernet_transceiver2:1.0">
+    <MODULE COREREVISION="44" FULLNAME="/ethernet_transceiver2_0" HWVERSION="1.0" INSTANCE="ethernet_transceiver2_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="ethernet_transceiver2" VLNV="xilinx.com:user:ethernet_transceiver2:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="M_clk2_5mhz1" VALUE="20"/>
@@ -837,14 +837,14 @@
             <CONNECTION INSTANCE="ethernet_transceiver2_0" PORT="fifo_write_enable"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="rd_en" SIGIS="undef" SIGNAME="fifo_input_rd_en">
+        <PORT DIR="I" NAME="rd_en" SIGIS="undef" SIGNAME="packaging_0_inpRdEn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="packaging_1" PORT="inpRdEn"/>
+            <CONNECTION INSTANCE="packaging_0" PORT="inpRdEn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="fifo_input_dout">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="packaging_1" PORT="inputStream"/>
+            <CONNECTION INSTANCE="packaging_0" PORT="inputStream"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="full" SIGIS="undef" SIGNAME="ethernet_transceiver2_0_fifo_write_full">
@@ -859,7 +859,7 @@
         </PORT>
         <PORT DIR="O" NAME="empty" SIGIS="undef" SIGNAME="fifo_input_empty">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="packaging_1" PORT="inputEmpty"/>
+            <CONNECTION INSTANCE="packaging_0" PORT="inputEmpty"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -871,7 +871,7 @@
             <PORTMAP LOGICAL="WR_EN" PHYSICAL="wr_en"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="packaging_1_fifo_read" NAME="FIFO_READ" TYPE="TARGET" VLNV="xilinx.com:interface:fifo_read:1.0">
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="FIFO_READ" TYPE="TARGET" VLNV="xilinx.com:interface:fifo_read:1.0">
           <PORTMAPS>
             <PORTMAP LOGICAL="EMPTY" PHYSICAL="empty"/>
             <PORTMAP LOGICAL="RD_DATA" PHYSICAL="dout"/>
@@ -1272,14 +1272,14 @@
             <CONNECTION INSTANCE="ethernet_transceiver2_0" PORT="eth_refclk"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="din" RIGHT="0" SIGIS="undef" SIGNAME="fifo_output_din">
+        <PORT DIR="I" LEFT="31" NAME="din" RIGHT="0" SIGIS="undef" SIGNAME="packaging_0_outData">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="packaging_1" PORT="outData"/>
+            <CONNECTION INSTANCE="packaging_0" PORT="outData"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="wr_en" SIGIS="undef" SIGNAME="fifo_output_wr_en">
+        <PORT DIR="I" NAME="wr_en" SIGIS="undef" SIGNAME="packaging_0_outWrEn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="packaging_1" PORT="outWrEn"/>
+            <CONNECTION INSTANCE="packaging_0" PORT="outWrEn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="rd_en" SIGIS="undef" SIGNAME="ethernet_transceiver2_0_fifo_read_enable">
@@ -1294,7 +1294,7 @@
         </PORT>
         <PORT DIR="O" NAME="full" SIGIS="undef" SIGNAME="fifo_output_full">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="packaging_1" PORT="outputFull"/>
+            <CONNECTION INSTANCE="packaging_0" PORT="outputFull"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="overflow" SIGIS="undef" SIGNAME="fifo_output_overflow">
@@ -1314,7 +1314,7 @@
         </PORT>
       </PORTS>
       <BUSINTERFACES>
-        <BUSINTERFACE BUSNAME="packaging_1_fifo_write" NAME="FIFO_WRITE" TYPE="TARGET" VLNV="xilinx.com:interface:fifo_write:1.0">
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="FIFO_WRITE" TYPE="TARGET" VLNV="xilinx.com:interface:fifo_write:1.0">
           <PORTMAPS>
             <PORTMAP LOGICAL="FULL" PHYSICAL="full"/>
             <PORTMAP LOGICAL="WR_DATA" PHYSICAL="din"/>
@@ -1411,11 +1411,11 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="1" FULLNAME="/packaging_1" HWVERSION="3.0" INSTANCE="packaging_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="packaging" VLNV="user.org:user:packaging:3.0">
+    <MODULE COREREVISION="1" FULLNAME="/packaging_0" HWVERSION="1.0" INSTANCE="packaging_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="packaging" VLNV="xilinx.com:module_ref:packaging:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="busWidth" VALUE="32"/>
-        <PARAMETER NAME="Component_Name" VALUE="design_1_packaging_1_0"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_packaging_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
@@ -1434,7 +1434,7 @@
             <CONNECTION INSTANCE="fifo_input" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="inpRdEn" SIGIS="undef" SIGNAME="fifo_input_rd_en">
+        <PORT DIR="O" NAME="inpRdEn" SIGIS="undef" SIGNAME="packaging_0_inpRdEn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="fifo_input" PORT="rd_en"/>
           </CONNECTIONS>
@@ -1444,12 +1444,12 @@
             <CONNECTION INSTANCE="fifo_input" PORT="empty"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="outData" RIGHT="0" SIGIS="undef" SIGNAME="fifo_output_din">
+        <PORT DIR="O" LEFT="31" NAME="outData" RIGHT="0" SIGIS="undef" SIGNAME="packaging_0_outData">
           <CONNECTIONS>
             <CONNECTION INSTANCE="fifo_output" PORT="din"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="outWrEn" SIGIS="undef" SIGNAME="fifo_output_wr_en">
+        <PORT DIR="O" NAME="outWrEn" SIGIS="undef" SIGNAME="packaging_0_outWrEn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="fifo_output" PORT="wr_en"/>
           </CONNECTIONS>
@@ -1459,33 +1459,18 @@
             <CONNECTION INSTANCE="fifo_output" PORT="full"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="errorCode" RIGHT="0" SIGIS="undef" SIGNAME="packaging_1_errorCode">
+        <PORT DIR="O" LEFT="3" NAME="errorCode" RIGHT="0" SIGIS="undef" SIGNAME="packaging_0_errorCode">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xlconcat_4" PORT="In0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="stateOut" RIGHT="0" SIGIS="undef" SIGNAME="packaging_1_stateOut">
+        <PORT DIR="O" LEFT="3" NAME="stateOut" RIGHT="0" SIGIS="undef" SIGNAME="packaging_0_stateOut">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xlconcat_4" PORT="In1"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
-      <BUSINTERFACES>
-        <BUSINTERFACE BUSNAME="packaging_1_fifo_read" NAME="fifo_read" TYPE="INITIATOR" VLNV="xilinx.com:interface:fifo_read:1.0">
-          <PORTMAPS>
-            <PORTMAP LOGICAL="RD_DATA" PHYSICAL="inputStream"/>
-            <PORTMAP LOGICAL="RD_EN" PHYSICAL="inpRdEn"/>
-            <PORTMAP LOGICAL="EMPTY" PHYSICAL="inputEmpty"/>
-          </PORTMAPS>
-        </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="packaging_1_fifo_write" NAME="fifo_write" TYPE="INITIATOR" VLNV="xilinx.com:interface:fifo_write:1.0">
-          <PORTMAPS>
-            <PORTMAP LOGICAL="WR_DATA" PHYSICAL="outData"/>
-            <PORTMAP LOGICAL="WR_EN" PHYSICAL="outWrEn"/>
-            <PORTMAP LOGICAL="FULL" PHYSICAL="outputFull"/>
-          </PORTMAPS>
-        </BUSINTERFACE>
-      </BUSINTERFACES>
+      <BUSINTERFACES/>
     </MODULE>
     <MODULE COREREVISION="4" FULLNAME="/segment_0" HWVERSION="1.0" INSTANCE="segment_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="segment" VLNV="xilinx.com:user:segment:1.0">
       <DOCUMENTS/>
@@ -1563,14 +1548,14 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" LEFT="3" NAME="In0" RIGHT="0" SIGIS="undef" SIGNAME="packaging_1_errorCode">
+        <PORT DIR="I" LEFT="3" NAME="In0" RIGHT="0" SIGIS="undef" SIGNAME="packaging_0_errorCode">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="packaging_1" PORT="errorCode"/>
+            <CONNECTION INSTANCE="packaging_0" PORT="errorCode"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="3" NAME="In1" RIGHT="0" SIGIS="undef" SIGNAME="packaging_1_stateOut">
+        <PORT DIR="I" LEFT="3" NAME="In1" RIGHT="0" SIGIS="undef" SIGNAME="packaging_0_stateOut">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="packaging_1" PORT="stateOut"/>
+            <CONNECTION INSTANCE="packaging_0" PORT="stateOut"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="7" NAME="In2" RIGHT="0" SIGIS="undef" SIGNAME="xlslice_0_Dout">
