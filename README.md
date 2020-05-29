@@ -1,8 +1,53 @@
-# modules-vhdl-ip
+# VHDL neural network accelerators for distributed computation on FPGAs
 
 VHDL implementation of job parser and hardware accelerator modules
 
-## [barbedo/vivado-git](https://github.com/barbedo/vivado-git)
+## How to prepare Vivado for Git support
+
+Add `Vivado_init.tcl` (or append the relevant lines if you already have
+something in it) along with the `scripts` directory to:
+
+- `%APPDATA%\Roaming\Xilinx\Vivado` on Windows
+- `~/.Xilinx/Vivado` on Linux
+
+## How to pull newest version
+
+- delete local changes `git pull && git reset --hard`
+- start Vivado in any directory
+- `Tools` > `Run Tcl Script...` > `vhdl-modules.tcl`
+
+Vivado should then recreate the project inside `vivado_project/` and open it.
+
+When `design_1_wrapper` doesn't appear as Top Module:
+
+- Watch the Tcl Console for any possible errors during creation, mainly missing files.
+- create a Git issue with your Tcl output attached
+- recreate without `vhdl-modules.tcl`
+
+## How to recreate without `vhdl-modules.tcl`
+
+- Create project `vhdl-modules` without own project folder inside `vivado_project/`
+- Import all sources from `src/hdl/` with *copy sources into project* checked
+- Import block design `src/bd/design_1/design_1.bd` with *copy sources into project* checked
+- Import testbenches from `src/testbench/` with *copy sources into project* unchecked
+- Import constraints from `src/constraints/` with *copy sources into project* unchecked
+- `design_1` > `create HDL Wrapper...` > Let Vivado manage wrapper
+- save this state by committing like below:
+
+## How to commit changes
+
+type **inside Vivados Tcl console**:
+
+```tcl
+git add .
+git commit -m "my commit"
+```
+
+This way `vhdl-modules.tcl` will by overridden.
+
+---
+
+## Readme of [barbedo/vivado-git](https://github.com/barbedo/vivado-git)
 
 Trying to make Vivado more git-friendly.
 
@@ -48,7 +93,8 @@ Vivado is a pain in the ass to source control decently, so these scripts provide
     (e.g. `PROJECT_NAME/src`).
 
     Here is an example of a possible project structure:
-    ```
+
+    ```tree
     PROJECT_NAME
         ├── .git
         ├── .gitignore
