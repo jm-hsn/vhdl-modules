@@ -99,14 +99,14 @@ set_property -name "sim.central_dir" -value "$proj_dir/${_xil_proj_name_}.ip_use
 set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
 set_property -name "target_language" -value "VHDL" -objects $obj
-set_property -name "webtalk.activehdl_export_sim" -value "4" -objects $obj
-set_property -name "webtalk.ies_export_sim" -value "4" -objects $obj
-set_property -name "webtalk.modelsim_export_sim" -value "4" -objects $obj
-set_property -name "webtalk.questa_export_sim" -value "4" -objects $obj
-set_property -name "webtalk.riviera_export_sim" -value "4" -objects $obj
-set_property -name "webtalk.vcs_export_sim" -value "4" -objects $obj
-set_property -name "webtalk.xcelium_export_sim" -value "3" -objects $obj
-set_property -name "webtalk.xsim_export_sim" -value "4" -objects $obj
+set_property -name "webtalk.activehdl_export_sim" -value "6" -objects $obj
+set_property -name "webtalk.ies_export_sim" -value "6" -objects $obj
+set_property -name "webtalk.modelsim_export_sim" -value "6" -objects $obj
+set_property -name "webtalk.questa_export_sim" -value "6" -objects $obj
+set_property -name "webtalk.riviera_export_sim" -value "6" -objects $obj
+set_property -name "webtalk.vcs_export_sim" -value "6" -objects $obj
+set_property -name "webtalk.xcelium_export_sim" -value "5" -objects $obj
+set_property -name "webtalk.xsim_export_sim" -value "6" -objects $obj
 set_property -name "webtalk.xsim_launch_sim" -value "3" -objects $obj
 set_property -name "xpm_libraries" -value "XPM_CDC XPM_MEMORY" -objects $obj
 
@@ -125,13 +125,13 @@ update_ip_catalog -rebuild
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
 set files [list \
- [file normalize "${origin_dir}/src/hdl/globals.vhd"] \
  [file normalize "${origin_dir}/src/hdl/Block_proc.vhd"] \
  [file normalize "${origin_dir}/src/hdl/Loop_Border_proc.vhd"] \
  [file normalize "${origin_dir}/src/hdl/Loop_Border_proc_borderbuf.vhd"] \
  [file normalize "${origin_dir}/src/hdl/Loop_HConvH_proc6.vhd"] \
  [file normalize "${origin_dir}/src/hdl/Loop_VConvH_proc.vhd"] \
  [file normalize "${origin_dir}/src/hdl/Loop_VConvH_proc_linebuf_0.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/globals.vhd"] \
  [file normalize "${origin_dir}/src/hdl/checksum.vhd"] \
  [file normalize "${origin_dir}/src/hdl/conv2d.vhd"] \
  [file normalize "${origin_dir}/src/hdl/conv2d_5x5_224p.vhd"] \
@@ -153,11 +153,6 @@ set files [list \
 add_files -norecurse -fileset $obj $files
 
 # Set 'sources_1' fileset file properties for remote files
-set file "$origin_dir/src/hdl/globals.vhd"
-set file [file normalize $file]
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
 set file "$origin_dir/src/hdl/Block_proc.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
@@ -184,6 +179,11 @@ set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
 set file "$origin_dir/src/hdl/Loop_VConvH_proc_linebuf_0.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "$origin_dir/src/hdl/globals.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
@@ -305,13 +305,12 @@ if {[string equal [get_filesets -quiet sim_1] ""]} {
 # Set 'sim_1' fileset object
 set obj [get_filesets sim_1]
 set files [list \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sim_1/imports/testbench/packaging_tb.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sim_1/imports/testbench/tb_module_behav.wcfg"] \
+ [file normalize "${origin_dir}/src/testbench/packaging_tb.vhd"] \
 ]
 add_files -norecurse -fileset $obj $files
 
 # Set 'sim_1' fileset file properties for remote files
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sim_1/imports/testbench/packaging_tb.vhd"
+set file "$origin_dir/src/testbench/packaging_tb.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
@@ -322,9 +321,7 @@ set_property -name "file_type" -value "VHDL" -objects $file_obj
 
 # Set 'sim_1' fileset properties
 set obj [get_filesets sim_1]
-set_property -name "source_set" -value "" -objects $obj
 set_property -name "top" -value "tb_module" -objects $obj
-set_property -name "top_auto_set" -value "0" -objects $obj
 set_property -name "top_lib" -value "xil_defaultlib" -objects $obj
 
 # Set 'utils_1' fileset object
