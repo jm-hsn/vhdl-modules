@@ -5,27 +5,30 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use STD.textio.all;
 use ieee.std_logic_textio.all;
 
-entity tb is
+entity tb_module is
         
-end tb;
+end tb_module;
 
-architecture Behavioral of tb is
+architecture Behavioral of tb_module is
 
 constant busWidth : integer:=32;
 
-    component dut_packaging_wrapper is
-      port (
-        clk_0 : in STD_LOGIC;
-        errorCode_0 : out STD_LOGIC_VECTOR ( 3 downto 0 );
-        fifo_read_0_empty : in STD_LOGIC;
-        fifo_read_0_rd_data : in STD_LOGIC_VECTOR ( 31 downto 0 );
-        fifo_read_0_rd_en : out STD_LOGIC;
-        fifo_write_0_full : in STD_LOGIC;
-        fifo_write_0_wr_data : out STD_LOGIC_VECTOR ( 31 downto 0 );
-        fifo_write_0_wr_en : out STD_LOGIC;
-        rst_0 : in STD_LOGIC;
-        stateOut_0 : out STD_LOGIC_VECTOR ( 3 downto 0 )
-      );
+    component packaging is
+    generic(
+        busWidth : integer:=32);
+    Port ( clk : in STD_LOGIC;
+           rst : in STD_LOGIC;
+           
+           inputStream : in STD_LOGIC_VECTOR (busWidth-1 downto 0);
+           inpRdEn : out std_logic;
+           inputEmpty : in std_logic;
+           
+           outData : out STD_LOGIC_VECTOR (busWidth-1 downto 0);
+           outWrEn : out std_logic;
+           outputFull : in std_logic;
+           
+           errorCode : out STD_LOGIC_VECTOR(3 DOWNTO 0);
+           stateOut : out STD_LOGIC_VECTOR(3 downto 0));
     end component;
     
     signal clk : std_logic := '1';
@@ -57,17 +60,17 @@ constant busWidth : integer:=32;
 
 begin
 
-    dut : dut_packaging_wrapper port map (
-        clk_0 => clk,
-        rst_0 => rst,
+    dut : packaging port map (
+        clk => clk,
+        rst => rst,
         
-        fifo_read_0_rd_data => s_inData,
-        fifo_read_0_empty => inputEmpty,
-        fifo_read_0_rd_en => rdEn,
+        inputStream => s_inData,
+        inputEmpty => inputEmpty,
+        inpRdEn => rdEn,
         
-        fifo_write_0_wr_data => s_outData,
-        fifo_write_0_wr_en => wrEn,
-        fifo_write_0_full => outputFull
+        outData => s_outData,
+        outWrEn => wrEn,
+        outputFull => outputFull
         
     );
 
