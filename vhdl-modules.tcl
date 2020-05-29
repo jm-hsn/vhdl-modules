@@ -99,13 +99,14 @@ set_property -name "sim.central_dir" -value "$proj_dir/${_xil_proj_name_}.ip_use
 set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
 set_property -name "target_language" -value "VHDL" -objects $obj
-set_property -name "webtalk.activehdl_export_sim" -value "1" -objects $obj
-set_property -name "webtalk.ies_export_sim" -value "1" -objects $obj
-set_property -name "webtalk.modelsim_export_sim" -value "1" -objects $obj
-set_property -name "webtalk.questa_export_sim" -value "1" -objects $obj
-set_property -name "webtalk.riviera_export_sim" -value "1" -objects $obj
-set_property -name "webtalk.vcs_export_sim" -value "1" -objects $obj
-set_property -name "webtalk.xsim_export_sim" -value "1" -objects $obj
+set_property -name "webtalk.activehdl_export_sim" -value "2" -objects $obj
+set_property -name "webtalk.ies_export_sim" -value "2" -objects $obj
+set_property -name "webtalk.modelsim_export_sim" -value "2" -objects $obj
+set_property -name "webtalk.questa_export_sim" -value "2" -objects $obj
+set_property -name "webtalk.riviera_export_sim" -value "2" -objects $obj
+set_property -name "webtalk.vcs_export_sim" -value "2" -objects $obj
+set_property -name "webtalk.xcelium_export_sim" -value "1" -objects $obj
+set_property -name "webtalk.xsim_export_sim" -value "2" -objects $obj
 set_property -name "webtalk.xsim_launch_sim" -value "3" -objects $obj
 set_property -name "xpm_libraries" -value "XPM_CDC XPM_MEMORY" -objects $obj
 
@@ -124,281 +125,157 @@ update_ip_catalog -rebuild
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
 set files [list \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Block_proc.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_Border_proc.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_Border_proc_borderbuf.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_HConvH_proc6.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_VConvH_proc.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_VConvH_proc_linebuf_0.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/globals.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/checksum.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/conv2d.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/conv2d_5x5_224p.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/dummyModule.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/fifo_w32_d2_A.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/fifo_w32_d3_A.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/filter11x11_strm.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/filter11x11_strm_ent.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/kernel_5x5.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/multiplex.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/ram.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/shiftIn.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Block_proc_U0.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Loop_Border_proc_U0.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Loop_VConvH_proc_U0.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/packaging.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/relu.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/shiftOut.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/Block_proc.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/Loop_Border_proc.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/Loop_Border_proc_borderbuf.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/Loop_HConvH_proc6.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/Loop_VConvH_proc.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/Loop_VConvH_proc_linebuf_0.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/globals.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/checksum.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/conv2d.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/conv2d_5x5_224p.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/dummyModule.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/fifo_w32_d2_A.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/fifo_w32_d3_A.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/filter11x11_strm.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/filter11x11_strm_ent.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/kernel_5x5.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/multiplex.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/ram.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/shiftIn.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/start_for_Block_proc_U0.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/start_for_Loop_Border_proc_U0.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/start_for_Loop_VConvH_proc_U0.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/packaging.vhd"] \
+ [file normalize "${origin_dir}/src/testbench/tb_module_behav.wcfg"] \
 ]
 add_files -norecurse -fileset $obj $files
 
 # Set 'sources_1' fileset file properties for remote files
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Block_proc.vhd"
+set file "$origin_dir/src/hdl/Block_proc.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_Border_proc.vhd"
+set file "$origin_dir/src/hdl/Loop_Border_proc.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_Border_proc_borderbuf.vhd"
+set file "$origin_dir/src/hdl/Loop_Border_proc_borderbuf.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_HConvH_proc6.vhd"
+set file "$origin_dir/src/hdl/Loop_HConvH_proc6.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_VConvH_proc.vhd"
+set file "$origin_dir/src/hdl/Loop_VConvH_proc.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_VConvH_proc_linebuf_0.vhd"
+set file "$origin_dir/src/hdl/Loop_VConvH_proc_linebuf_0.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/globals.vhd"
+set file "$origin_dir/src/hdl/globals.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/checksum.vhd"
+set file "$origin_dir/src/hdl/checksum.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/conv2d.vhd"
+set file "$origin_dir/src/hdl/conv2d.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/conv2d_5x5_224p.vhd"
+set file "$origin_dir/src/hdl/conv2d_5x5_224p.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/dummyModule.vhd"
+set file "$origin_dir/src/hdl/dummyModule.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/fifo_w32_d2_A.vhd"
+set file "$origin_dir/src/hdl/fifo_w32_d2_A.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/fifo_w32_d3_A.vhd"
+set file "$origin_dir/src/hdl/fifo_w32_d3_A.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/filter11x11_strm.vhd"
+set file "$origin_dir/src/hdl/filter11x11_strm.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/filter11x11_strm_ent.vhd"
+set file "$origin_dir/src/hdl/filter11x11_strm_ent.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/kernel_5x5.vhd"
+set file "$origin_dir/src/hdl/kernel_5x5.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/multiplex.vhd"
+set file "$origin_dir/src/hdl/multiplex.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/ram.vhd"
+set file "$origin_dir/src/hdl/ram.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/shiftIn.vhd"
+set file "$origin_dir/src/hdl/shiftIn.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Block_proc_U0.vhd"
+set file "$origin_dir/src/hdl/start_for_Block_proc_U0.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Loop_Border_proc_U0.vhd"
+set file "$origin_dir/src/hdl/start_for_Loop_Border_proc_U0.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Loop_VConvH_proc_U0.vhd"
+set file "$origin_dir/src/hdl/start_for_Loop_VConvH_proc_U0.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/packaging.vhd"
-set file [file normalize $file]
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/relu.vhd"
-set file [file normalize $file]
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/shiftOut.vhd"
+set file "$origin_dir/src/hdl/packaging.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
 
 # Set 'sources_1' fileset file properties for local files
-set file "src/Block_proc.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/Loop_Border_proc.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/Loop_Border_proc_borderbuf.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/Loop_HConvH_proc6.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/Loop_VConvH_proc.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/Loop_VConvH_proc_linebuf_0.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/globals.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/checksum.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/conv2d.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/conv2d_5x5_224p.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/dummyModule.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/fifo_w32_d2_A.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/fifo_w32_d3_A.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/filter11x11_strm.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/filter11x11_strm_ent.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/kernel_5x5.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/multiplex.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/ram.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/shiftIn.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/start_for_Block_proc_U0.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/start_for_Loop_Border_proc_U0.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/start_for_Loop_VConvH_proc_U0.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/packaging.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/shiftOut.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/neuron.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/mac.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/parallelize.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "src/relu.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
+# None
 
 # Set 'sources_1' fileset properties
 set obj [get_filesets sources_1]
-set_property -name "top" -value "packaging" -objects $obj
-set_property -name "top_arch" -value "Behavioral" -objects $obj
-set_property -name "top_file" -value "$proj_dir/vhdl-modules.srcs/sources_1/imports/src/packaging.vhd" -objects $obj
-set_property -name "top_lib" -value "xil_defaultlib" -objects $obj
+set_property -name "top" -value "design_1_wrapper" -objects $obj
+set_property -name "top_auto_set" -value "0" -objects $obj
 
 # Create 'constrs_1' fileset (if not found)
 if {[string equal [get_filesets -quiet constrs_1] ""]} {
@@ -408,7 +285,13 @@ if {[string equal [get_filesets -quiet constrs_1] ""]} {
 # Set 'constrs_1' fileset object
 set obj [get_filesets constrs_1]
 
-# Empty (no sources present)
+# Add/Import constrs file and set constrs file properties
+set file "[file normalize ${origin_dir}/vivado_project/vhdl-modules.srcs/constrs_1/imports/constraints/nexys_4_ddr.xdc]"
+set file_added [add_files -norecurse -fileset $obj [list $file]]
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/constrs_1/imports/constraints/nexys_4_ddr.xdc"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
+set_property -name "file_type" -value "XDC" -objects $file_obj
 
 # Set 'constrs_1' fileset properties
 set obj [get_filesets constrs_1]
@@ -421,26 +304,26 @@ if {[string equal [get_filesets -quiet sim_1] ""]} {
 
 # Set 'sim_1' fileset object
 set obj [get_filesets sim_1]
-# Import local files from the original project
 set files [list \
+ [file normalize "${origin_dir}/src/hdl/tb.vhd"] \
  [file normalize "${origin_dir}/src/testbench/packaging_tb.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/tb.vhd"] \
 ]
-# set imported_files [import_files -fileset sim_1 $files]
+add_files -norecurse -fileset $obj $files
 
 # Set 'sim_1' fileset file properties for remote files
-# None
-
-# Set 'sim_1' fileset file properties for local files
-set file "src/tb.vhd"
-set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/tb.vhd"
+set file "$origin_dir/src/hdl/tb.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
+set file "$origin_dir/src/testbench/packaging_tb.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+
+# Set 'sim_1' fileset file properties for local files
+# None
 
 # Set 'sim_1' fileset properties
 set obj [get_filesets sim_1]
@@ -458,73 +341,73 @@ set obj [get_filesets utils_1]
 
 # Adding sources referenced in BDs, if not already added
 if { [get_files Block_proc.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Block_proc.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Block_proc.vhd
 }
 if { [get_files Loop_Border_proc.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_Border_proc.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Loop_Border_proc.vhd
 }
 if { [get_files Loop_Border_proc_borderbuf.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_Border_proc_borderbuf.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Loop_Border_proc_borderbuf.vhd
 }
 if { [get_files Loop_HConvH_proc6.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_HConvH_proc6.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Loop_HConvH_proc6.vhd
 }
 if { [get_files Loop_VConvH_proc.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_VConvH_proc.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Loop_VConvH_proc.vhd
 }
 if { [get_files Loop_VConvH_proc_linebuf_0.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/Loop_VConvH_proc_linebuf_0.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Loop_VConvH_proc_linebuf_0.vhd
 }
 if { [get_files globals.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/globals.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/globals.vhd
 }
 if { [get_files checksum.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/checksum.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/checksum.vhd
 }
 if { [get_files conv2d.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/conv2d.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/conv2d.vhd
 }
 if { [get_files conv2d_5x5_224p.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/conv2d_5x5_224p.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/conv2d_5x5_224p.vhd
 }
 if { [get_files dummyModule.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/dummyModule.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/dummyModule.vhd
 }
 if { [get_files fifo_w32_d2_A.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/fifo_w32_d2_A.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/fifo_w32_d2_A.vhd
 }
 if { [get_files fifo_w32_d3_A.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/fifo_w32_d3_A.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/fifo_w32_d3_A.vhd
 }
 if { [get_files filter11x11_strm.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/filter11x11_strm.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/filter11x11_strm.vhd
 }
 if { [get_files filter11x11_strm_ent.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/filter11x11_strm_ent.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/filter11x11_strm_ent.vhd
 }
 if { [get_files kernel_5x5.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/kernel_5x5.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/kernel_5x5.vhd
 }
 if { [get_files multiplex.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/multiplex.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/multiplex.vhd
 }
 if { [get_files ram.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/ram.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/ram.vhd
 }
 if { [get_files shiftIn.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/shiftIn.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/shiftIn.vhd
 }
 if { [get_files start_for_Block_proc_U0.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Block_proc_U0.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/start_for_Block_proc_U0.vhd
 }
 if { [get_files start_for_Loop_Border_proc_U0.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Loop_Border_proc_U0.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/start_for_Loop_Border_proc_U0.vhd
 }
 if { [get_files start_for_Loop_VConvH_proc_U0.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/start_for_Loop_VConvH_proc_U0.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/start_for_Loop_VConvH_proc_U0.vhd
 }
 if { [get_files packaging.vhd] == "" } {
-  import_files -quiet -fileset sources_1 /home/windows/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/imports/src/packaging.vhd
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/packaging.vhd
 }
 
 
@@ -905,96 +788,12 @@ proc cr_bd_design_1 { parentCell } {
 
   # Create address segments
 
-  # Perform GUI Layout
-  regenerate_bd_layout -layout_string {
-   "ExpandedHierarchyInLayout":"",
-   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 TLS
-#  -string -flagsOSRD
-preplace port led17_r_0 -pg 1 -y 710 -defaultsOSRD
-preplace port eth_txen_0 -pg 1 -y 90 -defaultsOSRD
-preplace port led17_g_0 -pg 1 -y 680 -defaultsOSRD
-preplace port eth_rxerr_0 -pg 1 -y 120 -defaultsOSRD
-preplace port led16_r_0 -pg 1 -y 620 -defaultsOSRD
-preplace port led17_b_0 -pg 1 -y 650 -defaultsOSRD
-preplace port clk_100MHz -pg 1 -y 260 -defaultsOSRD
-preplace port eth_rstn_0 -pg 1 -y 240 -defaultsOSRD
-preplace port led16_b_0 -pg 1 -y 560 -defaultsOSRD
-preplace port eth_mdc_0 -pg 1 -y 180 -defaultsOSRD
-preplace port led16_g_0 -pg 1 -y 590 -defaultsOSRD
-preplace port eth_refclk_0 -pg 1 -y 530 -defaultsOSRD
-preplace port eth_mdio_0 -pg 1 -y 210 -defaultsOSRD
-preplace port reset_rtl_0 -pg 1 -y 720 -defaultsOSRD
-preplace port eth_crsdv_0 -pg 1 -y 60 -defaultsOSRD
-preplace portBus anodes_0 -pg 1 -y 330 -defaultsOSRD
-preplace portBus cathodes_0 -pg 1 -y 360 -defaultsOSRD
-preplace portBus eth_txd_0 -pg 1 -y 30 -defaultsOSRD
-preplace portBus led_0 -pg 1 -y 820 -defaultsOSRD
-preplace portBus sw_0 -pg 1 -y 380 -defaultsOSRD
-preplace portBus eth_rxd_0 -pg 1 -y 0 -defaultsOSRD
-preplace inst fifo_input -pg 1 -lvl 4 -y 220 -defaultsOSRD
-preplace inst xlslice_0 -pg 1 -lvl 5 -y 880 -defaultsOSRD
-preplace inst packaging_0 -pg 1 -lvl 3 -y 620 -defaultsOSRD
-preplace inst xlconstant_0 -pg 1 -lvl 2 -y 320 -defaultsOSRD
-preplace inst xlconstant_1 -pg 1 -lvl 1 -y 660 -defaultsOSRD
-preplace inst fifo_output -pg 1 -lvl 4 -y 570 -defaultsOSRD
-preplace inst ethernet_transceiver2_0 -pg 1 -lvl 3 -y 280 -defaultsOSRD
-preplace inst c_counter_binary_0 -pg 1 -lvl 5 -y 470 -defaultsOSRD
-preplace inst c_counter_binary_1 -pg 1 -lvl 5 -y 330 -defaultsOSRD
-preplace inst xlconcat_4 -pg 1 -lvl 6 -y 820 -defaultsOSRD
-preplace inst segment_0 -pg 1 -lvl 6 -y 350 -defaultsOSRD
-preplace inst negate_0 -pg 1 -lvl 3 -y 790 -defaultsOSRD
-preplace inst xlconcat_5 -pg 1 -lvl 2 -y 650 -defaultsOSRD
-preplace netloc ethernet_transceiver2_0_fifo_read 1 3 1 1000
-preplace netloc packaging_0_errorCode 1 3 3 950J 800 NJ 800 N
-preplace netloc xlconstant_1_dout 1 1 1 NJ
-preplace netloc ethernet_transceiver2_0_led16_b 1 3 4 980J 20 NJ 20 NJ 20 2220J
-preplace netloc Net4 1 3 4 1060J 340 1560J 120 NJ 120 NJ
-preplace netloc xlslice_1_Dout 1 3 2 1070 400 1640
-preplace netloc Net5 1 3 4 1050J 350 1580J 210 NJ 210 NJ
-preplace netloc packaging_0_outData 1 3 1 980
-preplace netloc c_counter_binary_1_Q 1 5 1 N
-preplace netloc Net6 1 3 4 1040J 360 1600J 240 NJ 240 NJ
-preplace netloc fifo_input_dout 1 2 2 530 30 950J
-preplace netloc ethernet_transceiver2_0_led16_r 1 3 4 1020J 370 1630J 250 NJ 250 2160J
-preplace netloc xlconcat_5_dout 1 2 3 510 880 NJ 880 NJ
-preplace netloc sw_0_1 1 0 3 -70J 250 NJ 250 490J
-preplace netloc ethernet_transceiver2_0_eth_refclk 1 3 4 990 700 NJ 700 1890J 530 NJ
-preplace netloc ethernet_transceiver2_0_led16_g 1 3 4 1010J 40 NJ 40 NJ 40 2210J
-preplace netloc ethernet_transceiver2_0_fifo_write 1 3 1 1060
-preplace netloc packaging_0_inpRdEn 1 3 1 950
-preplace netloc xlconstant_0_dout 1 2 1 480J
-preplace netloc segment_0_anodes 1 6 1 2200J
-preplace netloc ethernet_transceiver2_0_led17_b 1 3 4 960J 380 1590J 220 NJ 220 2170J
-preplace netloc c_counter_binary_0_Q 1 5 1 1880
-preplace netloc segment_0_cathodes 1 6 1 NJ
-preplace netloc fifo_output_overflow 1 4 1 1650
-preplace netloc ethernet_transceiver2_0_eth_mdc 1 3 4 1050J 100 NJ 100 NJ 100 2190J
-preplace netloc packaging_0_stateOut 1 3 3 930J 820 NJ 820 N
-preplace netloc fifo_input_empty 1 2 2 520 10 1070J
-preplace netloc fifo_output_rd_data_count 1 1 4 190 720 NJ 720 NJ 720 1610
-preplace netloc fifo_output_full 1 2 2 530 860 1080
-preplace netloc packaging_0_outWrEn 1 3 1 930
-preplace netloc ethernet_transceiver2_0_led17_r 1 3 4 1030J 50 NJ 50 NJ 50 2180J
-preplace netloc Net1 1 3 4 960J 30 NJ 30 NJ 30 NJ
-preplace netloc Net 1 3 4 970J 60 NJ 60 NJ 60 2190J
-preplace netloc xlconcat_4_dout 1 6 1 NJ
-preplace netloc fifo_input_overflow 1 4 1 1570
-preplace netloc Net2 1 3 4 990J 70 NJ 70 NJ 70 2200J
-preplace netloc xlslice_0_Dout 1 5 1 1880J
-preplace netloc rst_clk_wiz_100M_peripheral_aresetn 1 0 3 NJ 720 180J 730 500
-preplace netloc ethernet_transceiver2_0_led17_g 1 3 4 NJ 390 1620J 230 NJ 230 2150J
-preplace netloc clk_wiz_clk_out1 1 0 6 NJ 260 NJ 260 470 20 940 80 1610 200 1890
-preplace netloc Net3 1 3 4 1020J 90 NJ 90 NJ 90 NJ
-levelinfo -pg 1 -90 100 360 730 1360 1770 2020 2240 -top -100 -bot 1140
-"
-}
 
   # Restore current instance
   current_bd_instance $oldCurInst
 
+  validate_bd_design
   save_bd_design
-common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
-
   close_bd_design $design_name 
 }
 # End of cr_bd_design_1()
