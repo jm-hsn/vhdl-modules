@@ -1,6 +1,125 @@
 # VHDL neural network accelerators for distributed computation on FPGAs
 
-VHDL implementation of job parser and hardware accelerator modules
+VHDL implementation of job parser and hardware accelerator modules.
+It uses a modified version of a [UDP echo server](https://forum.digilentinc.com/topic/3968-ethernet-udp-echo-server/) to send and recieve jobs from [this library](/bachelor/tf-fpga).
+
+Each job is contained in a 32-bit data stream and comprised of
+- preamble
+- moduleId
+- jobId
+- payload[]
+- checksum
+
+where the payload is of arbitrary length, set by each module individually.
+
+Jobs will be transmitted independant of UDP constraints. So they can be split and concatenated at any 32-bit offset.
+
+## Configuring the FPGA cluster
+
+the Nexys 4 DDR development board has an array of switches and LEDs connected to an Artix 7 FPGA. Therefore the rightmost 5 switches will be used to set the IP address (LSB 0-4) of the board.
+```
+all off: 192.168.1.32
+...
+all on:  192.168.1.63
+```
+
+## Adding a compute module
+
+Each module has it's own module ID. They can be set in `src\hdl\globals.vhd`:
+```vhdl
+constant moduleCount : integer := 5;
+constant moduleIds : register_file(0 to moduleCount-1) :=(
+   0 => x"2cb31e7c", --dummyBig
+   1 => x"f218e0a2", --dummy
+   2 => x"9323eb24", --f11
+   3 => x"4cd2e19c", --conv2d_5x5
+   4 => x"12345678"  --myNewModule
+);
+```
+
+Create a new vhd source file for the entity of the module.
+The interface of a module has to include these signals:
+```vhdl
+entity myNewModule is
+   generic (
+      busWidth : integer:=32
+   );
+   Port ( 
+      clk      : in  std_logic;
+      rst      : in  std_logic;
+      start    : in  std_logic;
+      done     : out std_logic;
+      
+      srcData  : in  std_logic_vector (busWidth-1 downto 0);
+      srcValid : in  std_logic;
+      srcReady : out std_logic;
+      
+      dstData  : out std_logic_vector (busWidth-1 downto 0);
+      dstValid : out std_logic;
+      dstReady : in  std_logic
+   );
+end myNewModule;
+```
+
+and should be connected to `src\hdl\multiplex.vhd` as follows:
+
+```vhdl
+myNewModule_0 : myNewModule 
+   generic map (
+      busWidth => busWidth
+   ) port map (
+      clk      => clk,
+      rst      => rst,
+      start    => muxStart(4),
+      done     => muxDone(4),
+      
+      srcData  => muxSrcData,
+      srcValid => muxSrcValid,
+      srcReady => muxSrcReady(4),
+      
+      dstData  => muxDstData(4),
+      dstValid => muxDstValid(4),
+      dstReady => muxDstReady
+   );
+```
+
+The timing of the output signals (tinted in blue) should be the following:
+
+![timing](module_timing.png)
+
+- reset is active low
+- begin working when start is high
+- toggle done for 1 cycle only after sending last word
+- data is received only if srcReady was high 1 cycle before
+- data can only be sent if dstReady was high 1 cycle before
+
+## Source structure
+
+```tree
+├───bd
+│   └───design_1
+├───constraints
+├───hdl
+├───ip_repo
+│   ├───7segment
+│   │   ├───src
+│   │   └───xgui
+│   ├───UDP-server
+│   │   ├───src
+│   │   └───xgui
+│   └───UDP_echo-server
+│       ├───src
+│       └───xgui
+└───testbench
+```
+
+<object data="design_1.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="design_1.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="design_1.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
+---
 
 ## How to prepare Vivado for Git support
 
