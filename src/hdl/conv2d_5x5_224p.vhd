@@ -32,8 +32,6 @@ architecture Behavioral of conv2d_5x5_224p is
     Port ( clk : in STD_LOGIC;
            rst_n : in std_logic;
            start : in STD_LOGIC;
-           ready: out std_logic;
-           idle : out std_logic := '0';
            done : out std_logic := '0';
            
            srcData : in STD_LOGIC_VECTOR (busWidth-1 downto 0);
@@ -61,8 +59,6 @@ begin
         dstReady => dstReady,
         
         start   => start,
-        ready   => ready,
-        idle    => idle,
         done    => done
     );
 end Behavioral;

@@ -99,15 +99,15 @@ set_property -name "sim.central_dir" -value "$proj_dir/${_xil_proj_name_}.ip_use
 set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
 set_property -name "target_language" -value "VHDL" -objects $obj
-set_property -name "webtalk.activehdl_export_sim" -value "6" -objects $obj
-set_property -name "webtalk.ies_export_sim" -value "6" -objects $obj
-set_property -name "webtalk.modelsim_export_sim" -value "6" -objects $obj
-set_property -name "webtalk.questa_export_sim" -value "6" -objects $obj
-set_property -name "webtalk.riviera_export_sim" -value "6" -objects $obj
-set_property -name "webtalk.vcs_export_sim" -value "6" -objects $obj
-set_property -name "webtalk.xcelium_export_sim" -value "5" -objects $obj
-set_property -name "webtalk.xsim_export_sim" -value "6" -objects $obj
-set_property -name "webtalk.xsim_launch_sim" -value "3" -objects $obj
+set_property -name "webtalk.activehdl_export_sim" -value "12" -objects $obj
+set_property -name "webtalk.ies_export_sim" -value "12" -objects $obj
+set_property -name "webtalk.modelsim_export_sim" -value "12" -objects $obj
+set_property -name "webtalk.questa_export_sim" -value "12" -objects $obj
+set_property -name "webtalk.riviera_export_sim" -value "12" -objects $obj
+set_property -name "webtalk.vcs_export_sim" -value "12" -objects $obj
+set_property -name "webtalk.xcelium_export_sim" -value "6" -objects $obj
+set_property -name "webtalk.xsim_export_sim" -value "12" -objects $obj
+set_property -name "webtalk.xsim_launch_sim" -value "17" -objects $obj
 set_property -name "xpm_libraries" -value "XPM_CDC XPM_MEMORY" -objects $obj
 
 # Create 'sources_1' fileset (if not found)
@@ -149,8 +149,17 @@ set files [list \
  [file normalize "${origin_dir}/src/hdl/start_for_Loop_VConvH_proc_U0.vhd"] \
  [file normalize "${origin_dir}/src/hdl/packaging.vhd"] \
  [file normalize "${origin_dir}/src/testbench/tb_module_behav.wcfg"] \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/complex_float.vhd"] \
 ]
 add_files -norecurse -fileset $obj $files
+
+# Add local files from the original project (-no_copy_sources specified)
+set files [list \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/ip/fp_accumulator_0/fp_accumulator_0.xci" ]\
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/ip/fp_multiply_0/fp_multiply_0.xci" ]\
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/bd/float_mac/hdl/float_mac_wrapper.vhd" ]\
+]
+set added_files [add_files -fileset sources_1 $files]
 
 # Set 'sources_1' fileset file properties for remote files
 set file "$origin_dir/src/hdl/Block_proc.vhd"
@@ -268,9 +277,27 @@ set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
+set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/complex_float.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
 
 # Set 'sources_1' fileset file properties for local files
-# None
+set file "fp_accumulator_0/fp_accumulator_0.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
+set_property -name "registered_with_manager" -value "1" -objects $file_obj
+
+set file "fp_multiply_0/fp_multiply_0.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
+set_property -name "registered_with_manager" -value "1" -objects $file_obj
+
+set file "hdl/float_mac_wrapper.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
 
 # Set 'sources_1' fileset properties
 set obj [get_filesets sources_1]
@@ -334,6 +361,12 @@ set obj [get_filesets utils_1]
 
 
 # Adding sources referenced in BDs, if not already added
+if { [get_files fp_accumulator_0.xci] == "" } {
+  import_files -quiet -fileset sources_1 c:/Users/johan/mlfpga/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/ip/fp_accumulator_0/fp_accumulator_0.xci
+}
+if { [get_files fp_multiply_0.xci] == "" } {
+  import_files -quiet -fileset sources_1 c:/Users/johan/mlfpga/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/ip/fp_multiply_0/fp_multiply_0.xci
+}
 if { [get_files Block_proc.vhd] == "" } {
   import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Block_proc.vhd
 }
@@ -814,62 +847,62 @@ preplace portBus sw_0 -pg 1 -y 1080 -defaultsOSRD
 preplace portBus eth_rxd_0 -pg 1 -y 830 -defaultsOSRD
 preplace inst fifo_input -pg 1 -lvl 4 -y 340 -defaultsOSRD
 preplace inst xlslice_0 -pg 1 -lvl 5 -y 820 -defaultsOSRD
-preplace inst xlconstant_0 -pg 1 -lvl 2 -y 1020 -defaultsOSRD
 preplace inst packaging_0 -pg 1 -lvl 3 -y 580 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 2 -y 1020 -defaultsOSRD
 preplace inst xlconstant_1 -pg 1 -lvl 1 -y 680 -defaultsOSRD
 preplace inst fifo_output -pg 1 -lvl 4 -y 590 -defaultsOSRD
 preplace inst ethernet_transceiver2_0 -pg 1 -lvl 3 -y 1040 -defaultsOSRD
 preplace inst c_counter_binary_0 -pg 1 -lvl 5 -y 80 -defaultsOSRD
 preplace inst c_counter_binary_1 -pg 1 -lvl 5 -y 340 -defaultsOSRD
-preplace inst invert_reset_0 -pg 1 -lvl 3 -y 720 -defaultsOSRD
 preplace inst xlconcat_4 -pg 1 -lvl 6 -y 280 -defaultsOSRD
 preplace inst segment_0 -pg 1 -lvl 6 -y 140 -defaultsOSRD
-preplace inst clk_wiz_0 -pg 1 -lvl 2 -y 550 -defaultsOSRD
+preplace inst invert_reset_0 -pg 1 -lvl 3 -y 720 -defaultsOSRD
 preplace inst xlconcat_5 -pg 1 -lvl 2 -y 670 -defaultsOSRD
-preplace netloc ethernet_transceiver2_0_fifo_read 1 3 1 870
+preplace inst clk_wiz_0 -pg 1 -lvl 2 -y 550 -defaultsOSRD
+preplace netloc ethernet_transceiver2_0_fifo_read 1 3 1 900
 preplace netloc xlconstant_1_dout 1 1 1 NJ
-preplace netloc packaging_0_errorCode 1 3 3 860 720 1300J 260 NJ
+preplace netloc packaging_0_errorCode 1 3 3 830 200 NJ 200 1560J
 preplace netloc ethernet_transceiver2_0_led16_b 1 3 4 NJ 1070 NJ 1070 NJ 1070 NJ
-preplace netloc Net4 1 3 4 890J 950 NJ 950 NJ 950 NJ
-preplace netloc xlslice_1_Dout 1 3 2 850 740 1310
+preplace netloc Net4 1 3 4 NJ 970 NJ 970 NJ 970 1840J
+preplace netloc xlslice_1_Dout 1 3 2 870 460 1320
 preplace netloc Net5 1 3 4 NJ 1010 NJ 1010 NJ 1010 NJ
 preplace netloc packaging_0_outData 1 3 1 N
-preplace netloc c_counter_binary_1_Q 1 5 1 1510
-preplace netloc Net6 1 3 4 850J 1040 NJ 1040 NJ 1040 NJ
-preplace netloc fifo_input_dout 1 2 2 450 340 NJ
-preplace netloc ethernet_transceiver2_0_led16_r 1 3 4 NJ 1110 NJ 1110 NJ 1110 1800J
-preplace netloc xlconcat_5_dout 1 2 3 400 790 NJ 790 1290J
+preplace netloc c_counter_binary_1_Q 1 5 1 1540
+preplace netloc Net6 1 3 4 NJ 1050 NJ 1050 NJ 1050 1830J
+preplace netloc fifo_input_dout 1 2 2 460 340 NJ
+preplace netloc ethernet_transceiver2_0_led16_r 1 3 4 NJ 1110 NJ 1110 NJ 1110 1840J
+preplace netloc xlconcat_5_dout 1 2 3 410 790 830J 820 NJ
 preplace netloc sw_0_1 1 0 3 NJ 1080 NJ 1080 NJ
-preplace netloc ethernet_transceiver2_0_eth_refclk 1 3 4 880 760 NJ 760 NJ 760 NJ
-preplace netloc ethernet_transceiver2_0_led16_g 1 3 4 NJ 1090 NJ 1090 NJ 1090 1780J
-preplace netloc ethernet_transceiver2_0_fifo_write 1 3 1 820
-preplace netloc xlconstant_0_dout 1 2 1 390J
+preplace netloc ethernet_transceiver2_0_eth_refclk 1 3 4 910 760 NJ 760 NJ 760 NJ
+preplace netloc ethernet_transceiver2_0_led16_g 1 3 4 NJ 1090 1320J 1100 NJ 1100 NJ
+preplace netloc ethernet_transceiver2_0_fifo_write 1 3 1 860
+preplace netloc xlconstant_0_dout 1 2 1 400J
 preplace netloc segment_0_anodes 1 6 1 NJ
-preplace netloc packaging_0_inpRdEn 1 3 1 810
-preplace netloc ethernet_transceiver2_0_led17_b 1 3 4 NJ 1130 NJ 1130 NJ 1130 1790J
-preplace netloc c_counter_binary_0_Q 1 5 1 1530
-preplace netloc segment_0_cathodes 1 6 1 1770J
-preplace netloc fifo_output_overflow 1 4 1 1280
-preplace netloc ethernet_transceiver2_0_eth_mdc 1 3 4 890J 980 NJ 980 NJ 980 NJ
+preplace netloc packaging_0_inpRdEn 1 3 1 850
+preplace netloc ethernet_transceiver2_0_led17_b 1 3 4 NJ 1130 NJ 1130 NJ 1130 1830J
+preplace netloc c_counter_binary_0_Q 1 5 1 1560
+preplace netloc segment_0_cathodes 1 6 1 1830J
+preplace netloc fifo_output_overflow 1 4 1 1310
+preplace netloc ethernet_transceiver2_0_eth_mdc 1 3 4 NJ 990 NJ 990 1550J 980 NJ
 preplace netloc reset_rtl_0_1 1 0 2 NJ 540 NJ
-preplace netloc packaging_0_stateOut 1 3 3 840 750 NJ 750 1520J
-preplace netloc fifo_output_rd_data_count 1 1 4 190 460 NJ 460 NJ 460 1270
-preplace netloc fifo_input_empty 1 2 2 430 320 NJ
+preplace netloc packaging_0_stateOut 1 3 3 840 220 NJ 220 1550J
+preplace netloc fifo_output_rd_data_count 1 1 4 180 190 NJ 190 NJ 190 1300
+preplace netloc fifo_input_empty 1 2 2 440 320 NJ
 preplace netloc packaging_0_outWrEn 1 3 1 N
-preplace netloc fifo_output_full 1 2 2 440 480 840J
-preplace netloc ethernet_transceiver2_0_led17_r 1 3 4 NJ 1170 NJ 1170 NJ 1170 1770J
-preplace netloc Net1 1 3 4 NJ 910 NJ 910 NJ 910 1780J
-preplace netloc Net 1 3 4 NJ 890 NJ 890 NJ 890 1770J
+preplace netloc fifo_output_full 1 2 2 450 480 880J
+preplace netloc ethernet_transceiver2_0_led17_r 1 3 4 NJ 1170 NJ 1170 NJ 1170 1810J
+preplace netloc Net1 1 3 4 NJ 910 NJ 910 NJ 910 1830J
+preplace netloc Net 1 3 4 NJ 890 NJ 890 1540J 830 NJ
 preplace netloc xlconcat_4_dout 1 6 1 NJ
 preplace netloc fifo_input_overflow 1 4 1 N
-preplace netloc Net2 1 3 4 NJ 930 NJ 930 NJ 930 1790J
-preplace netloc clk_100MHz_1 1 0 2 NJ 570 180J
-preplace netloc xlslice_0_Dout 1 5 1 1530
-preplace netloc aresetn 1 2 1 410
-preplace netloc ethernet_transceiver2_0_led17_g 1 3 4 NJ 1150 NJ 1150 NJ 1150 1780J
-preplace netloc clk_wiz_clk_out1 1 2 4 420 780 830 730 1290 160 NJ
-preplace netloc Net3 1 3 4 840J 940 NJ 940 NJ 940 1800J
-levelinfo -pg 1 0 100 290 630 1080 1410 1650 1820 -top 0 -bot 1290
+preplace netloc Net2 1 3 4 920J 900 NJ 900 1560J 890 NJ
+preplace netloc xlslice_0_Dout 1 5 1 1550
+preplace netloc ethernet_transceiver2_0_led17_g 1 3 4 NJ 1150 NJ 1150 NJ 1150 1820J
+preplace netloc clk_wiz_clk_out1 1 2 4 430 470 890 210 1330 160 NJ
+preplace netloc clk_100MHz_1 1 0 2 20J 560 NJ
+preplace netloc aresetn 1 2 1 420
+preplace netloc Net3 1 3 4 NJ 950 NJ 950 NJ 950 1830J
+levelinfo -pg 1 0 100 300 650 1110 1440 1690 1860 -top 0 -bot 1290
 "
 }
 

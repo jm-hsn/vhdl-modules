@@ -38,9 +38,8 @@ def setPixel(img, txt, i, input):
   if re.match(r'[01]{32}', val, re.M):
     num = struct.unpack('!f',struct.pack('!i', int(val, 2)))[0]
 
-    if not input:
-      num = num/25
     if num > 255:
+      print(num)
       num = 255
     x = i % sizeWithBorder
     y = int(i / sizeWithBorder) % sizeWithBorder
@@ -48,17 +47,17 @@ def setPixel(img, txt, i, input):
 
 def main():
   with open("vivado_project/vhdl-modules.sim/sim_1/behav/xsim/input.txt", "r") as inFile:
-    #print("Input:")
+    print("Input:")
     i = 0
     for line in inFile:
-      if i < 3 or i >= 3 + pixels:
+      if i < 3+kernel**2 or i >= 3+kernel**2 + pixels:
         showHex(line, i)
       else:
         setPixel(imageIn, line, i-3, True)
       i += 1
 
   with open("vivado_project/vhdl-modules.sim/sim_1/behav/xsim/output.txt", "r") as outFile:
-    #print("Output:")
+    print("Output:")
     i = 0
     for line in outFile:
       if i < 3 or i >= 3 + pixels:

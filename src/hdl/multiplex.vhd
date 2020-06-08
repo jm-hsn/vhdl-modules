@@ -31,10 +31,8 @@ entity multiplex is
         );
     Port ( clk : in STD_LOGIC;
            start : in STD_LOGIC;
-           ready: out std_logic;
            rst : in STD_LOGIC;
            done : out STD_LOGIC;
-           idle : out STD_LOGIC;
            
            moduleId : in STD_LOGIC_VECTOR (31 downto 0);
            
@@ -96,8 +94,6 @@ component conv2d_5x5_224p is
     Port ( clk : in STD_LOGIC;
            rst_n : in std_logic;
            start : in STD_LOGIC;
-           ready: out std_logic;
-           idle : out std_logic := '0';
            done : out std_logic := '0';
            
            srcData : in STD_LOGIC_VECTOR (busWidth-1 downto 0);
@@ -240,8 +236,6 @@ begin
         dstReady => muxDstReady,
         
         start   => muxStart(3),
-        ready   => muxReady(3),
-        idle    => muxIdle(3),
         done    => muxDone(3)
     );
     
@@ -276,10 +270,8 @@ begin
             end if;
         end loop;
         
-        ready <= muxReady(i);
         dstData <= muxDstData(i);
         done <= muxDone(i);
-        idle <= muxIdle(i);
         dstValid <= muxDstValid(i);
         srcReady <= muxSrcReady(i);
         

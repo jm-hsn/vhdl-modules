@@ -12,8 +12,6 @@ entity conv2d is
     Port ( clk : in STD_LOGIC;
            rst_n : in std_logic;
            start : in STD_LOGIC;
-           ready: out std_logic;
-           idle : out std_logic := '0';
            done : out std_logic := '0';
            
            srcData : in STD_LOGIC_VECTOR (busWidth-1 downto 0);
@@ -47,9 +45,15 @@ architecture Behavioral of conv2d is
         N: integer := kernelSize
     );
     Port (
+        clk: in std_logic;
+        rst_n: in std_logic;
         kernelValues: in register_file(0 to N*N-1);
         inputValues: in register_file(0 to N*N-1);
-        outputValue: out std_logic_vector(31 downto 0)
+        inputValid : in STD_LOGIC;
+        inputReady : out std_logic := '0';
+        outputData : out STD_LOGIC_VECTOR (31 downto 0);
+        outputValid : out std_logic;
+        outputReady : in std_logic
     );
     end component;
     
@@ -64,23 +68,35 @@ architecture Behavioral of conv2d is
         return ret;
     end function;
     
-    signal kernelOutput : std_logic_vector(busWidth-1 downto 0);
     signal inputBuffer : register_file(0 to regDepth-1);
     signal kernelValues : register_file(0 to kernelSize*kernelSize-1);
     signal dataIndex : integer range 0 to wordCount;
+    signal dataIndexOutput : integer range 0 to imageWidth*imageWidth-1;
     
     signal working : std_logic := '0';
     signal dstStalled_s : std_logic := '0';
     signal dstValid_s : std_logic := '0';
-    signal kernelComplete : std_logic := '0';
+    signal kernelValuesComplete : std_logic := '0';
+    
+    signal kernelInputValid_s : std_logic;
+    signal kernelInputReady_s : std_logic;
     
 begin
     kernel_5x5 : kernel_NxN port map (
+        clk => clk,
+        rst_n => rst_n,
+        
         kernelValues => kernelValues,
         inputValues => buffer_to_activations(inputBuffer),
-        outputValue => kernelOutput
+        
+        inputValid => kernelInputValid_s,
+        inputReady => kernelInputReady_s,
+        
+        outputData => dstData,
+        outputReady => dstReady,
+        outputValid => dstValid_s
     );
-    dstData <= kernelOutput;
+
     shiftInPixels: shiftIn port map (
         clk         => clk,
         ce          => dstValid_s,
@@ -92,40 +108,39 @@ begin
     
     setKernel : process(rst_n, clk) begin
         if rst_n = '0' then
-            kernelComplete <= '0';
+            kernelValuesComplete <= '0';
         elsif rising_edge(clk) then
             kernelValues <= kernelValues;
             if dataIndex < kernelSize * kernelSize then
                 kernelValues(dataIndex) <= srcData;
-                kernelComplete <= '0';
+                kernelValuesComplete <= '0';
             else
-                kernelComplete <= '1';
+                kernelValuesComplete <= '1';
             end if;        
         end if;
     end process;
     
-    dataPathStall : process(rst_n, clk)
+    dstValid <= dstValid_s;
     
-    begin
+    dataPathStall : process(rst_n, clk) begin
         if rst_n = '0' then
             dstStalled_s <= '0';
         elsif rising_edge(clk) then
-            if working = '1' and srcValid = '1' and dstReady = '0' then
+            if working = '1' and srcValid = '1' and kernelInputReady_s = '0' then
                 dstStalled_s <= '1';
-            elsif dstStalled_s = '1' and working = '1' and dstReady = '1' then
+            elsif dstStalled_s = '1' and working = '1' and kernelInputReady_s = '1' then
                 dstStalled_s <= '0';
             end if;
         end if;
     end process;
     
-    dstValid_s <= working and dstReady and (srcValid or dstStalled_s) and kernelComplete;
-    dstValid <= dstValid_s;
-    
-    srcRdy : process(dataIndex, working, dstReady, srcValid, start) begin
+    kernelInputValid_s <= working and kernelInputReady_s and (srcValid or dstStalled_s) and kernelValuesComplete;
+ 
+    srcRdy : process(dataIndex, working, kernelInputReady_s, srcValid, start) begin
         if (dataIndex = wordCount - 1 and srcValid = '1') or dataIndex = wordCount then
             srcReady <= '0';
         else
-            srcReady <= working and dstReady and not dstStalled_s and start;
+            srcReady <= working and kernelInputReady_s and not dstStalled_s and start;
         end if;
     end process;
     
@@ -144,29 +159,39 @@ begin
         end if;
     end process;
     
+    dataIndexOutputCounter : process(clk, rst_n) begin
+        if(rst_n = '0') then
+            dataIndexOutput <= 0;
+            done <= '0';
+        elsif(rising_edge(clk)) then
+            done <= '0';
+            if(start = '0') then
+                dataIndexOutput <= 0;
+            elsif dataIndexOutput = imageWidth*imageWidth - 1 then
+                dataIndexOutput <= 0;
+                done <= '1';
+            elsif dstValid_s = '1' then
+                dataIndexOutput <= dataIndexOutput + 1;
+            else
+                dataIndexOutput <= dataIndexOutput;
+            end if;
+        end if;
+    end process;
+    
     reset : process(rst_n, clk)
     begin
         if rst_n = '0' then
             working <= '0';
-            done <= '0';
         elsif rising_edge(clk) then
-            done <= '0';
             working <= '0';
-           
-            if dataIndex = wordCount - 1 and dstValid_s = '1' then
-                done <= '1';
-                working <= '1';
-            elsif dataIndex = wordCount then
+            if dataIndex = wordCount then
                 working <= '0';
             elsif start = '1' then
                 working <= '1';
             end if;
         end if;
     end process;
-    
-    idle <= rst_n and not working;
-    ready <= rst_n;
-    
+   
     
 
 end Behavioral;

@@ -66,10 +66,8 @@ architecture Behavioral of packaging is
         Port (
            clk : in STD_LOGIC;
            start : in STD_LOGIC;
-           ready: out std_logic;
            rst : in STD_LOGIC;
            done : out STD_LOGIC;
-           idle : out STD_LOGIC;
            
            moduleId : in STD_LOGIC_VECTOR (31 downto 0);
            
@@ -114,9 +112,7 @@ architecture Behavioral of packaging is
     signal muxDstReady : std_logic;
     
     signal muxStart  : std_logic;
-    signal muxReady  : std_logic;
     signal muxDone   : std_logic;
-    signal muxIdle   : std_logic;
     
     signal muxControlsFIFO : std_logic;
     
@@ -133,9 +129,7 @@ begin
         clk => clk,
         rst => rst,
         start => muxStart,
-        ready  => muxReady,
         done => muxDone,
-        idle => muxIdle,
         
         moduleId => moduleId,
         
@@ -171,7 +165,7 @@ begin
             inputReadReady <= '0';
             csReset <= '0';
             csOutReset <= '0';
-            outHeaderCounter <= 3;
+            outHeaderCounter <= 0;
             muxStart <= '0';
             muxControlsFIFO <= '0';
             
@@ -287,15 +281,10 @@ begin
                         errorCode_s <= x"C";
                         outHeaderCounter <= outHeaderCounter;
                         outputWriteReady <= '1';
-                    elsif outHeaderCounter < 1 then
+                    else 
                         outHeaderCounter <= outHeaderCounter + 1;
                         state <= writeHeader;
                         outputWriteReady <= '1';
-                        outputStream_s <= moduleId;
-                    else
-                        state <= waitProcessing;
-                        muxStart <= '1';
-                        muxControlsFIFO <= '1';
                     end if;
 
                 when waitProcessing =>

@@ -58,5 +58,5 @@ with open("vivado_project/vhdl-modules.sim/sim_1/behav/xsim/input.txt", "w") as 
 
 with open("vivado_project/vhdl-modules.sim/sim_1/behav/xsim/outputTimings.txt", "w") as inFile:
 
-	for i in range(4 + kernelSize**2 + pixels):
-		inFile.write("{:d} ns\n".format(0))
+	for i in range(4 + pixels):
+		inFile.write("{:d} ns\n".format(315))
