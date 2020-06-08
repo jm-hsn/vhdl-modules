@@ -9,3 +9,4 @@
 /run-*
 *.code-workspace
 /vivado_project/
+/.vscode/

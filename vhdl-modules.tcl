@@ -151,7 +151,6 @@ set files [list \
  [file normalize "${origin_dir}/src/hdl/start_for_Loop_VConvH_proc_U0.vhd"] \
  [file normalize "${origin_dir}/src/hdl/packaging.vhd"] \
  [file normalize "${origin_dir}/src/testbench/tb_module_behav.wcfg"] \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/imports/src/complex_float.vhd"] \
 ]
 add_files -norecurse -fileset $obj $files
 
@@ -283,7 +282,6 @@ set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vhdl-modules.srcs/sources_1/imports/src/complex_float.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
