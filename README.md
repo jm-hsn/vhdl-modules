@@ -146,10 +146,11 @@ When `design_1_wrapper` doesn't appear as Top Module:
 ## How to recreate without `vhdl-modules.tcl`
 
 - Create project `vhdl-modules` without own project folder inside `vivado_project/`
-- Import all sources from `src/hdl/` with *copy sources into project* checked
-- Import block design `src/bd/design_1/design_1.bd` with *copy sources into project* checked
-- Import testbenches from `src/testbench/` with *copy sources into project* unchecked
-- Import constraints from `src/constraints/` with *copy sources into project* unchecked
+- Import all sources from `src/hdl/` with *copy sources into project* checked ☑
+- Import block design `src/bd/design_1/design_1.bd` with *copy sources into project* checked ☑
+- Import configured ip from `src/ip/` with *copy sources into project* unchecked ☐
+- Import testbenches from `src/testbench/` with *copy sources into project* unchecked ☐
+- Import constraints from `src/constraints/` with *copy sources into project* unchecked ☐
 - `design_1` > `create HDL Wrapper...` > Let Vivado manage wrapper
 - save this state by committing like below:
 
