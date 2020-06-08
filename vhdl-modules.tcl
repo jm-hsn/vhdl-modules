@@ -99,15 +99,15 @@ set_property -name "sim.central_dir" -value "$proj_dir/${_xil_proj_name_}.ip_use
 set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
 set_property -name "target_language" -value "VHDL" -objects $obj
-set_property -name "webtalk.activehdl_export_sim" -value "12" -objects $obj
-set_property -name "webtalk.ies_export_sim" -value "12" -objects $obj
-set_property -name "webtalk.modelsim_export_sim" -value "12" -objects $obj
-set_property -name "webtalk.questa_export_sim" -value "12" -objects $obj
-set_property -name "webtalk.riviera_export_sim" -value "12" -objects $obj
-set_property -name "webtalk.vcs_export_sim" -value "12" -objects $obj
-set_property -name "webtalk.xcelium_export_sim" -value "6" -objects $obj
-set_property -name "webtalk.xsim_export_sim" -value "12" -objects $obj
-set_property -name "webtalk.xsim_launch_sim" -value "17" -objects $obj
+set_property -name "webtalk.activehdl_export_sim" -value "18" -objects $obj
+set_property -name "webtalk.ies_export_sim" -value "18" -objects $obj
+set_property -name "webtalk.modelsim_export_sim" -value "18" -objects $obj
+set_property -name "webtalk.questa_export_sim" -value "18" -objects $obj
+set_property -name "webtalk.riviera_export_sim" -value "18" -objects $obj
+set_property -name "webtalk.vcs_export_sim" -value "18" -objects $obj
+set_property -name "webtalk.xcelium_export_sim" -value "12" -objects $obj
+set_property -name "webtalk.xsim_export_sim" -value "18" -objects $obj
+set_property -name "webtalk.xsim_launch_sim" -value "21" -objects $obj
 set_property -name "xpm_libraries" -value "XPM_CDC XPM_MEMORY" -objects $obj
 
 # Create 'sources_1' fileset (if not found)
@@ -125,6 +125,8 @@ update_ip_catalog -rebuild
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
 set files [list \
+ [file normalize "${origin_dir}/src/ip/fp_accumulator_0_1/fp_accumulator_0_1.xci"] \
+ [file normalize "${origin_dir}/src/ip/fp_multiply_0_1/fp_multiply_0_1.xci"] \
  [file normalize "${origin_dir}/src/hdl/Block_proc.vhd"] \
  [file normalize "${origin_dir}/src/hdl/Loop_Border_proc.vhd"] \
  [file normalize "${origin_dir}/src/hdl/Loop_Border_proc_borderbuf.vhd"] \
@@ -153,15 +155,19 @@ set files [list \
 ]
 add_files -norecurse -fileset $obj $files
 
-# Add local files from the original project (-no_copy_sources specified)
-set files [list \
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/ip/fp_accumulator_0/fp_accumulator_0.xci" ]\
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/ip/fp_multiply_0/fp_multiply_0.xci" ]\
- [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/bd/float_mac/hdl/float_mac_wrapper.vhd" ]\
-]
-set added_files [add_files -fileset sources_1 $files]
-
 # Set 'sources_1' fileset file properties for remote files
+set file "$origin_dir/src/ip/fp_accumulator_0_1/fp_accumulator_0_1.xci"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
+set_property -name "registered_with_manager" -value "1" -objects $file_obj
+
+set file "$origin_dir/src/ip/fp_multiply_0_1/fp_multiply_0_1.xci"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
+set_property -name "registered_with_manager" -value "1" -objects $file_obj
+
 set file "$origin_dir/src/hdl/Block_proc.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
@@ -284,20 +290,7 @@ set_property -name "file_type" -value "VHDL" -objects $file_obj
 
 
 # Set 'sources_1' fileset file properties for local files
-set file "fp_accumulator_0/fp_accumulator_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
-set_property -name "registered_with_manager" -value "1" -objects $file_obj
-
-set file "fp_multiply_0/fp_multiply_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
-set_property -name "registered_with_manager" -value "1" -objects $file_obj
-
-set file "hdl/float_mac_wrapper.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
+# None
 
 # Set 'sources_1' fileset properties
 set obj [get_filesets sources_1]
@@ -361,11 +354,11 @@ set obj [get_filesets utils_1]
 
 
 # Adding sources referenced in BDs, if not already added
-if { [get_files fp_accumulator_0.xci] == "" } {
-  import_files -quiet -fileset sources_1 c:/Users/johan/mlfpga/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/ip/fp_accumulator_0/fp_accumulator_0.xci
+if { [get_files fp_accumulator_0_1.xci] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/ip/fp_accumulator_0_1/fp_accumulator_0_1.xci
 }
-if { [get_files fp_multiply_0.xci] == "" } {
-  import_files -quiet -fileset sources_1 c:/Users/johan/mlfpga/repos/vhdl-modules/vivado_project/vhdl-modules.srcs/sources_1/ip/fp_multiply_0/fp_multiply_0.xci
+if { [get_files fp_multiply_0_1.xci] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/ip/fp_multiply_0_1/fp_multiply_0_1.xci
 }
 if { [get_files Block_proc.vhd] == "" } {
   import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Block_proc.vhd
@@ -822,7 +815,7 @@ proc cr_bd_design_1 { parentCell } {
   # Perform GUI Layout
   regenerate_bd_layout -layout_string {
    "ExpandedHierarchyInLayout":"",
-   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 non-TLS
+   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 non-TLS-threadsafe
 #  -string -flagsOSRD
 preplace port led17_r_0 -pg 1 -y 1220 -defaultsOSRD
 preplace port eth_txen_0 -pg 1 -y 920 -defaultsOSRD
@@ -943,6 +936,7 @@ set_property -name "display_name" -value "synth_1_synth_report_utilization_0" -o
 
 }
 set obj [get_runs synth_1]
+set_property -name "needs_refresh" -value "1" -objects $obj
 set_property -name "part" -value "xc7a100tcsg324-1" -objects $obj
 set_property -name "strategy" -value "Vivado Synthesis Defaults" -objects $obj
 
@@ -1167,6 +1161,7 @@ set_property -name "display_name" -value "impl_1_post_route_phys_opt_report_bus_
 
 }
 set obj [get_runs impl_1]
+set_property -name "needs_refresh" -value "1" -objects $obj
 set_property -name "part" -value "xc7a100tcsg324-1" -objects $obj
 set_property -name "strategy" -value "Vivado Implementation Defaults" -objects $obj
 set_property -name "steps.write_bitstream.args.readback_file" -value "0" -objects $obj

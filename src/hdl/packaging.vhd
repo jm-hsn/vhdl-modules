@@ -284,7 +284,7 @@ begin
                     else 
                         outHeaderCounter <= outHeaderCounter + 1;
                         state <= writeHeader;
-                        outputWriteReady <= '1';
+                        outputWriteReady <= '0';
                     end if;
 
                 when waitProcessing =>

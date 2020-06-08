@@ -22,7 +22,7 @@ entity kernel_NxN is
 end kernel_NxN;
 
 architecture Behavioral of kernel_NxN is
-    component fp_multiply_0 is
+    component fp_multiply_0_1 is
       Port ( 
         aclk : in STD_LOGIC;
         aresetn : in STD_LOGIC;
@@ -39,7 +39,7 @@ architecture Behavioral of kernel_NxN is
         m_axis_result_tlast : out STD_LOGIC
       );
     end component;
-    component fp_accumulator_0 is
+    component fp_accumulator_0_1 is
       Port ( 
         aclk : in STD_LOGIC;
         aresetn : in STD_LOGIC;
@@ -75,7 +75,7 @@ architecture Behavioral of kernel_NxN is
     signal macIntraReady_s : std_logic;
     signal macIntraLast_s  : std_logic;
 begin
-    fp_mul_0 : fp_multiply_0 port map (
+    fp_mul_0 : fp_multiply_0_1 port map (
         aclk => clk,
         aresetn => rst_n,
         s_axis_a_tvalid => macInputValid_s,
@@ -90,7 +90,7 @@ begin
         m_axis_result_tdata => macIntraData_s,
         m_axis_result_tlast => macIntraLast_s
     );
-    fp_acc_0 : fp_accumulator_0 port map (
+    fp_acc_0 : fp_accumulator_0_1 port map (
         aclk => clk,
         aresetn => rst_n,
         s_axis_a_tvalid => macIntraValid_s,
