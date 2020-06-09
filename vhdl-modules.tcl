@@ -282,10 +282,6 @@ set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file [file normalize $file]
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
 
 # Set 'sources_1' fileset file properties for local files
 # None
@@ -810,92 +806,6 @@ proc cr_bd_design_1 { parentCell } {
 
   # Create address segments
 
-  # Perform GUI Layout
-  regenerate_bd_layout -layout_string {
-   "ExpandedHierarchyInLayout":"",
-   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 non-TLS-threadsafe
-#  -string -flagsOSRD
-preplace port led17_r_0 -pg 1 -y 1220 -defaultsOSRD
-preplace port eth_txen_0 -pg 1 -y 920 -defaultsOSRD
-preplace port led17_g_0 -pg 1 -y 1190 -defaultsOSRD
-preplace port eth_rxerr_0 -pg 1 -y 950 -defaultsOSRD
-preplace port led16_r_0 -pg 1 -y 1130 -defaultsOSRD
-preplace port led17_b_0 -pg 1 -y 1160 -defaultsOSRD
-preplace port clk_100MHz -pg 1 -y 570 -defaultsOSRD
-preplace port eth_rstn_0 -pg 1 -y 1040 -defaultsOSRD
-preplace port led16_b_0 -pg 1 -y 1070 -defaultsOSRD
-preplace port eth_mdc_0 -pg 1 -y 980 -defaultsOSRD
-preplace port led16_g_0 -pg 1 -y 1100 -defaultsOSRD
-preplace port eth_refclk_0 -pg 1 -y 760 -defaultsOSRD
-preplace port eth_mdio_0 -pg 1 -y 1010 -defaultsOSRD
-preplace port reset_rtl_0 -pg 1 -y 540 -defaultsOSRD
-preplace port eth_crsdv_0 -pg 1 -y 890 -defaultsOSRD
-preplace portBus anodes_0 -pg 1 -y 130 -defaultsOSRD
-preplace portBus cathodes_0 -pg 1 -y 160 -defaultsOSRD
-preplace portBus eth_txd_0 -pg 1 -y 860 -defaultsOSRD
-preplace portBus led_0 -pg 1 -y 280 -defaultsOSRD
-preplace portBus sw_0 -pg 1 -y 1080 -defaultsOSRD
-preplace portBus eth_rxd_0 -pg 1 -y 830 -defaultsOSRD
-preplace inst fifo_input -pg 1 -lvl 4 -y 340 -defaultsOSRD
-preplace inst xlslice_0 -pg 1 -lvl 5 -y 820 -defaultsOSRD
-preplace inst packaging_0 -pg 1 -lvl 3 -y 580 -defaultsOSRD
-preplace inst xlconstant_0 -pg 1 -lvl 2 -y 1020 -defaultsOSRD
-preplace inst xlconstant_1 -pg 1 -lvl 1 -y 680 -defaultsOSRD
-preplace inst fifo_output -pg 1 -lvl 4 -y 590 -defaultsOSRD
-preplace inst ethernet_transceiver2_0 -pg 1 -lvl 3 -y 1040 -defaultsOSRD
-preplace inst c_counter_binary_0 -pg 1 -lvl 5 -y 80 -defaultsOSRD
-preplace inst c_counter_binary_1 -pg 1 -lvl 5 -y 340 -defaultsOSRD
-preplace inst xlconcat_4 -pg 1 -lvl 6 -y 280 -defaultsOSRD
-preplace inst segment_0 -pg 1 -lvl 6 -y 140 -defaultsOSRD
-preplace inst invert_reset_0 -pg 1 -lvl 3 -y 720 -defaultsOSRD
-preplace inst xlconcat_5 -pg 1 -lvl 2 -y 670 -defaultsOSRD
-preplace inst clk_wiz_0 -pg 1 -lvl 2 -y 550 -defaultsOSRD
-preplace netloc ethernet_transceiver2_0_fifo_read 1 3 1 900
-preplace netloc xlconstant_1_dout 1 1 1 NJ
-preplace netloc packaging_0_errorCode 1 3 3 830 200 NJ 200 1560J
-preplace netloc ethernet_transceiver2_0_led16_b 1 3 4 NJ 1070 NJ 1070 NJ 1070 NJ
-preplace netloc Net4 1 3 4 NJ 970 NJ 970 NJ 970 1840J
-preplace netloc xlslice_1_Dout 1 3 2 870 460 1320
-preplace netloc Net5 1 3 4 NJ 1010 NJ 1010 NJ 1010 NJ
-preplace netloc packaging_0_outData 1 3 1 N
-preplace netloc c_counter_binary_1_Q 1 5 1 1540
-preplace netloc Net6 1 3 4 NJ 1050 NJ 1050 NJ 1050 1830J
-preplace netloc fifo_input_dout 1 2 2 460 340 NJ
-preplace netloc ethernet_transceiver2_0_led16_r 1 3 4 NJ 1110 NJ 1110 NJ 1110 1840J
-preplace netloc xlconcat_5_dout 1 2 3 410 790 830J 820 NJ
-preplace netloc sw_0_1 1 0 3 NJ 1080 NJ 1080 NJ
-preplace netloc ethernet_transceiver2_0_eth_refclk 1 3 4 910 760 NJ 760 NJ 760 NJ
-preplace netloc ethernet_transceiver2_0_led16_g 1 3 4 NJ 1090 1320J 1100 NJ 1100 NJ
-preplace netloc ethernet_transceiver2_0_fifo_write 1 3 1 860
-preplace netloc xlconstant_0_dout 1 2 1 400J
-preplace netloc segment_0_anodes 1 6 1 NJ
-preplace netloc packaging_0_inpRdEn 1 3 1 850
-preplace netloc ethernet_transceiver2_0_led17_b 1 3 4 NJ 1130 NJ 1130 NJ 1130 1830J
-preplace netloc c_counter_binary_0_Q 1 5 1 1560
-preplace netloc segment_0_cathodes 1 6 1 1830J
-preplace netloc fifo_output_overflow 1 4 1 1310
-preplace netloc ethernet_transceiver2_0_eth_mdc 1 3 4 NJ 990 NJ 990 1550J 980 NJ
-preplace netloc reset_rtl_0_1 1 0 2 NJ 540 NJ
-preplace netloc packaging_0_stateOut 1 3 3 840 220 NJ 220 1550J
-preplace netloc fifo_output_rd_data_count 1 1 4 180 190 NJ 190 NJ 190 1300
-preplace netloc fifo_input_empty 1 2 2 440 320 NJ
-preplace netloc packaging_0_outWrEn 1 3 1 N
-preplace netloc fifo_output_full 1 2 2 450 480 880J
-preplace netloc ethernet_transceiver2_0_led17_r 1 3 4 NJ 1170 NJ 1170 NJ 1170 1810J
-preplace netloc Net1 1 3 4 NJ 910 NJ 910 NJ 910 1830J
-preplace netloc Net 1 3 4 NJ 890 NJ 890 1540J 830 NJ
-preplace netloc xlconcat_4_dout 1 6 1 NJ
-preplace netloc fifo_input_overflow 1 4 1 N
-preplace netloc Net2 1 3 4 920J 900 NJ 900 1560J 890 NJ
-preplace netloc xlslice_0_Dout 1 5 1 1550
-preplace netloc ethernet_transceiver2_0_led17_g 1 3 4 NJ 1150 NJ 1150 NJ 1150 1820J
-preplace netloc clk_wiz_clk_out1 1 2 4 430 470 890 210 1330 160 NJ
-preplace netloc clk_100MHz_1 1 0 2 20J 560 NJ
-preplace netloc aresetn 1 2 1 420
-preplace netloc Net3 1 3 4 NJ 950 NJ 950 NJ 950 1830J
-levelinfo -pg 1 0 100 300 650 1110 1440 1690 1860 -top 0 -bot 1290
-"
-}
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -934,7 +844,6 @@ set_property -name "display_name" -value "synth_1_synth_report_utilization_0" -o
 
 }
 set obj [get_runs synth_1]
-set_property -name "needs_refresh" -value "1" -objects $obj
 set_property -name "part" -value "xc7a100tcsg324-1" -objects $obj
 set_property -name "strategy" -value "Vivado Synthesis Defaults" -objects $obj
 
@@ -1159,7 +1068,6 @@ set_property -name "display_name" -value "impl_1_post_route_phys_opt_report_bus_
 
 }
 set obj [get_runs impl_1]
-set_property -name "needs_refresh" -value "1" -objects $obj
 set_property -name "part" -value "xc7a100tcsg324-1" -objects $obj
 set_property -name "strategy" -value "Vivado Implementation Defaults" -objects $obj
 set_property -name "steps.write_bitstream.args.readback_file" -value "0" -objects $obj

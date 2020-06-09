@@ -167,7 +167,7 @@ begin
             done <= '0';
             if(start = '0') then
                 dataIndexOutput <= 0;
-            elsif dataIndexOutput = imageWidth*imageWidth - 1 then
+            elsif dataIndexOutput = imageWidth*imageWidth - 1 and dstValid_s = '1' then
                 dataIndexOutput <= 0;
                 done <= '1';
             elsif dstValid_s = '1' then
