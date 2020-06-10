@@ -74,6 +74,7 @@ architecture Behavioral of conv2d is
     signal dataIndexOutput : integer range 0 to imageWidth*imageWidth-1;
     
     signal working : std_logic := '0';
+    signal srcValid_r : std_logic := '0';
     signal dstStalled_s : std_logic := '0';
     signal dstValid_s : std_logic := '0';
     signal kernelValuesComplete : std_logic := '0';
@@ -99,8 +100,8 @@ begin
 
     shiftInPixels: shiftIn port map (
         clk         => clk,
-        ce          => dstValid_s,
-        sync_reset  => working,
+        ce          => srcValid,
+        sync_reset  => start,
         dataIn      => srcData,
         dataOut     => inputBuffer,
         dataIndex    => open
@@ -136,11 +137,16 @@ begin
     
     kernelInputValid_s <= working and kernelInputReady_s and (srcValid or dstStalled_s) and kernelValuesComplete;
  
-    srcRdy : process(dataIndex, working, kernelInputReady_s, srcValid, start) begin
+    srcRdy : process(dataIndex, working, kernelInputReady_s, srcValid, start, dstStalled_s, srcValid, rst_n, clk) begin
         if (dataIndex = wordCount - 1 and srcValid = '1') or dataIndex = wordCount then
             srcReady <= '0';
         else
-            srcReady <= working and kernelInputReady_s and not dstStalled_s and start;
+            srcReady <= working and kernelInputReady_s and (not dstStalled_s) and start and (not srcValid);
+        end if;
+        if rst_n = '0' then
+            srcValid_r <= '0';
+        elsif rising_edge(clk) then
+            srcValid_r <= srcValid;
         end if;
     end process;
     

@@ -46,7 +46,6 @@ p_s2p : process(clk, sync_reset, dataIndex_s)
 begin
     if(sync_reset = '0') then
         dataIndex_s <= 0;
-        finished <= '0';
         dataOut_s <= (others => (others => '0'));
     elsif(rising_edge(clk)) then
         if(ce = '1') then

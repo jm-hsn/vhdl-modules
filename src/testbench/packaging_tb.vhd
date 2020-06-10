@@ -31,46 +31,57 @@ constant busWidth : integer:=32;
            stateOut : out STD_LOGIC_VECTOR(3 downto 0));
     end component;
     
+    component tb_design_1_wrapper is
+      port (
+        FIFO_READ_0_empty : out STD_LOGIC;
+        FIFO_READ_0_rd_data : out STD_LOGIC_VECTOR ( 31 downto 0 );
+        FIFO_READ_0_rd_en : in STD_LOGIC;
+        FIFO_WRITE_0_full : out STD_LOGIC;
+        FIFO_WRITE_0_wr_data : in STD_LOGIC_VECTOR ( 31 downto 0 );
+        FIFO_WRITE_0_wr_en : in STD_LOGIC;
+        clk_100MHz : in STD_LOGIC;
+        data_count_0 : out STD_LOGIC_VECTOR ( 5 downto 0 );
+        errorCode_0 : out STD_LOGIC_VECTOR ( 3 downto 0 );
+        overflow_0 : out STD_LOGIC;
+        overflow_1 : out STD_LOGIC;
+        rd_data_count_0 : out STD_LOGIC_VECTOR ( 8 downto 0 );
+        reset_rtl_0 : in STD_LOGIC;
+        stateOut_0 : out STD_LOGIC_VECTOR ( 3 downto 0 )
+      );
+    end component;
+    
     signal clk : std_logic := '1';
     signal rst : std_logic := '0';
-    
-    
-    
 
     file inputFile : text;
     file outputTimingsFile : text;
     file outputFile : text;
     
     signal s_inData : std_logic_vector(busWidth-1 downto 0);
-    
-    signal srcAvail: std_logic := '1';
-    signal inputEmpty : std_logic := '0';
-    signal rdEn : std_logic;
+    signal inputFull : std_logic := '0';
+    signal wrEn : std_logic := '0';
+    signal srcAvail: std_logic := '0';
     
     signal s_outData : std_logic_vector(busWidth-1 downto 0);
-    signal outputFull : std_logic := '0';
-    signal wrEn : std_logic;
-    
+    signal outputEmpty : std_logic := '0';
+    signal rdEn : std_logic := '0';
+    signal outputSpace: std_logic := '1';
 
     signal done: std_logic := '0'; 
 
-    signal index : integer := 0;
-    signal seek : integer := 0;
-    signal eth : integer range 0 to 7 := 0;
-
 begin
 
-    dut : packaging port map (
-        clk => clk,
-        rst => rst,
+    dut : tb_design_1_wrapper port map (
+        clk_100MHz => clk,
+        reset_rtl_0 => rst,
         
-        inputStream => s_inData,
-        inputEmpty => inputEmpty,
-        inpRdEn => rdEn,
+        FIFO_WRITE_0_wr_data => s_inData,
+        FIFO_WRITE_0_wr_en => wrEn,
+        FIFO_WRITE_0_full => inputFull,
         
-        outData => s_outData,
-        outWrEn => wrEn,
-        outputFull => outputFull
+        FIFO_READ_0_rd_data => s_outData,
+        FIFO_READ_0_empty => outputEmpty,
+        FIFO_READ_0_rd_en => rdEn
         
     );
 
@@ -83,21 +94,18 @@ begin
 
     begin
         file_open(inputFile, "input.txt", read_mode);
-        
+        srcAvail <= '1' after 95 ns;
         while not endfile(inputFile) loop
             wait until rising_edge(clk);
-            if rdEn = '1' then
+            wrEn <= '0';
+            if inputFull = '0' and srcAvail = '1' and rst = '1' then
 
-                assert srcAvail = '1'
-                report "input underflow"
-                severity warning;
-            
                 readline(inputFile, v_inLine);
                 read(v_inLine, v_inTime);
                 read(v_inLine, v_space);
                 read(v_inLine, v_inData);
                 s_inData <= v_inData;
-                
+                wrEn <= '1';
                 if v_inTime > 10 ns then
                     srcAvail <= '0';
                     srcAvail <= '1' after v_inTime;
@@ -105,14 +113,13 @@ begin
             end if;
         end loop;
         wait until rising_edge(clk);
+        wrEn <= '0';
         file_close(inputFile);
         srcAvail <= '0';
-        done <= '1' after 100 ns;
+        
         wait;
     end process;
     
-    inputEmpty <= not srcAvail or not rst;
-
     p_write : process
         variable v_outLine : line;
         variable v_outTime : time;
@@ -120,15 +127,14 @@ begin
     begin
         file_open(outputFile, "output.txt", write_mode);
         while not done = '1' loop
-            wait until rising_edge(clk);
-            if wrEn = '1' then
-                assert outputFull = '0'
-                report "output overflow"
-                severity warning;
+            if rdEn = '1' and rst = '1' then
+                wait until rising_edge(clk);
                 write(v_outLine, time'image(now));
                 write(v_outLine, c_space);
                 write(v_outLine, s_outData);
                 writeline(outputFile, v_outLine);
+            else
+                wait until rising_edge(clk);
             end if;
         end loop;
         file_close(outputFile);
@@ -142,17 +148,18 @@ begin
         file_open(outputTimingsFile, "outputTimings.txt", read_mode);
         while not endfile(outputTimingsFile) and done = '0' loop
             wait until rising_edge(clk);
-            
-            if wrEn = '1' then
+            rdEn <= '0';
+            if outputEmpty = '0' and outputSpace = '1' and rst = '1' then
                 readline(outputTimingsFile, v_inLine);
                 read(v_inLine, v_inTime);
-                
+                rdEn <= '1';
                 if v_inTime > 10 ns then
-                    outputFull <= '1';
-                    outputFull <= '0' after v_inTime;
+                    outputSpace <= '0';
+                    outputSpace <= '1' after v_inTime;
                 end if;
             end if;
         end loop;
+        done <= '1' after 100 ns;
         file_close(outputTimingsFile);
         wait;
     end process;

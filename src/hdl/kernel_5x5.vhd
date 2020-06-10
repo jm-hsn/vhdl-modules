@@ -55,6 +55,7 @@ architecture Behavioral of kernel_NxN is
     end component;
     
     signal working : std_logic := '0';
+    signal inputValid_r : std_logic := '0';
     
     signal index_s : integer range 0 to N*N-1 := 0;
     
@@ -130,8 +131,13 @@ begin
     outputData <= macOutput_s;
 
     
-    controlSignals : process(macOutputLast_s, macInputReady_s, working, index_s, outputReady, macOutputValid_s) begin
-        inputReady <= macInputReady_s and not working;
+    controlSignals : process(macOutputLast_s, macInputReady_s, working, index_s, outputReady, macOutputValid_s, rst_n, clk, inputValid_r) begin
+        if rst_n = '0' then
+            inputValid_r <= '0';
+        elsif rising_edge(clk) then
+            inputValid_r <= inputValid;
+        end if;
+        inputReady <= macInputReady_s and not working and not inputValid_r;
         macInputValid_s <= macInputReady_s and working;
         
         if index_s = N*N-1 then

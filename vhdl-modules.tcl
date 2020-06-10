@@ -99,15 +99,15 @@ set_property -name "sim.central_dir" -value "$proj_dir/${_xil_proj_name_}.ip_use
 set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
 set_property -name "target_language" -value "VHDL" -objects $obj
-set_property -name "webtalk.activehdl_export_sim" -value "18" -objects $obj
-set_property -name "webtalk.ies_export_sim" -value "18" -objects $obj
-set_property -name "webtalk.modelsim_export_sim" -value "18" -objects $obj
-set_property -name "webtalk.questa_export_sim" -value "18" -objects $obj
-set_property -name "webtalk.riviera_export_sim" -value "18" -objects $obj
-set_property -name "webtalk.vcs_export_sim" -value "18" -objects $obj
-set_property -name "webtalk.xcelium_export_sim" -value "12" -objects $obj
-set_property -name "webtalk.xsim_export_sim" -value "18" -objects $obj
-set_property -name "webtalk.xsim_launch_sim" -value "21" -objects $obj
+set_property -name "webtalk.activehdl_export_sim" -value "27" -objects $obj
+set_property -name "webtalk.ies_export_sim" -value "27" -objects $obj
+set_property -name "webtalk.modelsim_export_sim" -value "27" -objects $obj
+set_property -name "webtalk.questa_export_sim" -value "27" -objects $obj
+set_property -name "webtalk.riviera_export_sim" -value "27" -objects $obj
+set_property -name "webtalk.vcs_export_sim" -value "27" -objects $obj
+set_property -name "webtalk.xcelium_export_sim" -value "21" -objects $obj
+set_property -name "webtalk.xsim_export_sim" -value "27" -objects $obj
+set_property -name "webtalk.xsim_launch_sim" -value "36" -objects $obj
 set_property -name "xpm_libraries" -value "XPM_CDC XPM_MEMORY" -objects $obj
 
 # Create 'sources_1' fileset (if not found)
@@ -810,8 +810,9 @@ proc cr_bd_design_1 { parentCell } {
   # Restore current instance
   current_bd_instance $oldCurInst
 
-  validate_bd_design
   save_bd_design
+common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
+
   close_bd_design $design_name 
 }
 # End of cr_bd_design_1()
@@ -822,6 +823,354 @@ set_property SYNTH_CHECKPOINT_MODE "Hierarchical" [get_files design_1.bd ]
 
 # Create wrapper file for design_1.bd
 make_wrapper -files [get_files design_1.bd] -import -top
+
+if { [get_files fp_accumulator_0_1.xci] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/ip/fp_accumulator_0_1/fp_accumulator_0_1.xci
+}
+if { [get_files fp_multiply_0_1.xci] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/ip/fp_multiply_0_1/fp_multiply_0_1.xci
+}
+if { [get_files Block_proc.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Block_proc.vhd
+}
+if { [get_files Loop_Border_proc.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Loop_Border_proc.vhd
+}
+if { [get_files Loop_Border_proc_borderbuf.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Loop_Border_proc_borderbuf.vhd
+}
+if { [get_files Loop_HConvH_proc6.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Loop_HConvH_proc6.vhd
+}
+if { [get_files Loop_VConvH_proc.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Loop_VConvH_proc.vhd
+}
+if { [get_files Loop_VConvH_proc_linebuf_0.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/Loop_VConvH_proc_linebuf_0.vhd
+}
+if { [get_files globals.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/globals.vhd
+}
+if { [get_files checksum.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/checksum.vhd
+}
+if { [get_files conv2d.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/conv2d.vhd
+}
+if { [get_files conv2d_5x5_224p.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/conv2d_5x5_224p.vhd
+}
+if { [get_files dummyModule.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/dummyModule.vhd
+}
+if { [get_files fifo_w32_d2_A.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/fifo_w32_d2_A.vhd
+}
+if { [get_files fifo_w32_d3_A.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/fifo_w32_d3_A.vhd
+}
+if { [get_files filter11x11_strm.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/filter11x11_strm.vhd
+}
+if { [get_files filter11x11_strm_ent.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/filter11x11_strm_ent.vhd
+}
+if { [get_files kernel_5x5.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/kernel_5x5.vhd
+}
+if { [get_files multiplex.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/multiplex.vhd
+}
+if { [get_files ram.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/ram.vhd
+}
+if { [get_files shiftIn.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/shiftIn.vhd
+}
+if { [get_files start_for_Block_proc_U0.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/start_for_Block_proc_U0.vhd
+}
+if { [get_files start_for_Loop_Border_proc_U0.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/start_for_Loop_Border_proc_U0.vhd
+}
+if { [get_files start_for_Loop_VConvH_proc_U0.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/start_for_Loop_VConvH_proc_U0.vhd
+}
+if { [get_files packaging.vhd] == "" } {
+  import_files -quiet -fileset sources_1 C:/Users/johan/mlfpga/repos/vhdl-modules/src/hdl/packaging.vhd
+}
+
+
+# Proc to create BD tb_design_1
+proc cr_bd_tb_design_1 { parentCell } {
+# The design that will be created by this Tcl proc contains the following 
+# module references:
+# packaging
+
+
+
+  # CHANGE DESIGN NAME HERE
+  set design_name tb_design_1
+
+  common::send_msg_id "BD_TCL-003" "INFO" "Currently there is no design <$design_name> in project, so creating one..."
+
+  create_bd_design $design_name
+
+  set bCheckIPsPassed 1
+  ##################################################################
+  # CHECK IPs
+  ##################################################################
+  set bCheckIPs 1
+  if { $bCheckIPs == 1 } {
+     set list_check_ips "\ 
+  xilinx.com:ip:fifo_generator:13.2\
+  xilinx.com:ip:util_vector_logic:2.0\
+  "
+
+   set list_ips_missing ""
+   common::send_msg_id "BD_TCL-006" "INFO" "Checking if the following IPs exist in the project's IP catalog: $list_check_ips ."
+
+   foreach ip_vlnv $list_check_ips {
+      set ip_obj [get_ipdefs -all $ip_vlnv]
+      if { $ip_obj eq "" } {
+         lappend list_ips_missing $ip_vlnv
+      }
+   }
+
+   if { $list_ips_missing ne "" } {
+      catch {common::send_msg_id "BD_TCL-115" "ERROR" "The following IPs are not found in the IP Catalog:\n  $list_ips_missing\n\nResolution: Please add the repository containing the IP(s) to the project." }
+      set bCheckIPsPassed 0
+   }
+
+  }
+
+  ##################################################################
+  # CHECK Modules
+  ##################################################################
+  set bCheckModules 1
+  if { $bCheckModules == 1 } {
+     set list_check_mods "\ 
+  packaging\
+  "
+
+   set list_mods_missing ""
+   common::send_msg_id "BD_TCL-006" "INFO" "Checking if the following modules exist in the project's sources: $list_check_mods ."
+
+   foreach mod_vlnv $list_check_mods {
+      if { [can_resolve_reference $mod_vlnv] == 0 } {
+         lappend list_mods_missing $mod_vlnv
+      }
+   }
+
+   if { $list_mods_missing ne "" } {
+      catch {common::send_msg_id "BD_TCL-115" "ERROR" "The following module(s) are not found in the project: $list_mods_missing" }
+      common::send_msg_id "BD_TCL-008" "INFO" "Please add source files for the missing module(s) above."
+      set bCheckIPsPassed 0
+   }
+}
+
+  if { $bCheckIPsPassed != 1 } {
+    common::send_msg_id "BD_TCL-1003" "WARNING" "Will not continue with creation of design due to the error(s) above."
+    return 3
+  }
+
+  variable script_folder
+
+  if { $parentCell eq "" } {
+     set parentCell [get_bd_cells /]
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+
+  # Create interface ports
+  set FIFO_READ_0 [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:fifo_read_rtl:1.0 FIFO_READ_0 ]
+  set FIFO_WRITE_0 [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:fifo_write_rtl:1.0 FIFO_WRITE_0 ]
+
+  # Create ports
+  set clk_100MHz [ create_bd_port -dir I -type clk clk_100MHz ]
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {100000000} \
+ ] $clk_100MHz
+  set data_count_0 [ create_bd_port -dir O -from 5 -to 0 data_count_0 ]
+  set errorCode_0 [ create_bd_port -dir O -from 3 -to 0 errorCode_0 ]
+  set overflow_0 [ create_bd_port -dir O overflow_0 ]
+  set overflow_1 [ create_bd_port -dir O overflow_1 ]
+  set rd_data_count_0 [ create_bd_port -dir O -from 8 -to 0 rd_data_count_0 ]
+  set reset_rtl_0 [ create_bd_port -dir I -type rst reset_rtl_0 ]
+  set_property -dict [ list \
+   CONFIG.POLARITY {ACTIVE_LOW} \
+ ] $reset_rtl_0
+  set stateOut_0 [ create_bd_port -dir O -from 3 -to 0 stateOut_0 ]
+
+  # Create instance: fifo_input, and set properties
+  set fifo_input [ create_bd_cell -type ip -vlnv xilinx.com:ip:fifo_generator:13.2 fifo_input ]
+  set_property -dict [ list \
+   CONFIG.Almost_Empty_Flag {false} \
+   CONFIG.Data_Count {true} \
+   CONFIG.Data_Count_Width {6} \
+   CONFIG.Empty_Threshold_Assert_Value {2} \
+   CONFIG.Empty_Threshold_Assert_Value_rach {1022} \
+   CONFIG.Empty_Threshold_Assert_Value_wach {1022} \
+   CONFIG.Empty_Threshold_Assert_Value_wrch {1022} \
+   CONFIG.Empty_Threshold_Negate_Value {3} \
+   CONFIG.Enable_Safety_Circuit {false} \
+   CONFIG.FIFO_Implementation_rach {Common_Clock_Distributed_RAM} \
+   CONFIG.FIFO_Implementation_wach {Common_Clock_Distributed_RAM} \
+   CONFIG.FIFO_Implementation_wrch {Common_Clock_Distributed_RAM} \
+   CONFIG.Fifo_Implementation {Common_Clock_Distributed_RAM} \
+   CONFIG.Full_Flags_Reset_Value {0} \
+   CONFIG.Full_Threshold_Assert_Value {62} \
+   CONFIG.Full_Threshold_Assert_Value_rach {1023} \
+   CONFIG.Full_Threshold_Assert_Value_wach {1023} \
+   CONFIG.Full_Threshold_Assert_Value_wrch {1023} \
+   CONFIG.Full_Threshold_Negate_Value {61} \
+   CONFIG.INTERFACE_TYPE {Native} \
+   CONFIG.Input_Data_Width {32} \
+   CONFIG.Input_Depth {64} \
+   CONFIG.Output_Data_Width {32} \
+   CONFIG.Output_Depth {64} \
+   CONFIG.Overflow_Flag {true} \
+   CONFIG.Performance_Options {Standard_FIFO} \
+   CONFIG.Programmable_Empty_Type {No_Programmable_Empty_Threshold} \
+   CONFIG.Programmable_Full_Type {No_Programmable_Full_Threshold} \
+   CONFIG.Read_Data_Count {false} \
+   CONFIG.Read_Data_Count_Width {6} \
+   CONFIG.Reset_Pin {true} \
+   CONFIG.Reset_Type {Synchronous_Reset} \
+   CONFIG.Underflow_Flag {false} \
+   CONFIG.Use_Dout_Reset {true} \
+   CONFIG.Use_Embedded_Registers {false} \
+   CONFIG.Use_Extra_Logic {false} \
+   CONFIG.Valid_Flag {false} \
+   CONFIG.Write_Data_Count {false} \
+   CONFIG.Write_Data_Count_Width {6} \
+ ] $fifo_input
+
+  # Create instance: fifo_output, and set properties
+  set fifo_output [ create_bd_cell -type ip -vlnv xilinx.com:ip:fifo_generator:13.2 fifo_output ]
+  set_property -dict [ list \
+   CONFIG.Almost_Empty_Flag {false} \
+   CONFIG.Almost_Full_Flag {false} \
+   CONFIG.Data_Count {false} \
+   CONFIG.Data_Count_Width {9} \
+   CONFIG.Empty_Threshold_Assert_Value {2} \
+   CONFIG.Empty_Threshold_Assert_Value_rach {1022} \
+   CONFIG.Empty_Threshold_Assert_Value_wach {1022} \
+   CONFIG.Empty_Threshold_Assert_Value_wrch {1022} \
+   CONFIG.Empty_Threshold_Negate_Value {3} \
+   CONFIG.Enable_Safety_Circuit {false} \
+   CONFIG.FIFO_Implementation_rach {Common_Clock_Distributed_RAM} \
+   CONFIG.FIFO_Implementation_wach {Common_Clock_Distributed_RAM} \
+   CONFIG.FIFO_Implementation_wrch {Common_Clock_Distributed_RAM} \
+   CONFIG.Fifo_Implementation {Independent_Clocks_Distributed_RAM} \
+   CONFIG.Full_Flags_Reset_Value {1} \
+   CONFIG.Full_Threshold_Assert_Value {509} \
+   CONFIG.Full_Threshold_Assert_Value_rach {1023} \
+   CONFIG.Full_Threshold_Assert_Value_wach {1023} \
+   CONFIG.Full_Threshold_Assert_Value_wrch {1023} \
+   CONFIG.Full_Threshold_Negate_Value {508} \
+   CONFIG.INTERFACE_TYPE {Native} \
+   CONFIG.Input_Data_Width {32} \
+   CONFIG.Input_Depth {512} \
+   CONFIG.Output_Data_Width {32} \
+   CONFIG.Output_Depth {512} \
+   CONFIG.Overflow_Flag {true} \
+   CONFIG.Performance_Options {Standard_FIFO} \
+   CONFIG.Programmable_Empty_Type {No_Programmable_Empty_Threshold} \
+   CONFIG.Programmable_Full_Type {No_Programmable_Full_Threshold} \
+   CONFIG.Read_Data_Count {true} \
+   CONFIG.Read_Data_Count_Width {9} \
+   CONFIG.Reset_Pin {true} \
+   CONFIG.Reset_Type {Asynchronous_Reset} \
+   CONFIG.Underflow_Flag {false} \
+   CONFIG.Use_Dout_Reset {true} \
+   CONFIG.Use_Embedded_Registers {false} \
+   CONFIG.Use_Extra_Logic {false} \
+   CONFIG.Valid_Flag {false} \
+   CONFIG.Write_Data_Count {false} \
+   CONFIG.Write_Data_Count_Width {9} \
+ ] $fifo_output
+
+  # Create instance: invert_reset_0, and set properties
+  set invert_reset_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 invert_reset_0 ]
+  set_property -dict [ list \
+   CONFIG.C_OPERATION {not} \
+   CONFIG.C_SIZE {1} \
+   CONFIG.LOGO_FILE {data/sym_notgate.png} \
+ ] $invert_reset_0
+
+  # Create instance: packaging_0, and set properties
+  set block_name packaging
+  set block_cell_name packaging_0
+  if { [catch {set packaging_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $packaging_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create interface connections
+  connect_bd_intf_net -intf_net FIFO_READ_0_1 [get_bd_intf_ports FIFO_READ_0] [get_bd_intf_pins fifo_output/FIFO_READ]
+  connect_bd_intf_net -intf_net FIFO_WRITE_0_1 [get_bd_intf_ports FIFO_WRITE_0] [get_bd_intf_pins fifo_input/FIFO_WRITE]
+
+  # Create port connections
+  connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_ports clk_100MHz] [get_bd_pins fifo_input/clk] [get_bd_pins fifo_output/rd_clk] [get_bd_pins fifo_output/wr_clk] [get_bd_pins packaging_0/clk]
+  connect_bd_net -net clk_wiz_0_locked1 [get_bd_ports reset_rtl_0] [get_bd_pins invert_reset_0/Op1] [get_bd_pins packaging_0/rst]
+  connect_bd_net -net fifo_input_data_count [get_bd_ports data_count_0] [get_bd_pins fifo_input/data_count]
+  connect_bd_net -net fifo_input_dout [get_bd_pins fifo_input/dout] [get_bd_pins packaging_0/inputStream]
+  connect_bd_net -net fifo_input_empty [get_bd_pins fifo_input/empty] [get_bd_pins packaging_0/inputEmpty]
+  connect_bd_net -net fifo_input_overflow [get_bd_ports overflow_1] [get_bd_pins fifo_input/overflow]
+  connect_bd_net -net fifo_output_full [get_bd_pins fifo_output/full] [get_bd_pins packaging_0/outputFull]
+  connect_bd_net -net fifo_output_overflow [get_bd_ports overflow_0] [get_bd_pins fifo_output/overflow]
+  connect_bd_net -net fifo_output_rd_data_count [get_bd_ports rd_data_count_0] [get_bd_pins fifo_output/rd_data_count]
+  connect_bd_net -net invert_reset_0_Res [get_bd_pins fifo_input/srst] [get_bd_pins fifo_output/rst] [get_bd_pins invert_reset_0/Res]
+  connect_bd_net -net packaging_0_errorCode [get_bd_ports errorCode_0] [get_bd_pins packaging_0/errorCode]
+  connect_bd_net -net packaging_0_inpRdEn [get_bd_pins fifo_input/rd_en] [get_bd_pins packaging_0/inpRdEn]
+  connect_bd_net -net packaging_0_outData [get_bd_pins fifo_output/din] [get_bd_pins packaging_0/outData]
+  connect_bd_net -net packaging_0_outWrEn [get_bd_pins fifo_output/wr_en] [get_bd_pins packaging_0/outWrEn]
+  connect_bd_net -net packaging_0_stateOut [get_bd_ports stateOut_0] [get_bd_pins packaging_0/stateOut]
+
+  # Create address segments
+
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+
+  validate_bd_design
+  save_bd_design
+  close_bd_design $design_name 
+}
+# End of cr_bd_tb_design_1()
+cr_bd_tb_design_1 ""
+set_property REGISTERED_WITH_MANAGER "1" [get_files tb_design_1.bd ] 
+set_property SYNTH_CHECKPOINT_MODE "Hierarchical" [get_files tb_design_1.bd ] 
+set_property USED_IN "simulation" [get_files tb_design_1.bd ] 
+set_property USED_IN_IMPLEMENTATION "0" [get_files tb_design_1.bd ] 
+set_property USED_IN_SYNTHESIS "0" [get_files tb_design_1.bd ] 
+
+
+# Create wrapper file for tb_design_1.bd
+make_wrapper -files [get_files tb_design_1.bd] -import -top
 
 # Create 'synth_1' run (if not found)
 if {[string equal [get_runs -quiet synth_1] ""]} {
@@ -844,6 +1193,7 @@ set_property -name "display_name" -value "synth_1_synth_report_utilization_0" -o
 
 }
 set obj [get_runs synth_1]
+set_property -name "needs_refresh" -value "1" -objects $obj
 set_property -name "part" -value "xc7a100tcsg324-1" -objects $obj
 set_property -name "strategy" -value "Vivado Synthesis Defaults" -objects $obj
 
@@ -1068,6 +1418,7 @@ set_property -name "display_name" -value "impl_1_post_route_phys_opt_report_bus_
 
 }
 set obj [get_runs impl_1]
+set_property -name "needs_refresh" -value "1" -objects $obj
 set_property -name "part" -value "xc7a100tcsg324-1" -objects $obj
 set_property -name "strategy" -value "Vivado Implementation Defaults" -objects $obj
 set_property -name "steps.write_bitstream.args.readback_file" -value "0" -objects $obj

@@ -39,7 +39,7 @@ def setPixel(img, txt, i, input):
     num = struct.unpack('!f',struct.pack('!i', int(val, 2)))[0]
 
     if num > 255:
-      print(num)
+      print(str(num) + ' > 255')
       num = 255
     x = i % sizeWithBorder
     y = int(i / sizeWithBorder) % sizeWithBorder
