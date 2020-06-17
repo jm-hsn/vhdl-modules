@@ -99,14 +99,14 @@ set_property -name "sim.central_dir" -value "$proj_dir/${_xil_proj_name_}.ip_use
 set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
 set_property -name "target_language" -value "VHDL" -objects $obj
-set_property -name "webtalk.activehdl_export_sim" -value "27" -objects $obj
-set_property -name "webtalk.ies_export_sim" -value "27" -objects $obj
-set_property -name "webtalk.modelsim_export_sim" -value "27" -objects $obj
-set_property -name "webtalk.questa_export_sim" -value "27" -objects $obj
-set_property -name "webtalk.riviera_export_sim" -value "27" -objects $obj
-set_property -name "webtalk.vcs_export_sim" -value "27" -objects $obj
-set_property -name "webtalk.xcelium_export_sim" -value "21" -objects $obj
-set_property -name "webtalk.xsim_export_sim" -value "27" -objects $obj
+set_property -name "webtalk.activehdl_export_sim" -value "33" -objects $obj
+set_property -name "webtalk.ies_export_sim" -value "33" -objects $obj
+set_property -name "webtalk.modelsim_export_sim" -value "33" -objects $obj
+set_property -name "webtalk.questa_export_sim" -value "33" -objects $obj
+set_property -name "webtalk.riviera_export_sim" -value "33" -objects $obj
+set_property -name "webtalk.vcs_export_sim" -value "33" -objects $obj
+set_property -name "webtalk.xcelium_export_sim" -value "27" -objects $obj
+set_property -name "webtalk.xsim_export_sim" -value "33" -objects $obj
 set_property -name "webtalk.xsim_launch_sim" -value "36" -objects $obj
 set_property -name "xpm_libraries" -value "XPM_CDC XPM_MEMORY" -objects $obj
 
@@ -153,6 +153,13 @@ set files [list \
  [file normalize "${origin_dir}/src/testbench/tb_module_behav.wcfg"] \
 ]
 add_files -norecurse -fileset $obj $files
+
+# Add local files from the original project (-no_copy_sources specified)
+set files [list \
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/new/relu.vhd" ]\
+ [file normalize "${origin_dir}/vivado_project/vhdl-modules.srcs/sources_1/new/sigmoid.vhd" ]\
+]
+set added_files [add_files -fileset sources_1 $files]
 
 # Set 'sources_1' fileset file properties for remote files
 set file "$origin_dir/src/ip/fp_accumulator_0_1/fp_accumulator_0_1.xci"
@@ -284,12 +291,82 @@ set_property -name "file_type" -value "VHDL" -objects $file_obj
 
 
 # Set 'sources_1' fileset file properties for local files
-# None
+set file "new/relu.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+set file "new/sigmoid.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
 
 # Set 'sources_1' fileset properties
 set obj [get_filesets sources_1]
 set_property -name "top" -value "design_1_wrapper" -objects $obj
 set_property -name "top_auto_set" -value "0" -objects $obj
+
+# Set 'sources_1' fileset object
+set obj [get_filesets sources_1]
+set files [list \
+ [file normalize "${origin_dir}/src/ip/fp_exponential_0/fp_exponential_0.xci"] \
+]
+add_files -norecurse -fileset $obj $files
+
+# Set 'sources_1' fileset file properties for remote files
+set file "$origin_dir/src/ip/fp_exponential_0/fp_exponential_0.xci"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
+set_property -name "registered_with_manager" -value "1" -objects $file_obj
+if { ![get_property "is_locked" $file_obj] } {
+  set_property -name "synth_checkpoint_mode" -value "Singular" -objects $file_obj
+}
+
+
+# Set 'sources_1' fileset file properties for local files
+# None
+
+# Set 'sources_1' fileset object
+set obj [get_filesets sources_1]
+set files [list \
+ [file normalize "${origin_dir}/src/ip/fp_reciprocal_0/fp_reciprocal_0.xci"] \
+]
+add_files -norecurse -fileset $obj $files
+
+# Set 'sources_1' fileset file properties for remote files
+set file "$origin_dir/src/ip/fp_reciprocal_0/fp_reciprocal_0.xci"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
+set_property -name "registered_with_manager" -value "1" -objects $file_obj
+if { ![get_property "is_locked" $file_obj] } {
+  set_property -name "synth_checkpoint_mode" -value "Singular" -objects $file_obj
+}
+
+
+# Set 'sources_1' fileset file properties for local files
+# None
+
+# Set 'sources_1' fileset object
+set obj [get_filesets sources_1]
+set files [list \
+ [file normalize "${origin_dir}/src/ip/fp_add_0/fp_add_0.xci"] \
+]
+add_files -norecurse -fileset $obj $files
+
+# Set 'sources_1' fileset file properties for remote files
+set file "$origin_dir/src/ip/fp_add_0/fp_add_0.xci"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
+set_property -name "registered_with_manager" -value "1" -objects $file_obj
+if { ![get_property "is_locked" $file_obj] } {
+  set_property -name "synth_checkpoint_mode" -value "Singular" -objects $file_obj
+}
+
+
+# Set 'sources_1' fileset file properties for local files
+# None
 
 # Create 'constrs_1' fileset (if not found)
 if {[string equal [get_filesets -quiet constrs_1] ""]} {
@@ -810,9 +887,8 @@ proc cr_bd_design_1 { parentCell } {
   # Restore current instance
   current_bd_instance $oldCurInst
 
+  validate_bd_design
   save_bd_design
-common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
-
   close_bd_design $design_name 
 }
 # End of cr_bd_design_1()
@@ -1193,7 +1269,6 @@ set_property -name "display_name" -value "synth_1_synth_report_utilization_0" -o
 
 }
 set obj [get_runs synth_1]
-set_property -name "needs_refresh" -value "1" -objects $obj
 set_property -name "part" -value "xc7a100tcsg324-1" -objects $obj
 set_property -name "strategy" -value "Vivado Synthesis Defaults" -objects $obj
 
@@ -1418,7 +1493,6 @@ set_property -name "display_name" -value "impl_1_post_route_phys_opt_report_bus_
 
 }
 set obj [get_runs impl_1]
-set_property -name "needs_refresh" -value "1" -objects $obj
 set_property -name "part" -value "xc7a100tcsg324-1" -objects $obj
 set_property -name "strategy" -value "Vivado Implementation Defaults" -objects $obj
 set_property -name "steps.write_bitstream.args.readback_file" -value "0" -objects $obj
