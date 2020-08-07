@@ -1,7 +1,7 @@
 # VHDL neural network accelerators for distributed computation on FPGAs
 
 VHDL implementation of job parser and hardware accelerator modules.
-It uses a modified version of a [UDP echo server](https://forum.digilentinc.com/topic/3968-ethernet-udp-echo-server/) to send and recieve jobs from [this library](/bachelor/tf-fpga).
+It uses a modified version of a [UDP echo server](https://forum.digilentinc.com/topic/3968-ethernet-udp-echo-server/) to send and recieve jobs from [this library](https://github.com/jm-hsn/tf-fpga).
 
 Each job is contained in a 32-bit data stream and comprised of
 - preamble
