@@ -123,13 +123,13 @@ The timing of the output signals (tinted in blue) should be the following:
 
 ## How to prepare Vivado for Git support
 
-Add `Vivado_init.tcl` (or append the relevant lines if you already have
-something in it) along with the `scripts` directory to:
+Add the `scripts` directory and the file `Vivado_init.tcl` (or append the relevant lines if you already have
+something in it) to:
 
 - `%APPDATA%\Roaming\Xilinx\Vivado` on Windows
 - `~/.Xilinx/Vivado` on Linux
 
-## How to pull newest version
+## How to pull newest version and create project from sources
 
 - delete local changes `git pull && git reset --hard`
 - start Vivado in any directory
@@ -140,19 +140,23 @@ Vivado should then recreate the project inside `vivado_project/` and open it.
 When `design_1_wrapper` doesn't appear as Top Module:
 
 - Watch the Tcl Console for any possible errors during creation, mainly missing files.
+- Try running Vivado 2018.3
 - create a Git issue with your Tcl output attached
 - recreate without `vhdl-modules.tcl`
 
-## How to recreate without `vhdl-modules.tcl`
+## How to recreate project without `vhdl-modules.tcl`
 
-- Create project `vhdl-modules` without own project folder inside `vivado_project/`
-- Import all sources from `src/hdl/` with *copy sources into project* checked ☑
-- Import block design `src/bd/design_1/design_1.bd` with *copy sources into project* checked ☑
-- Import configured ip from `src/ip/` with *copy sources into project* unchecked ☐
-- Import testbenches from `src/testbench/` with *copy sources into project* unchecked ☐
-- Import constraints from `src/constraints/` with *copy sources into project* unchecked ☐
-- `design_1` > `create HDL Wrapper...` > Let Vivado manage wrapper
-- save this state by committing like below:
+1. create empty directory `<cloned repo>/vivado_project/`
+2. Create project `vhdl-modules` inside that directory with *own project folder* unchecked ☐
+3. Import all sources from `src/hdl/` with *copy sources into project* checked ☑
+4. Import block design `src/bd/design_1/design_1.bd` with *copy sources into project* checked ☑
+5. Import configured ip from `src/ip/` with *copy sources into project* unchecked ☐
+6. Import testbenches from `src/testbench/` with *copy sources into project* unchecked ☐
+7. Import constraints from `src/constraints/` with *copy sources into project* unchecked ☐
+8. `design_1` > `create HDL Wrapper...` > Let Vivado manage wrapper
+9. make sure `design_1_wrapper` is the Top Module
+
+The project is now ready to be synthesized.
 
 ## How to commit changes
 
@@ -186,10 +190,10 @@ Trying to make Vivado more git-friendly.
 
 ### Installation
 
-Add `Vivado_init.tcl` (or append the relevant lines if you already have
-something in it) along with the `scripts` directory to:
+Add the `scripts` directory and `Vivado_init.tcl` (or append the relevant lines if you already have
+something in it) to:
 
-- `%APPDATA%\Roaming\Xilinx\Vivado` on Windows
+- `%APPDATA%\Xilinx\Vivado` on Windows
 - `~/.Xilinx/Vivado` on Linux
 
 ### How it works
