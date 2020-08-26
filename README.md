@@ -150,11 +150,14 @@ When `design_1_wrapper` doesn't appear as Top Module:
 2. Create project `vhdl-modules` inside that directory with *own project folder* unchecked ☐
 3. Import all sources from `src/hdl/` with *copy sources into project* checked ☑
 4. Import block design `src/bd/design_1/design_1.bd` with *copy sources into project* checked ☑
-5. Import configured ip from `src/ip/` with *copy sources into project* unchecked ☐
-6. Import testbenches from `src/testbench/` with *copy sources into project* unchecked ☐
-7. Import constraints from `src/constraints/` with *copy sources into project* unchecked ☐
-8. `design_1` > `create HDL Wrapper...` > Let Vivado manage wrapper
-9. make sure `design_1_wrapper` is the Top Module
+5. Import block design `src/bd/tb_design_1/tb_design_1.bd` with *copy sources into project* checked ☑
+6. Import configured ip from `src/ip/` with *copy sources into project* unchecked ☐
+7. Import testbenches from `src/testbench/` with *copy sources into project* unchecked ☐
+8. Import constraints from `src/constraints/` with *copy sources into project* unchecked ☐
+9. `design_1` > `create HDL Wrapper...` > Let Vivado manage wrapper
+10. make sure `design_1_wrapper` is the Top Module for synthesis
+11. `tb_design_1` > `create HDL Wrapper...` > Let Vivado manage wrapper
+12. make sure `tb_module` is the Top Module for simulation
 
 The project is now ready to be synthesized.
 
@@ -168,6 +171,61 @@ git commit -m "my commit"
 ```
 
 This way `vhdl-modules.tcl` will by overridden.
+
+## Simulation
+
+The top level entity for the simulation is `tb_module`.
+It requires some input data to be able to simulate the FIFOs and the packaging module.
+It has to be supplied in the following files:
+- `vivado_project/vhdl-modules.sim/sim_1/behav/xsim/input.txt`
+
+   ```
+   315 ns 11100001111001001100001100010010   # preamble = 0xe1e4c312
+   315 ns 00010010001101000101011001111000   # moduleId = 0xf218e0a2 (dummy module)
+   315 ns 11110010000110001110000010100010   # jobId    = 0x12345678
+   315 ns 00000000000000000000000000000001   # data[0]  = 0x00000001
+   315 ns 00000000000000000000000000000010   # data[1]  = 0x00000002
+   315 ns 00000000000000000000000000000011   # data[2]  = 0x00000003
+   315 ns 00000000000000000000000000000100   # data[3]  = 0x00000004
+   315 ns 11111011101100101100100011011100   # checksum = 2**32 - (moduleId+jobId+data) % (2**32)
+   ```
+  where 315 ns (31.5 cycles) is the set minimum time between writes to the input FIFO, followed by the input data signals 31 downto 0.
+
+- `vivado_project/vhdl-modules.sim/sim_1/behav/xsim/outputTimings.txt`
+
+   ```
+   15 ns
+   15 ns
+   15 ns
+   15 ns
+   15 ns
+   15 ns
+   15 ns
+   15 ns
+   ```
+   where 15 ns (1.5 cycles) is the set minimum time between read operations from the output FIFO.
+
+These files can be created by running one of these commands:
+- `python3 tests/dummyBin.py`
+- `python3 tests/dummyBigBin.py`
+- `python3 tests/ImgToConv2dBin.py`
+
+After running the simulation the following file will be created:
+- `vivado_project/vhdl-modules.sim/sim_1/behav/xsim/output.txt`
+   ```
+   860000 ps 11100001111001001100001100010010
+   880000 ps 00010010001101000101011001111000
+   900000 ps 11110010000110001110000010100010
+   1170000 ps 00000000000000000000000000000001
+   1490000 ps 00000000000000000000000000000010
+   1810000 ps 00000000000000000000000000000011
+   2130000 ps 00000000000000000000000000000100
+   2470000 ps 11111011101100101100100011011100
+   ```
+   where a line contains the elapsed time since simulation start, followed by the data of the output FIFO.
+
+The result of a convolution (`ImgToConv2dBin.py`) can be parsed as image by running
+`python3 tests/ioImg.py`
 
 ---
 
