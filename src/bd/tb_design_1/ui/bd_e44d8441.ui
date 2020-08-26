@@ -1,0 +1,37 @@
+{
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 non-TLS
+#  -string -flagsOSRD
+preplace port clk_100MHz -pg 1 -y 210 -defaultsOSRD
+preplace port FIFO_WRITE_0 -pg 1 -y 110 -defaultsOSRD
+preplace port overflow_0 -pg 1 -y 170 -defaultsOSRD
+preplace port overflow_1 -pg 1 -y 520 -defaultsOSRD
+preplace port reset_rtl_0 -pg 1 -y 290 -defaultsOSRD
+preplace port FIFO_READ_0 -pg 1 -y 610 -defaultsOSRD
+preplace portBus rd_data_count_0 -pg 1 -y 550 -defaultsOSRD
+preplace portBus stateOut_0 -pg 1 -y 350 -defaultsOSRD
+preplace portBus errorCode_0 -pg 1 -y 320 -defaultsOSRD
+preplace inst fifo_input -pg 1 -lvl 2 -y 200 -defaultsOSRD
+preplace inst packaging_0 -pg 1 -lvl 1 -y 310 -defaultsOSRD
+preplace inst fifo_output -pg 1 -lvl 2 -y 600 -defaultsOSRD
+preplace inst invert_reset_0 -pg 1 -lvl 1 -y 640 -defaultsOSRD
+preplace netloc packaging_0_errorCode 1 1 2 350J 350 760J
+preplace netloc FIFO_READ_0_1 1 0 2 10J 580 320J
+preplace netloc packaging_0_outData 1 1 1 360
+preplace netloc clk_0_1 1 0 2 0 190 340
+preplace netloc fifo_input_dout 1 0 2 10 200 370J
+preplace netloc rst_0_1 1 0 1 0
+preplace netloc packaging_0_inpRdEn 1 1 1 320
+preplace netloc FIFO_WRITE_0 1 0 2 NJ 110 N
+preplace netloc fifo_output_overflow 1 2 1 760J
+preplace netloc invert_reset_0_Res 1 1 1 370
+preplace netloc fifo_output_rd_data_count 1 2 1 770
+preplace netloc packaging_0_stateOut 1 1 2 320J 360 770J
+preplace netloc fifo_input_empty 1 0 2 20 210 NJ
+preplace netloc packaging_0_outWrEn 1 1 1 330
+preplace netloc fifo_output_full 1 0 2 20 550 NJ
+preplace netloc fifo_input_overflow 1 2 1 760J
+levelinfo -pg 1 -20 170 570 790 -top 0 -bot 730
+"
+}
+

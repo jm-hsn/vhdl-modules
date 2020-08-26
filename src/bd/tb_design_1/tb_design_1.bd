@@ -1,0 +1,402 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x691AF6251366DBBF",
+      "device": "xc7a100tcsg324-1",
+      "name": "tb_design_1",
+      "synth_flow_mode": "None",
+      "tool_version": "2018.3",
+      "validated": "true"
+    },
+    "design_tree": {
+      "fifo_input": "",
+      "fifo_output": "",
+      "invert_reset_0": "",
+      "packaging_0": ""
+    },
+    "interface_ports": {
+      "FIFO_WRITE_0": {
+        "mode": "Slave",
+        "vlnv": "xilinx.com:interface:fifo_write_rtl:1.0"
+      },
+      "FIFO_READ_0": {
+        "mode": "Slave",
+        "vlnv": "xilinx.com:interface:fifo_read_rtl:1.0"
+      }
+    },
+    "ports": {
+      "clk_100MHz": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "reset_rtl_0"
+          },
+          "CLK_DOMAIN": {
+            "value": "tb_design_1_clk_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0"
+          }
+        }
+      },
+      "reset_rtl_0": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default"
+          }
+        }
+      },
+      "overflow_0": {
+        "direction": "O"
+      },
+      "overflow_1": {
+        "direction": "O"
+      },
+      "stateOut_0": {
+        "direction": "O",
+        "left": "3",
+        "right": "0"
+      },
+      "errorCode_0": {
+        "direction": "O",
+        "left": "3",
+        "right": "0"
+      },
+      "rd_data_count_0": {
+        "direction": "O",
+        "left": "8",
+        "right": "0"
+      }
+    },
+    "components": {
+      "fifo_input": {
+        "vlnv": "xilinx.com:ip:fifo_generator:13.2",
+        "xci_name": "tb_design_1_fifo_input_0",
+        "parameters": {
+          "Almost_Empty_Flag": {
+            "value": "false"
+          },
+          "Data_Count": {
+            "value": "false"
+          },
+          "FIFO_Implementation_rach": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "FIFO_Implementation_wach": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "FIFO_Implementation_wrch": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "Fifo_Implementation": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "INTERFACE_TYPE": {
+            "value": "Native"
+          },
+          "Input_Data_Width": {
+            "value": "32"
+          },
+          "Input_Depth": {
+            "value": "64"
+          },
+          "Overflow_Flag": {
+            "value": "true"
+          },
+          "Performance_Options": {
+            "value": "Standard_FIFO"
+          },
+          "Programmable_Empty_Type": {
+            "value": "No_Programmable_Empty_Threshold"
+          },
+          "Programmable_Full_Type": {
+            "value": "No_Programmable_Full_Threshold"
+          },
+          "Reset_Pin": {
+            "value": "true"
+          },
+          "Reset_Type": {
+            "value": "Synchronous_Reset"
+          },
+          "Underflow_Flag": {
+            "value": "false"
+          },
+          "Use_Dout_Reset": {
+            "value": "true"
+          },
+          "Valid_Flag": {
+            "value": "false"
+          }
+        }
+      },
+      "fifo_output": {
+        "vlnv": "xilinx.com:ip:fifo_generator:13.2",
+        "xci_name": "tb_design_1_fifo_output_0",
+        "parameters": {
+          "Almost_Empty_Flag": {
+            "value": "false"
+          },
+          "Almost_Full_Flag": {
+            "value": "false"
+          },
+          "FIFO_Implementation_rach": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "FIFO_Implementation_wach": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "FIFO_Implementation_wrch": {
+            "value": "Common_Clock_Distributed_RAM"
+          },
+          "Fifo_Implementation": {
+            "value": "Independent_Clocks_Distributed_RAM"
+          },
+          "Full_Flags_Reset_Value": {
+            "value": "1"
+          },
+          "INTERFACE_TYPE": {
+            "value": "Native"
+          },
+          "Input_Data_Width": {
+            "value": "32"
+          },
+          "Input_Depth": {
+            "value": "512"
+          },
+          "Overflow_Flag": {
+            "value": "true"
+          },
+          "Performance_Options": {
+            "value": "Standard_FIFO"
+          },
+          "Programmable_Empty_Type": {
+            "value": "No_Programmable_Empty_Threshold"
+          },
+          "Programmable_Full_Type": {
+            "value": "No_Programmable_Full_Threshold"
+          },
+          "Read_Data_Count": {
+            "value": "true"
+          },
+          "Read_Data_Count_Width": {
+            "value": "9"
+          },
+          "Reset_Pin": {
+            "value": "true"
+          },
+          "Underflow_Flag": {
+            "value": "false"
+          },
+          "Use_Dout_Reset": {
+            "value": "true"
+          },
+          "Valid_Flag": {
+            "value": "false"
+          },
+          "Write_Data_Count": {
+            "value": "false"
+          }
+        }
+      },
+      "invert_reset_0": {
+        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+        "xci_name": "tb_design_1_invert_reset_0_0",
+        "parameters": {
+          "C_OPERATION": {
+            "value": "not"
+          },
+          "C_SIZE": {
+            "value": "1"
+          }
+        }
+      },
+      "packaging_0": {
+        "vlnv": "xilinx.com:module_ref:packaging:1.0",
+        "xci_name": "tb_design_1_packaging_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "packaging",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "tb_design_1_clk_0",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "user_prop"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "inputStream": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "inpRdEn": {
+            "direction": "O"
+          },
+          "inputEmpty": {
+            "direction": "I"
+          },
+          "outData": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "outWrEn": {
+            "direction": "O"
+          },
+          "outputFull": {
+            "direction": "I"
+          },
+          "errorCode": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "stateOut": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          }
+        }
+      }
+    },
+    "interface_nets": {
+      "FIFO_READ_0_1": {
+        "interface_ports": [
+          "FIFO_READ_0",
+          "fifo_output/FIFO_READ"
+        ]
+      },
+      "FIFO_WRITE_0": {
+        "interface_ports": [
+          "FIFO_WRITE_0",
+          "fifo_input/FIFO_WRITE"
+        ]
+      }
+    },
+    "nets": {
+      "clk_0_1": {
+        "ports": [
+          "clk_100MHz",
+          "fifo_input/clk",
+          "packaging_0/clk",
+          "fifo_output/rd_clk",
+          "fifo_output/wr_clk"
+        ]
+      },
+      "rst_0_1": {
+        "ports": [
+          "reset_rtl_0",
+          "packaging_0/rst",
+          "invert_reset_0/Op1"
+        ]
+      },
+      "invert_reset_0_Res": {
+        "ports": [
+          "invert_reset_0/Res",
+          "fifo_output/rst",
+          "fifo_input/srst"
+        ]
+      },
+      "fifo_input_empty": {
+        "ports": [
+          "fifo_input/empty",
+          "packaging_0/inputEmpty"
+        ]
+      },
+      "fifo_input_dout": {
+        "ports": [
+          "fifo_input/dout",
+          "packaging_0/inputStream"
+        ]
+      },
+      "packaging_0_inpRdEn": {
+        "ports": [
+          "packaging_0/inpRdEn",
+          "fifo_input/rd_en"
+        ]
+      },
+      "fifo_input_overflow": {
+        "ports": [
+          "fifo_input/overflow",
+          "overflow_0"
+        ]
+      },
+      "fifo_output_overflow": {
+        "ports": [
+          "fifo_output/overflow",
+          "overflow_1"
+        ]
+      },
+      "fifo_output_full": {
+        "ports": [
+          "fifo_output/full",
+          "packaging_0/outputFull"
+        ]
+      },
+      "packaging_0_outData": {
+        "ports": [
+          "packaging_0/outData",
+          "fifo_output/din"
+        ]
+      },
+      "packaging_0_outWrEn": {
+        "ports": [
+          "packaging_0/outWrEn",
+          "fifo_output/wr_en"
+        ]
+      },
+      "packaging_0_stateOut": {
+        "ports": [
+          "packaging_0/stateOut",
+          "stateOut_0"
+        ]
+      },
+      "packaging_0_errorCode": {
+        "ports": [
+          "packaging_0/errorCode",
+          "errorCode_0"
+        ]
+      },
+      "fifo_output_rd_data_count": {
+        "ports": [
+          "fifo_output/rd_data_count",
+          "rd_data_count_0"
+        ]
+      }
+    }
+  }
+}

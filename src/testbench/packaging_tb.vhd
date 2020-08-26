@@ -40,7 +40,6 @@ constant busWidth : integer:=32;
         FIFO_WRITE_0_wr_data : in STD_LOGIC_VECTOR ( 31 downto 0 );
         FIFO_WRITE_0_wr_en : in STD_LOGIC;
         clk_100MHz : in STD_LOGIC;
-        data_count_0 : out STD_LOGIC_VECTOR ( 5 downto 0 );
         errorCode_0 : out STD_LOGIC_VECTOR ( 3 downto 0 );
         overflow_0 : out STD_LOGIC;
         overflow_1 : out STD_LOGIC;
@@ -65,6 +64,7 @@ constant busWidth : integer:=32;
     signal s_outData : std_logic_vector(busWidth-1 downto 0);
     signal outputEmpty : std_logic := '0';
     signal rdEn : std_logic := '0';
+    signal allowRead : std_logic := '0';
     signal outputSpace: std_logic := '1';
 
     signal done: std_logic := '0'; 
@@ -141,6 +141,8 @@ begin
         wait;
     end process;
     
+    rdEn <= allowRead and not outputEmpty;
+    
     p_throttleOut : process
         variable v_inLine : line;
         variable v_inTime : time;
@@ -148,11 +150,11 @@ begin
         file_open(outputTimingsFile, "outputTimings.txt", read_mode);
         while not endfile(outputTimingsFile) and done = '0' loop
             wait until rising_edge(clk);
-            rdEn <= '0';
+            allowRead <= '0';
             if outputEmpty = '0' and outputSpace = '1' and rst = '1' then
                 readline(outputTimingsFile, v_inLine);
                 read(v_inLine, v_inTime);
-                rdEn <= '1';
+                allowRead <= '1';
                 if v_inTime > 10 ns then
                     outputSpace <= '0';
                     outputSpace <= '1' after v_inTime;
